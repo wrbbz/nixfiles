@@ -8,7 +8,7 @@
 
   users.users = {
     root = {
-      initialHashedPassword = "rootHash_placeholder";
+      initialHashedPassword = "$6$hCf/1CGUhM2EGsy7$lbzBtxItrcXOLrAbvVfM44LagA7Dn0MgP51fWWnLvtQVHwNbAadARCSyhjKH//NlkRg.7e9z6LdwVsg65UGag0";
       openssh.authorizedKeys.keys = [ "sshKey_placeholder" ];
     };
   };

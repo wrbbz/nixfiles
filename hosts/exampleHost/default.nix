@@ -10,9 +10,9 @@
   zfs-root = {
     boot = {
       devNodes = "/dev/disk/by-id/";
-      bootDevices = [ "bootDevices_placeholder" ];
+      bootDevices = [  "ata-Hitachi_HDS721050CLA362_JP5521HA2XA64T" ];
       immutable = false;
-      availableKernelModules = [ "kernelModules_placeholder" ];
+      availableKernelModules = [  "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
       removableEfi = true;
       kernelParams = [ ];
       sshUnlock = {
@@ -25,7 +25,7 @@
       # read changeHostName.txt file.
       hostName = "exampleHost";
       timeZone = "Europe/Berlin";
-      hostId = "abcd1234";
+      hostId = "d9a96eaa";
     };
   };
 }
