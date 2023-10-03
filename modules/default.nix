@@ -4,6 +4,7 @@
     ./boot
     ./fileSystems
     ./networking
+    ./starship
     ./zsh
   ];
 }
