@@ -13,6 +13,21 @@
     };
   };
 
+  users.users.wrbbz = {
+    initialHashedPassword = "!";
+    isNormalUser = true;
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    shell = pkgs.zsh;
+  };
+
+  home-manager.users.wrbbz = {
+    home.username = "wrbbz";
+    home.stateVersion = "23.05";
+  };
+
   ## enable GNOME desktop.
   ## You need to configure a normal, non-root user.
   # services.xserver = {
@@ -45,8 +60,27 @@
 
   environment.systemPackages = builtins.attrValues {
     inherit (pkgs)
-      mg # emacs-like editor
+      cryptsetup
       jq # other programs
     ;
   };
+
+  fonts = {
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "FiraCode" "Hack" ];})
+      noto-fonts-emoji
+    ];
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        serif = [ "Hack" ];
+        sansSerif = [ "Hack" ];
+        monospace = [ "Fira" ];
+        emoji = [ "NotoColorEmoji" ];
+      };
+    };
+  };
+
+  networking.nftables.enable = true;
+  networking.firewall.enable = true;
 }
