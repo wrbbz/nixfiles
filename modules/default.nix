@@ -3,6 +3,7 @@
     ./alacritty
     ./boot
     ./fileSystems
+    ./hyprland
     ./networking
     ./starship
     ./zsh

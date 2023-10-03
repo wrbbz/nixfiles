@@ -31,6 +31,12 @@
 
   my-config = {
     alacritty.enable = true;
+    hypr = {
+      enable = true;
+      monitors = ''
+        monitor=,preferred,auto,auto
+      '';
+    };
     zsh.enable = true;
     starship.enable = true;
   };

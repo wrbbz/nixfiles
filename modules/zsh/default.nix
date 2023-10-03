@@ -49,14 +49,14 @@ in {
           bindkey -- "^N" down-line-or-beginning-search
         '';
         # TODO: exec Hyprland and gamescope only when they are enabled
-        # profileExtra = ''
-        #   if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-        #     exec Hyprland
-        #   fi
+        profileExtra = ''
+          if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+            exec Hyprland
+          fi
+        '';
         #   if [[ ! $DISPLAY && $XDG_VTNR -eq 2 ]]; then
         #     exec gamescope -e -- steam
         #   fi
-        # '';
       };
     };
   };
