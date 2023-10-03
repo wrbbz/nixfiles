@@ -3,5 +3,6 @@
     ./boot
     ./fileSystems
     ./networking
+    ./zsh
   ];
 }
