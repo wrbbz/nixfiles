@@ -10,7 +10,7 @@
   outputs = { self, nixpkgs, home-manager }:
     let
       mkHost = hostName: system:
-        (({ zfs-root, pkgs, system, ... }:
+        (({ my-config, zfs-root, pkgs, system, ... }:
           nixpkgs.lib.nixosSystem {
             inherit system;
             modules = [
@@ -25,8 +25,8 @@
                 { })
 
               # Module 2: entry point
-              (({ zfs-root, pkgs, lib, ... }: {
-                inherit zfs-root;
+              (({ my-config, zfs-root, pkgs, lib, ... }: {
+                inherit my-config zfs-root;
                 system.configurationRevision = if (self ? rev) then
                   self.rev
                 else
@@ -38,7 +38,7 @@
                   # "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
                 ];
               }) {
-                inherit zfs-root pkgs;
+                inherit my-config zfs-root pkgs;
                 lib = nixpkgs.lib;
               })
 

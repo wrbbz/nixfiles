@@ -28,4 +28,8 @@
       hostId = "d9a96eaa";
     };
   };
+
+  my-config = {
+    zsh.enable = true;
+  };
 }
