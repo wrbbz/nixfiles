@@ -23,7 +23,7 @@
     };
     networking = {
       # read changeHostName.txt file.
-      hostName = "exampleHost";
+      hostName = "wrbbzChief";
       timeZone = "Europe/Berlin";
       hostId = "d9a96eaa";
     };

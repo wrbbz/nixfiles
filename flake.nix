@@ -63,7 +63,7 @@
           }));
     in {
       nixosConfigurations = {
-        exampleHost = mkHost "exampleHost" "x86_64-linux";
+        wrbbzChief = mkHost "wrbbzChief" "x86_64-linux";
       };
     };
 }
