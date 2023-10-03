@@ -30,6 +30,7 @@
   };
 
   my-config = {
+    alacritty.enable = true;
     zsh.enable = true;
   };
 }
