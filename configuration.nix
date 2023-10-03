@@ -67,7 +67,7 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FiraCode" "Hack" ];})
+      (nerdfonts.override { fonts = [ "FiraCode" "Hack" ]; })
       noto-fonts-emoji
     ];
     fontconfig = {
