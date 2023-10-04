@@ -35,7 +35,7 @@
     hypr = {
       enable = true;
       monitors = ''
-        monitor=,preferred,auto,auto
+        monitor=,1920x1080@74,auto,auto
       '';
     };
     pass.enable = true;
