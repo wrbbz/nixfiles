@@ -9,6 +9,7 @@
   services.emacs.enable = false;
 
   environment.systemPackages = with pkgs; [
+    droidcam
     figlet
     fira
     fira-code
