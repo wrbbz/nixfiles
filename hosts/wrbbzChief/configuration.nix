@@ -16,6 +16,7 @@
     firefox
     glab
     go
+    joshuto
     k9s
     kubectl
     mako
