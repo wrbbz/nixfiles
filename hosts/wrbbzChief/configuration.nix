@@ -14,6 +14,7 @@
     fira-code
     fira-mono
     firefox
+    glab
     go
     k9s
     kubectl
