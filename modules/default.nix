@@ -7,7 +7,9 @@
     ./hyprland
     ./networking
     ./pass
+    ./slack
     ./starship
+    ./unfree
     ./zsh
   ];
 }
