@@ -17,6 +17,7 @@
     go
     k9s
     kubectl
+    mako
     mpv
     nodejs
     obs-studio
