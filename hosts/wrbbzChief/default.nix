@@ -38,6 +38,7 @@
         monitor=,1920x1080@74,auto,auto
       '';
     };
+    nvim.enable = true;
     pass.enable = true;
     slack.enable = true;
     zsh.enable = true;

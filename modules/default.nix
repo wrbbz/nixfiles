@@ -6,6 +6,7 @@
     ./git
     ./hyprland
     ./networking
+    ./nvim
     ./pass
     ./slack
     ./starship
