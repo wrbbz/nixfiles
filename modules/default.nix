@@ -8,6 +8,7 @@
     ./networking
     ./nvim
     ./pass
+    ./qutebrowser
     ./slack
     ./starship
     ./unfree
