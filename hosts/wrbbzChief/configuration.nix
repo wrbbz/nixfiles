@@ -15,7 +15,6 @@
     fira-mono
     firefox
     go
-    gomuks
     k9s
     kubectl
     mpv
@@ -31,5 +30,4 @@
   ];
 
   programs.wireshark.enable = true;
-}
 }
