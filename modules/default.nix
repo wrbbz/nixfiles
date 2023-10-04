@@ -5,6 +5,7 @@
     ./fileSystems
     ./git
     ./hyprland
+    ./joshuto
     ./networking
     ./nvim
     ./pass

@@ -38,6 +38,7 @@
         monitor=,1920x1080@74,auto,auto
       '';
     };
+    joshuto.enable = true;
     nvim.enable = true;
     pass.enable = true;
     qutebrowser.enable = true;
