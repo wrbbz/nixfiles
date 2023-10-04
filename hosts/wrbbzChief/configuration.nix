@@ -26,6 +26,7 @@
     pulumi-bin
     ripgrep
     tdesktop
+    telepresence2
     tmate
     trivy
     wget
