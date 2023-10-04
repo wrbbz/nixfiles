@@ -210,7 +210,7 @@ in {
           bind = $mainMod, E, exec, rofimoji
           bind = $mainMod SHIFT, E, exec, rofi -show emoji
           bind = $mainMod SHIFT, C, killactive,
-          bind = $mainMod SHIFT, Q, exec, swaylock -f -i ~/pictures/lock.jpg
+          bind = $mainMod SHIFT, Q, exec, swaylock -f -i /home/wrbbz/pictures/lock.png
           bind = $mainMod, Q, exec, qutebrowser
           bind = $mainMod SHIFT, F, togglefloating,
           bind = $mainMod, F, fullscreen, 0
@@ -299,8 +299,8 @@ in {
         home.file = {
           "./.config/hypr/hyprpaper.conf".text = ''
             ipc = off
-            preload = /home/wrbbz/pictures/bg.jpg
-            wallpaper = ,contain:/home/wrbbz/pictures/bg.jpg
+            preload = /home/wrbbz/pictures/bg.png
+            wallpaper = ,contain:/home/wrbbz/pictures/bg.png
           '';
         };
 
