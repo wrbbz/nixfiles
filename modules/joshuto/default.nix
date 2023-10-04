@@ -13,6 +13,22 @@ in {
     home-manager.users.wrbbz = {
       programs.joshuto = {
         enable = true;
+        settings = {
+          preview = {
+            # This is the maximum size (in bytes) of a file to generate a preview for.
+            # Any file greater than this amount will not have a preview generated.
+            max_preview_size = 2097152; # 2MB
+
+            # This is the script that will be ran whenever a preview needs to be generated
+            preview_script = "~/.config/joshuto/preview_file.sh";
+
+            preview_shown_hook_script = "~/.config/joshuto/on_preview_shown.sh";
+
+            # This script is ran whenever the preview selection changes.
+            # Usually used to cleanup the old preview.
+            preview_removed_hook_script = "~/.config/joshuto/on_preview_removed.sh";
+          };
+        };
         mimetype = {
           class = {
             audio_default = [
@@ -436,6 +452,13 @@ in {
           #     inherit = "video_default";
           #   };
           # };
+        };
+      };
+
+      home.file = {
+        "joshuto-preview" = {
+          target = ".config/joshuto/preview_file.sh";
+          source = ./preview_file.sh;
         };
       };
     };
