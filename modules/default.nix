@@ -3,6 +3,7 @@
     ./alacritty
     ./boot
     ./fileSystems
+    ./git
     ./hyprland
     ./networking
     ./pass
