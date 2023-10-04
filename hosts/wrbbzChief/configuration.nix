@@ -7,4 +7,29 @@
     terminal = "tmux-direct";
   };
   services.emacs.enable = false;
+
+  environment.systemPackages = with pkgs; [
+    figlet
+    fira
+    fira-code
+    fira-mono
+    firefox
+    go
+    gomuks
+    k9s
+    kubectl
+    mpv
+    nodejs
+    obs-studio
+    pandoc
+    pulumi-bin
+    ripgrep
+    tdesktop
+    tmate
+    trivy
+    wget
+  ];
+
+  programs.wireshark.enable = true;
+}
 }
