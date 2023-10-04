@@ -17,6 +17,7 @@
     go
     k9s
     kubectl
+    kubelogin
     mako
     mpv
     nodejs
