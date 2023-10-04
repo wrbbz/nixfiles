@@ -58,6 +58,10 @@ in {
         #     exec gamescope -e -- steam
         #   fi
       };
+      programs.direnv = {
+        enable = true;
+	enableZshIntegration = true;
+      };
     };
   };
 }
