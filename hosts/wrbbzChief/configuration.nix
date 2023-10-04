@@ -25,6 +25,7 @@
     obs-studio
     pandoc
     pulumi-bin
+    ranger
     ripgrep
     tdesktop
     telepresence2
