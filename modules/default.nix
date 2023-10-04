@@ -5,6 +5,7 @@
     ./fileSystems
     ./hyprland
     ./networking
+    ./pass
     ./starship
     ./zsh
   ];

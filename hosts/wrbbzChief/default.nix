@@ -37,6 +37,7 @@
         monitor=,preferred,auto,auto
       '';
     };
+    pass.enable = true;
     zsh.enable = true;
     starship.enable = true;
   };
