@@ -22,7 +22,7 @@ in {
         # available, otherwise 'xterm-256color' is used.
         TERM = "xterm-256color";
         padding = {
-          x = 2;
+          x = 10;
           y = 2;
         };
         dynamic_padding = true;
@@ -53,38 +53,38 @@ in {
         ];
         colors = {
           primary = {
-            background = "#fbf1c7";
-            foreground = "#3c3836";
+	    background = "#282828";
+            foreground = "#ebdbb2";
           };
           normal = {
-            black = "#fbf1c7";
-            red = "#cc241d";
-            green = "#98971a";
-            yellow = "#d79921";
-            blue = "#458588";
-            magenta = "#b16286";
-            cyan = "#689d6a";
-            white = "#a89984";
+	    black = "#282828";
+	    red = "#cc241d";
+	    green = "#98971a";
+	    yellow = "#d79921";
+	    blue = "#458588";
+	    magenta = "#b16286";
+	    cyan = "#689d6a";
+	    white = "#a89984";
           };
           bright = {
-            black = "#928374";
-            red = "#9d0006";
-            green = "#79740e";
-            yellow = "#b57614";
-            blue = "#076678";
-            magenta = "#8f3f71";
-            cyan = "#427b58";
-            white = "#3c3836";
+	    black = "#928374";
+	    red = "#fb4934";
+	    green = "#b8bb26";
+	    yellow = "#fabd2f";
+	    blue = "#83a598";
+	    magenta = "#d3869b";
+	    cyan = "#8ec07c";
+	    white = "#ebdbb2";
           };
           dim = {
-            black = "#333333";
-            red = "#f2777a";
-            green = "#99cc99";
-            yellow = "#ffcc66";
-            blue = "#6699cc";
-            magenta = "#cc99cc";
-            cyan = "#66cccc";
-            white = "#d3d0c8";
+	    black = "#32302f";
+	    red = "#9d0006";
+	    green = "#79740e";
+	    yellow = "#b57614";
+	    blue = "#076678";
+	    magenta = "#8f3f71";
+	    cyan = "#427b58";
+	    white = "#928374";
           };
         };
       };
