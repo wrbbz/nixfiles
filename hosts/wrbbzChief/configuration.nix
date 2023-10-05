@@ -17,6 +17,12 @@
     #jack.enable = true;
   };
 
+  # Allows connect iOS devices
+  services.usbmuxd = {
+    enable = true;
+    package = pkgs.usbmuxd2;
+  };
+
   environment.systemPackages = with pkgs; [
     droidcam
     figlet
@@ -29,6 +35,7 @@
     k9s
     kubectl
     kubelogin-oidc
+    libimobiledevice
     mako
     mpv
     nodejs
