@@ -2,6 +2,7 @@
   imports = [
     ./alacritty
     ./boot
+    ./discord
     ./fileSystems
     ./git
     ./hyprland

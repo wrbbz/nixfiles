@@ -31,6 +31,7 @@
 
   my-config = {
     alacritty.enable = true;
+    discord.enable = true;
     git.enable = true;
     hypr = {
       enable = true;
