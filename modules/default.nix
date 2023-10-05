@@ -2,6 +2,7 @@
   imports = [
     ./alacritty
     ./boot
+    ./bluetooth
     ./discord
     ./fileSystems
     ./git
