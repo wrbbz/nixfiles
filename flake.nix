@@ -1,15 +1,16 @@
 {
+  description = "wrbbz's personal NixOS setup";
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    #nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     home-manager = {
-      #url = "github:nix-community/home-manager/release-23.05";
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager }:
+  outputs = { self, nixpkgs, home-manager, nixos-hardware }:
     let
       mkHost = hostName: system:
         (({ my-config, zfs-root, pkgs, system, ... }:
@@ -22,7 +23,7 @@
               # Module 1: host-specific config, if exist
               (if (builtins.pathExists
                 ./hosts/${hostName}/configuration.nix) then
-                (import ./hosts/${hostName}/configuration.nix { inherit pkgs; })
+                (import ./hosts/${hostName}/configuration.nix { inherit pkgs nixos-hardware; })
               else
                 { })
 
