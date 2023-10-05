@@ -26,6 +26,7 @@
     obs-studio
     pandoc
     pulumi-bin
+    pwgen
     ranger
     ripgrep
     tdesktop
