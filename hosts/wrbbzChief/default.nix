@@ -43,6 +43,7 @@
     joshuto.enable = true;
     nvim.enable = true;
     pass.enable = true;
+    podman.enable = true;
     qutebrowser.enable = true;
     slack.enable = true;
     zsh.enable = true;
