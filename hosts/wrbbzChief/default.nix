@@ -46,7 +46,8 @@
     podman.enable = true;
     qutebrowser.enable = true;
     slack.enable = true;
-    zsh.enable = true;
     starship.enable = true;
+    wofi.enable = true;
+    zsh.enable = true;
   };
 }

@@ -51,7 +51,6 @@
     tmate
     trivy
     wget
-    wofi
   ];
 
   programs.wireshark.enable = true;
