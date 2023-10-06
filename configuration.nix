@@ -8,7 +8,7 @@
 
   users.users = {
     root = {
-      initialHashedPassword = "$6$hCf/1CGUhM2EGsy7$lbzBtxItrcXOLrAbvVfM44LagA7Dn0MgP51fWWnLvtQVHwNbAadARCSyhjKH//NlkRg.7e9z6LdwVsg65UGag0";
+      initialHashedPassword = "$6$XlS5gk5Nbc8u2Kfr$f47mT6DH5c/rlKxsQltQpHF0xFu5xxlopidrJOtDq8yVvBXOVH40yU24Kg5KlCbIAiyL/xzSC3362VahvNyue1";
       openssh.authorizedKeys.keys = [ "sshKey_placeholder" ];
     };
   };
@@ -35,6 +35,18 @@
   #  desktopManager.gnome.enable = true;
   #  displayManager.gdm.enable = true;
   # };
+
+  ## enable ZFS auto snapshot on datasets
+  ## You need to set the auto snapshot property to "true"
+  ## on datasets for this to work, such as
+  # zfs set com.sun:auto-snapshot=true rpool/nixos/home
+  services.zfs = {
+    autoSnapshot = {
+      enable = false;
+      flags = "-k -p --utc";
+      monthly = 48;
+    };
+  };
 
   programs.neovim = {
     enable = true;

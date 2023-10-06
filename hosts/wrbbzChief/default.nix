@@ -10,7 +10,7 @@
   zfs-root = {
     boot = {
       devNodes = "/dev/disk/by-id/";
-      bootDevices = [  "ata-Hitachi_HDS721050CLA362_JP5521HA2XA64T" ];
+      bootDevices = [  "ata-Apacer_AS350_256GB_8B18070613B700011956" ];
       immutable = false;
       availableKernelModules = [  "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
       removableEfi = true;
@@ -25,7 +25,7 @@
       # read changeHostName.txt file.
       hostName = "wrbbzChief";
       timeZone = "Europe/Podgorica";
-      hostId = "d9a96eaa";
+      hostId = "576459dd";
     };
   };
 
