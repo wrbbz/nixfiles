@@ -37,7 +37,6 @@
     kubectl
     kubelogin-oidc
     libimobiledevice
-    mako
     mpv
     nodejs
     obs-studio

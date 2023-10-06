@@ -41,6 +41,7 @@
       '';
     };
     joshuto.enable = true;
+    mako.enable = true;
     nvim.enable = true;
     pass.enable = true;
     podman.enable = true;
