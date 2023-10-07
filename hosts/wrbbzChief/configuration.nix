@@ -51,6 +51,7 @@
     tmate
     trivy
     wget
+    yarn
   ];
 
   programs.wireshark.enable = true;
