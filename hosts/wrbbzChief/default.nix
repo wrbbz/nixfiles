@@ -43,6 +43,7 @@
     joshuto.enable = true;
     mako.enable = true;
     nvim.enable = true;
+    one-password.enable = true;
     pass.enable = true;
     podman.enable = true;
     qutebrowser.enable = true;

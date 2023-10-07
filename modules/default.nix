@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }: {
   imports = [
+    ./1password
     ./alacritty
     ./boot
     ./bluetooth
