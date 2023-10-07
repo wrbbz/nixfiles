@@ -146,6 +146,12 @@ in {
           c.colors.prompts.bg = '#458588'
         '';
           };
+          home.file = {
+            "qute-1pass" = {
+              target = ".config/qutebrowser/qute-1pass";
+              source = ./qute-1pass;
+            };
+          };
         };
   };
 }
