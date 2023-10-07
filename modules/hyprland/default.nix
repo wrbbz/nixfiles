@@ -206,7 +206,7 @@ in {
           # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
           bind = $mainMod, Return, exec, alacritty
           bind = $mainMod, Space, exec, wofi --show run
-          bind = $mainMod, P, exec, rofi-rbw
+          bind = $mainMod, P, exec, tessen --dmenu wofi --action autotype
           bind = $mainMod, E, exec, rofimoji
           bind = $mainMod SHIFT, E, exec, rofi -show emoji
           bind = $mainMod SHIFT, C, killactive,
