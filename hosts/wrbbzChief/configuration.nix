@@ -47,6 +47,7 @@
     ripgrep
     tdesktop
     telepresence2
+    tessen
     tmate
     trivy
     wget
