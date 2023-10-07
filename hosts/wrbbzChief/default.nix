@@ -49,6 +49,7 @@
     qutebrowser.enable = true;
     slack.enable = true;
     starship.enable = true;
+    v4l2.enable = true;
     wofi.enable = true;
     zsh.enable = true;
   };

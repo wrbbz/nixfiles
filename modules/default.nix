@@ -18,6 +18,7 @@
     ./slack
     ./starship
     ./unfree
+    ./v4l2
     ./wofi
     ./zsh
   ];
