@@ -7,7 +7,7 @@
   services.emacs.enable = false;
 
   # Enable sound.
-  sound.enable = true;
+  # sound.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
