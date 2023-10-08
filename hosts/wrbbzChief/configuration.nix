@@ -52,6 +52,7 @@
     mpv
     nodejs
     obs-studio
+    obs-studio-plugins.obs-backgroundremoval
     pandoc
     pulumi-bin
     pwgen
