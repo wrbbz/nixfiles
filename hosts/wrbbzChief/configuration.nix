@@ -36,6 +36,7 @@
 
   environment.systemPackages = with pkgs; [
     bottom
+    cider
     droidcam
     figlet
     fira
