@@ -54,6 +54,7 @@
     obs-studio
     obs-studio-plugins.obs-backgroundremoval
     pandoc
+    pulsemixer
     pulumi-bin
     pwgen
     pw-volume
