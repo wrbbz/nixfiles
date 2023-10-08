@@ -55,6 +55,7 @@
     pandoc
     pulumi-bin
     pwgen
+    pw-volume
     ranger
     ripgrep
     tdesktop
