@@ -50,6 +50,7 @@
     kubelogin-oidc
     libimobiledevice
     mpv
+    nix-prefetch-github
     nodejs
     obs-studio
     obs-studio-plugins.obs-backgroundremoval
