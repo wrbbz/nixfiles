@@ -41,7 +41,7 @@
       '';
     };
     joshuto.enable = true;
-    mako.enable = true;
+    mako.enable = false;
     nvim.enable = true;
     one-password.enable = true;
     pass.enable = true;
