@@ -34,6 +34,10 @@
     package = pkgs.usbmuxd2;
   };
 
+  services.openvpn.servers = {
+    office = { config = '' config /home/wrbbz/work/vpn.conf ''; };
+  };
+
   environment.systemPackages = with pkgs; [
     bottom
     cider
@@ -54,6 +58,7 @@
     nodejs
     obs-studio
     obs-studio-plugins.obs-backgroundremoval
+    openvpn3
     pandoc
     pulsemixer
     pulumi-bin
