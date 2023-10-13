@@ -36,9 +36,9 @@
     git.enable = true;
     hypr = {
       enable = true;
-      monitors = ''
-        monitor=,1920x1080@74,auto,auto
-      '';
+      monitors = [
+        "HDMI-A-I,preferred,auto,auto"
+      ];
     };
     joshuto.enable = true;
     mako.enable = false;
