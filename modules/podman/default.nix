@@ -20,6 +20,8 @@ in {
         # enable ZFS storage driver & docker-compose compatibility
         extraPackages = with pkgs; [ podman-compose ];
 
+        defaultNetwork.settings.dns_enabled = true;
+
         # There is an auto prune option available
       };
 
