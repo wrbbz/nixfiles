@@ -43,6 +43,7 @@
     joshuto.enable = true;
     mako.enable = false;
     nvim.enable = true;
+    nvidia.enable = true;
     one-password.enable = true;
     pass.enable = true;
     podman.enable = true;

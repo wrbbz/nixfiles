@@ -11,6 +11,7 @@
     ./joshuto
     ./mako
     ./networking
+    ./nvidia
     ./nvim
     ./pass
     ./podman
