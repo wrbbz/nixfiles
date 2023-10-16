@@ -13,16 +13,9 @@ in {
     virtualisation = {
       podman = {
         enable = true;
-
-        # Create a `docker` alias for podman, to use it as a drop-in replacement
+        # Create a `docker` alias
         dockerCompat = true;
-
-        # enable ZFS storage driver & docker-compose compatibility
-        extraPackages = with pkgs; [ podman-compose ];
-
         defaultNetwork.settings.dns_enabled = true;
-
-        # There is an auto prune option available
       };
 
       containers.storage.settings.storage = {
@@ -33,6 +26,10 @@ in {
         runroot = "/run/containers/storage";
       };
     };
+
+    environment.systemPackages = with pkgs; [
+      podman-compose
+    ];
 
     # Enable native overlay diff
     # Might not be necessary with current config
