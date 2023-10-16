@@ -9,7 +9,6 @@
     ./git
     ./hyprland
     ./joshuto
-    ./mako
     ./networking
     ./nvim
     ./pass
