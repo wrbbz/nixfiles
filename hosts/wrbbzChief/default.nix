@@ -32,7 +32,7 @@
   my-config = {
     alacritty.enable = true;
     bluetooth.enable = true;
-    cli.enable = true
+    cli.enable = true;
     discord.enable = true;
     git.enable = true;
     hypr = {
