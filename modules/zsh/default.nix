@@ -61,7 +61,7 @@ in {
       };
       programs.direnv = {
         enable = true;
-	enableZshIntegration = true;
+        enableZshIntegration = true;
       };
     };
   };
