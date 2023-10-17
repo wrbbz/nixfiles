@@ -2,14 +2,14 @@
 let inherit (lib) types mkIf mkDefault mkOption;
 in {
   options.my-config = {
-    cli_tools.enable = mkOption {
+    cli.enable = mkOption {
       description = "Collection of cli tools";
       type = types.bool;
       default = false;
     };
   };
 
-  config = mkIf config.my-config.cli_tools.enable {
+  config = mkIf config.my-config.cli.enable {
     environment.systemPackages = with pkgs; [
       figlet
       bottom
