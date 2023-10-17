@@ -4,6 +4,7 @@
     ./alacritty
     ./boot
     ./bluetooth
+    ./cli
     ./discord
     ./fileSystems
     ./git

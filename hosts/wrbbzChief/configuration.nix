@@ -39,15 +39,12 @@
   };
 
   environment.systemPackages = with pkgs; [
-    bottom
     cider
     droidcam
-    figlet
     fira
     fira-code
     fira-mono
     firefox
-    glab
     go
     k9s
     kubectl
@@ -60,18 +57,11 @@
     obs-studio-plugins.obs-backgroundremoval
     openvpn3
     pandoc
-    pulsemixer
     pulumi-bin
-    pwgen
-    pw-volume
-    ranger
-    ripgrep
     tdesktop
     telepresence2
     tessen
-    tmate
     trivy
-    wget
     yarn
   ];
 
