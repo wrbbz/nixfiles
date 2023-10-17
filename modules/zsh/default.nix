@@ -26,6 +26,7 @@ in {
           ignoreDups = true;
           ignoreSpace = true;
         };
+        defaultKeymap = "viins";
         shellAliases = {
           add-deleted="git status | grep 'deleted' | awk '{ print $2 }' | xargs git add";
           jqp="jq -C | less -R";
