@@ -33,8 +33,8 @@ in {
           ls="eza -Slhg --icons";
           la="eza -Slhga --icons";
           maps="telnet mapscii.me";
-          nwitch="sudo nixos-rebuild switch --flake /home/wrbbz/.slashNix/flake.nix#e220";
-          ntest="sudo nixos-rebuild test --flake /home/wrbbz/.slashNix/flake.nix#e220";
+          nwitch="doas nixos-rebuild switch --flake /home/wrbbz/.nixfiles#wrbbzChief";
+          nest="doas nixos-rebuild test --flake /home/wrbbz/.nixfiles#wrbbzChief";
           sdfailed="systemctl list-units --failed";
           ssproxy="ssh -D 1080 -C -q -N";
           suspendless="systemd-inhibit --what=handle-lid-switch sleep infinity";
