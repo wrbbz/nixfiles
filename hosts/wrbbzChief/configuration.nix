@@ -6,6 +6,11 @@
   };
   services.emacs.enable = false;
 
+  networking.useDHCP = true;
+  networking.networkmanager.enable = false;
+
+  services.resolved.enable = true;
+
   # Enable sound.
   # sound.enable = true;
   services.pipewire = {
