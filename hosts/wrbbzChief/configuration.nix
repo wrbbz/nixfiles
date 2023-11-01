@@ -39,10 +39,6 @@
     package = pkgs.usbmuxd2;
   };
 
-  services.openvpn.servers = {
-    office = { config = '' config /home/wrbbz/work/vpn.conf ''; };
-  };
-
   environment.systemPackages = with pkgs; [
     cider
     droidcam
@@ -60,7 +56,6 @@
     nodejs
     obs-studio
     obs-studio-plugins.obs-backgroundremoval
-    openvpn3
     pandoc
     pulumi-bin
     tdesktop
