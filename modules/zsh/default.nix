@@ -3,7 +3,7 @@ let inherit (lib) types mkIf mkDefault mkOption;
 in {
   options.my-config = {
     zsh.enable = mkOption {
-      description = "Enable my customized git";
+      description = "Enable my customized zsh";
       type = types.bool;
       default = false;
     };
