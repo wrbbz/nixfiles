@@ -30,8 +30,8 @@ in {
         shellAliases = {
           add-deleted="git status | grep 'deleted' | awk '{ print $2 }' | xargs git add";
           jqp="jq -C | less -R";
-          ls="eza -Slhg --icons";
-          la="eza -Slhga --icons";
+          ls="eza -Slhg --icons=always";
+          la="eza -Slhga --icons=always";
           maps="telnet mapscii.me";
           nwitch="doas nixos-rebuild switch --flake /home/wrbbz/.nixfiles#wrbbzChief";
           nest="doas nixos-rebuild test --flake /home/wrbbz/.nixfiles#wrbbzChief";
