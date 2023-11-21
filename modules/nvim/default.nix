@@ -252,7 +252,7 @@ in {
                 }),
               })
 
-              lsp.setup_nvim_cmp({
+              cmp.setup({
                 mapping = cmp_mappings
               })
 
