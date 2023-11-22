@@ -252,10 +252,6 @@ in {
                 }),
               })
 
-              cmp.setup({
-                mapping = cmp_mappings
-              })
-
               lsp.on_attach(function(client, bufnr)
                 lsp.default_keymaps({ buffer = bufnr })
               end)
@@ -274,6 +270,7 @@ in {
               lsp.setup()
 
               cmp.setup({
+                mapping = cmp_mappings,
                 sources = {
                   {name = 'copilot'},
                   {name = 'nvim_lsp'},
