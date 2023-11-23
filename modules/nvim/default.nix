@@ -118,6 +118,23 @@ in {
             '';
           }
           {
+            plugin = copilot-lua;
+            type = "lua";
+            config = ''
+              require("copilot").setup({
+                suggestion = { enable = false },
+                panel = { enable = false },
+              })
+            '';
+          }
+          {
+            plugin = copilot-cmp;
+            type = "lua";
+            config = ''
+              require("copilot_cmp").setup()
+            '';
+          }
+          {
             plugin = gruvbox-community;
             config = ''
               set termguicolors
