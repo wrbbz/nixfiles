@@ -64,7 +64,6 @@
           }));
     in {
       nixosConfigurations = {
-        wrbbzChief = mkHost "wrbbzChief" "x86_64-linux";
         wrbbzCool = mkHost "wrbbzCool" "x86_64-linux";
       };
     };
