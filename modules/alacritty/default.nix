@@ -20,16 +20,20 @@ in {
         # each instance of Alacritty. If it is not present, alacritty will
         # check the local terminfo database and use 'alacritty' if it is
         # available, otherwise 'xterm-256color' is used.
-        TERM = "xterm-256color";
-        padding = {
-          x = 10;
-          y = 2;
+        env.TERM = "xterm-256color";
+        window = {
+          padding = {
+            x = 10;
+            y = 2;
+          };
+          decorations = "None";
+          dynamic_title = true;
+          dynamic_padding = true;
         };
-        dynamic_padding = true;
-        decorations = "none";
-        dynamic_title = true;
-        unfocused_hollow = true;
-        key_bindings = [
+        cursor = {
+          unfocused_hollow = true;
+        };
+        keyboard.bindings = [
           {
             key = "PageUp";
             mods = "Shift";
