@@ -1,6 +1,6 @@
 # configuration in this file only applies to exampleHost host
 #
-# only zfs-root.* options can be defined in this file.
+# only my-config.* and zfs-root.* options can be defined in this file.
 #
 # all others goes to `configuration.nix` under the same directory as
 # this file. 
@@ -37,8 +37,25 @@
     git.enable = true;
     hypr = {
       enable = true;
-      monitors = ''
-        monitor=,1920x1080@74,auto,auto
+      monitors = [
+        ",preferred,auto,auto"
+      ];
+      workspaces = [
+        "1, monitor:HDMI-A-1, default:true"
+        "2, monitor:HDMI-A-1"
+        "3, monitor:HDMI-A-1"
+        "4, monitor:HDMI-A-1"
+        "5, monitor:HDMI-A-1"
+        "6, monitor:HDMI-A-1"
+        "7, monitor:HDMI-A-1"
+        "8, monitor:HDMI-A-1"
+        "9, monitor:HDMI-A-1"
+      ];
+      paperConfig = ''
+        ipc = off
+        splash = off
+        preload = /home/wrbbz/.pictures/bg.jpg
+        wallpaper = HDMI-A-1,contain:/home/wrbbz/.pictures/bg.jpg
       '';
     };
     joshuto.enable = true;
@@ -53,6 +70,4 @@
     wofi.enable = true;
     zsh.enable = true;
   };
-
-  security.polkit.enable = true;
 }

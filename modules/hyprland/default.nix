@@ -14,42 +14,93 @@ in {
     };
     hypr.monitors = mkOption {
       description = "Monitor setup";
-      type = types.str;
-      default = ''
-        monitor=,preferred,auto,auto
-      '';
+      type = types.listOf types.str;
+      default = [
+        ",preferred,auto,auto"
+      ];
+    };
+    hypr.workspaces = mkOption {
+      description = "Workspaces setup";
+      type = types.listOf types.str;
+      default = [ ];
     };
     hypr.cursor.size = mkOption {
       description = "Cursor size";
       type = types.int;
       default = 32;
     };
+    hypr.extraConfig = mkOption {
+      description = "Extra config";
+      type = types.str;
+      default = "";
+    };
+    hypr.paperConfig = mkOption {
+      description = "Wallpapers setup";
+      type = types.str;
+      default = ''
+        ipc = off
+        splash = off
+        preload = /home/ejiek/pictures/bg.jpg
+        wallpaper = ,contain:/home/ejiek/pictures/bg.jpg
+        '';
+    };
   };
 
   # if my-config.template.desktop.gnome.enable is set to true
   # set the following options
   config = mkIf config.my-config.hypr.enable {
-    programs.hyprland = {
+    security.pam.services.swaylock = {};
+
+    programs.dconf.enable = true;
+
+    # Enable sound.
+    sound.enable = true;
+    services.pipewire = {
       enable = true;
-      xwayland = {
-        enable = true;
-      };
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      # If you want to use JACK applications, uncomment this
+      #jack.enable = true;
     };
 
-    security.pam.services.swaylock = {};
+    # xdg-desktop-portal works by exposing a series of D-Bus interfaces
+    # known as portals under a well-known name
+    # (org.freedesktop.portal.Desktop) and object path
+    # (/org/freedesktop/portal/desktop).
+    # The portal interfaces include APIs for file access, opening URIs,
+    # printing and others.
+    services.dbus.enable = true;
+    xdg.portal = {
+      enable = true;
+      config.common.default = "xdg-desktop-portal-hyprland";
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
+      ];
+    };
 
     home-manager.users.wrbbz = {
       home.packages = with pkgs; [
         brightnessctl
-        grim # take screenshots
         hyprland-per-window-layout
         hyprpaper
         hyprpicker
         notify-desktop
-        slurp # Select a region in a Wayland compositor | used for screenshots
+        pulsemixer
         swaylock
         swaynotificationcenter
+        wireplumber
         wl-clipboard
+        xdg-utils
+        (writeShellApplication {
+          name = "hypr-screenshot";
+          runtimeInputs = [
+            slurp # Select a region in a Wayland compositor | used for screenshots
+            grim # take screenshots
+          ];
+          text = (builtins.readFile ./screenshot.sh);
+        })
       ];
 
       home.sessionVariables = {
@@ -57,263 +108,236 @@ in {
         NIXOS_OZONE_WL = "1";
       };
 
-        gtk = {
-          enable = true;
-          font = { name = "sans-serif"; };
-          theme = {
-            name = "Adwaita";
-            package = pkgs.gnome.gnome-themes-extra;
-          };
-          iconTheme = {
-            package = pkgs.gnome.adwaita-icon-theme;
-            name = "Adwaita";
-          };
-          cursorTheme = {
-            package = pkgs.nordzy-cursor-theme;
-            name = "Nordzy-cursors";
-            size = config.my-config.hypr.cursor.size;
-          };
+      gtk = {
+        enable = true;
+        font = { name = "sans-serif"; };
+        theme = {
+          name = "Adwaita";
+          package = pkgs.gnome.gnome-themes-extra;
         };
-
-        home.pointerCursor = {
+        iconTheme = {
+          package = pkgs.gnome.adwaita-icon-theme;
+          name = "Adwaita";
+        };
+        cursorTheme = {
           package = pkgs.nordzy-cursor-theme;
           name = "Nordzy-cursors";
-          gtk.enable = true;
           size = config.my-config.hypr.cursor.size;
         };
+      };
 
-        home.file = {
-          "./.config/electron25-flags.conf".text = ''
-          --enable-features=WaylandWindowDecorations
-          --ozone-platform-hint=auto
-          '';
+      home.pointerCursor = {
+        package = pkgs.nordzy-cursor-theme;
+        name = "Nordzy-cursors";
+        gtk.enable = true;
+        size = config.my-config.hypr.cursor.size;
+      };
+
+      home.file = {
+        "./.config/electron25-flags.conf".text = ''
+        --enable-features=WaylandWindowDecorations
+        --ozone-platform-hint=auto
+        '';
+      };
+
+      home.file = {
+        "./.config/electron13-flags.conf".text = ''
+        --enable-features=UseOzonePlatform
+        --ozone-platform=wayland
+        '';
+      };
+
+      # TODO: take a look at https://github.com/Duckonaut/split-monitor-workspaces
+      wayland.windowManager.hyprland = {
+        enable = true;
+        xwayland = {
+          enable = true;
         };
+        systemd.enable = true;
+        settings = {
+          monitor = config.my-config.hypr.monitors;
+          xwayland = {
+            force_zero_scaling = true;
+          };
 
-        home.file = {
-          "./.config/electron13-flags.conf".text = ''
-          --enable-features=UseOzonePlatform
-          --ozone-platform=wayland
-          '';
-        };
+          input = {
+            kb_layout = "us,ru";
+            kb_options = "grp:caps_toggle,grp_led:caps";
+            follow_mouse = 1;
+            touchpad = {
+              natural_scroll = true;
+              disable_while_typing = true;
+              clickfinger_behavior = true;
+            };
+            sensitivity = 0;
+          };
+          gestures = {
+            workspace_swipe = true;
+          };
 
-        home.file = {
-          "./.config/hypr/hyprland.conf".text = ''
-          ${config.my-config.hypr.monitors}
+          workspace = config.my-config.hypr.workspaces;
 
-          xwayland {
-            force_zero_scaling = true
-          }
+          general = {
+            gaps_in = 5;
+            gaps_out = 20;
+            border_size = 2;
+            "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+            "col.inactive_border" = "rgba(595959aa)";
 
-          input {
-            kb_layout = us,ru
-            kb_variant =
-              kb_model =
-                kb_options = grp:caps_toggle,grp_led:caps
-                kb_rules =
+            layout = "${config.my-config.hypr.layout}";
+          };
 
-                  follow_mouse = 1
+          decoration = {
+            rounding = 5;
+            blur = {
+              enabled = "yes";
+              size = 3;
+              passes = 1;
+              new_optimizations = "on";
+            };
+            drop_shadow = "yes";
+            shadow_range = 4;
+            shadow_render_power = 3;
+            "col.shadow" = "rgba(1a1a1aee)";
+          };
+          animations = {
+            enabled = "yes";
+            bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+            animation = [
+              "windows, 1, 7, myBezier"
+              "windowsOut, 1, 7, default, popin 80%"
+              "border, 1, 10, default"
+              "fade, 1, 7, default"
+              "workspaces, 1, 6, default"
+            ];
+          };
+          misc = {
+            disable_hyprland_logo = true;
+            disable_splash_rendering = true;
+            disable_autoreload = true;
+          };
 
-                  touchpad {
-                    natural_scroll = true
-                  }
+          dwindle = {
+            pseudotile = "yes";
+            preserve_split = "yes";
+            no_gaps_when_only = true;
+          };
+          master = {
+            new_is_master = false;
+            no_gaps_when_only = true;
+            orientation = "center";
+          };
 
-                  sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
-                }
+          "$mainMod" = "SUPER";
 
-                general {
-              # See https://wiki.hyprland.org/Configuring/Variables/ for more
+          bind = [
+            "$mainMod, Return, exec, alacritty"
+            "$mainMod, Space, exec, rofi -show drun"
+            "$mainMod, P, exec, rofi-rbw"
+            "$mainMod, E, exec, rofimoji"
+            "$mainMod SHIFT, E, exec, rofi -show emoji"
+            "$mainMod SHIFT, C, killactive,"
+            "$mainMod SHIFT, Q, exec, swaylock -f -i ~/pictures/lock.jpg"
+            "$mainMod, Q, exec, qutebrowser"
+            "$mainMod ALT, F, togglefloating,"
+            "$mainMod, F, fullscreen, 0"
+            "$mainMod SHIFT, F, fakefullscreen"
 
-              gaps_in = 5
-              gaps_out = 20
-              border_size = 2
-              col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-              col.inactive_border = rgba(595959aa)
+            # Move windows
+            "$mainMod SHIFT, H, swapwindow, l"
+            "$mainMod SHIFT, L, swapwindow, r"
+            "$mainMod SHIFT, K, swapwindow, u"
+            "$mainMod SHIFT, J, swapwindow, d"
 
-              layout = ${config.my-config.hypr.layout}
-            }
+            # Move focus with mainMod + hjkl
+            "$mainMod, H, movefocus, l"
+            "$mainMod, L, movefocus, r"
+            "$mainMod, K, movefocus, u"
+            "$mainMod, J, movefocus, d"
 
-            decoration {
-              # See https://wiki.hyprland.org/Configuring/Variables/ for more
+            # Move focus to another monitor
+            "$mainMod, I, focusmonitor, l"
+            "$mainMod, O, focusmonitor, r"
 
-              rounding = 5
-              blur {
-                enabled = yes
-                size = 3
-                passes = 1
-                new_optimizations = on
-              }
+            # Move window to anothe monitor
+            "$mainMod SHIFT, I, movewindow, mon:l"
+            "$mainMod SHIFT, O, movewindow, mon:r"
 
-              drop_shadow = yes
-              shadow_range = 4
-              shadow_render_power = 3
-              col.shadow = rgba(1a1a1aee)
-            }
+            # Switch workspaces with mainMod + [0-9]
+            "$mainMod, 1, workspace, 1"
+            "$mainMod, 2, workspace, 2"
+            "$mainMod, 3, workspace, 3"
+            "$mainMod, 4, workspace, 4"
+            "$mainMod, 5, workspace, 5"
+            "$mainMod, 6, workspace, 6"
+            "$mainMod, 7, workspace, 7"
+            "$mainMod, 8, workspace, 8"
+            "$mainMod, 9, workspace, 9"
+            "$mainMod, 0, workspace, 10"
 
-            animations {
-              enabled = yes
+            # Move active window to a workspace with mainMod + SHIFT + [0-9]
+            "$mainMod SHIFT, 1, movetoworkspace, 1"
+            "$mainMod SHIFT, 2, movetoworkspace, 2"
+            "$mainMod SHIFT, 3, movetoworkspace, 3"
+            "$mainMod SHIFT, 4, movetoworkspace, 4"
+            "$mainMod SHIFT, 5, movetoworkspace, 5"
+            "$mainMod SHIFT, 6, movetoworkspace, 6"
+            "$mainMod SHIFT, 7, movetoworkspace, 7"
+            "$mainMod SHIFT, 8, movetoworkspace, 8"
+            "$mainMod SHIFT, 9, movetoworkspace, 9"
+            "$mainMod SHIFT, 0, movetoworkspace, 10"
 
-              # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+            # Scroll through existing workspaces with mainMod + scroll
+            "$mainMod, mouse_down, workspace, e+1"
+            "$mainMod, mouse_up, workspace, e-1"
 
-              bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+            # Media keys
+            ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+            ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+            ",XF86AudioMute, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ toggle"
+            "$mainMod, M, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+            ",XF86MonBrightnessDown, exec, brightnessctl set '5%-'"
+            ",XF86MonBrightnessUp, exec, brightnessctl set '+5%'"
 
-              animation = windows, 1, 7, myBezier
-              animation = windowsOut, 1, 7, default, popin 80%
-              animation = border, 1, 10, default
-              animation = fade, 1, 7, default
-              animation = workspaces, 1, 6, default
-            }
+            # Color picker
+            "$mainMod ALT, P, exec, hyprpicker --autocopy --no-fancy"
 
-            dwindle {
-              # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-              pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-              preserve_split = yes # you probably want this
-              no_gaps_when_only = true
-            }
+            # Screenshots
+            "$mainMod, S, exec, TO_FILE=false FULL_SCREEN=true hypr-screenshot"
+            "$mainMod ALT, S, exec, TO_FILE=true FULL_SCREEN=true hypr-screenshot"
+            "$mainMod SHIFT, S, exec, TO_FILE=false FULL_SCREEN=false hypr-screenshot"
+            "$mainMod SHIFT ALT, S, exec, TO_FILE=true FULL_SCREEN=false hypr-screenshot"
 
-            master {
-              # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-              new_is_master = false
-              no_gaps_when_only = true
-              orientation = center
-            }
+            # Notifications
+            "$mainMod, N, exec, swaync-client --toggle-panel"
+            "$mainMod, D, exec, swaync-client --toggle-dnd"
 
-            gestures {
-              # See https://wiki.hyprland.org/Configuring/Variables/ for more
-              workspace_swipe = true
-            }
-
-          # Example per-device config
-          # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-          device:epic mouse V1 {
-            sensitivity = -0.5
-          }
-
-          # Example windowrule v1
-          # windowrule = float, ^(kitty)$
-          # Example windowrule v2
-          # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
-          # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-          windowrule=move 100%-260 20,title:^(HealthBar)(.*)$
-          windowrule=noblur,title:^(HealthBar)(.*)$
-          windowrule=nofocus,title:^(HealthBar)(.*)$
-          windowrule=noshadow,title:^(HealthBar)(.*)$
-          windowrule=noborder,title:^(HealthBar)(.*)$
-          windowrule=pin,title:^(HealthBar)(.*)$
-
-          # See https://wiki.hyprland.org/Configuring/Keywords/ for more
-          $mainMod = SUPER
-
-          # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-          bind = $mainMod, Return, exec, alacritty
-          bind = $mainMod, Space, exec, wofi --show run
-          bind = $mainMod, P, exec, tessen --dmenu wofi --action autotype
-          bind = $mainMod, E, exec, rofimoji
-          bind = $mainMod SHIFT, E, exec, rofi -show emoji
-          bind = $mainMod SHIFT, C, killactive,
-          bind = $mainMod SHIFT, Q, exec, swaylock -f -i /home/wrbbz/.pictures/lock.png
-          bind = $mainMod, Q, exec, qutebrowser
-          bind = $mainMod SHIFT, F, togglefloating,
-          bind = $mainMod, F, fullscreen, 0
-
-          # Move windows
-          bind = $mainMod SHIFT, H, swapwindow, l
-          bind = $mainMod SHIFT, L, swapwindow, r
-          bind = $mainMod SHIFT, K, swapwindow, u
-          bind = $mainMod SHIFT, J, swapwindow, d
-
-          # Move focus with mainMod + hjkl
-          bind = $mainMod, H, movefocus, l
-          bind = $mainMod, L, movefocus, r
-          bind = $mainMod, K, movefocus, u
-          bind = $mainMod, J, movefocus, d
-
-          # Move focus to anothe monitor
-          bind = $mainMod, I, focusmonitor, l
-          bind = $mainMod, O, focusmonitor, r
-
-          # Move window to anothe monitor
-          bind = $mainMod SHIFT, I, movewindow, mon:l
-          bind = $mainMod SHIFT, O, movewindow, mon:r
-
-          # Switch workspaces with mainMod + [0-9]
-          bind = $mainMod, 1, workspace, 1
-          bind = $mainMod, 2, workspace, 2
-          bind = $mainMod, 3, workspace, 3
-          bind = $mainMod, 4, workspace, 4
-          bind = $mainMod, 5, workspace, 5
-          bind = $mainMod, 6, workspace, 6
-          bind = $mainMod, 7, workspace, 7
-          bind = $mainMod, 8, workspace, 8
-          bind = $mainMod, 9, workspace, 9
-          bind = $mainMod, 0, workspace, 10
-
-          # Move active window to a workspace with mainMod + SHIFT + [0-9]
-          bind = $mainMod SHIFT, 1, movetoworkspace, 1
-          bind = $mainMod SHIFT, 2, movetoworkspace, 2
-          bind = $mainMod SHIFT, 3, movetoworkspace, 3
-          bind = $mainMod SHIFT, 4, movetoworkspace, 4
-          bind = $mainMod SHIFT, 5, movetoworkspace, 5
-          bind = $mainMod SHIFT, 6, movetoworkspace, 6
-          bind = $mainMod SHIFT, 7, movetoworkspace, 7
-          bind = $mainMod SHIFT, 8, movetoworkspace, 8
-          bind = $mainMod SHIFT, 9, movetoworkspace, 9
-          bind = $mainMod SHIFT, 0, movetoworkspace, 10
-
-          # Scroll through existing workspaces with mainMod + scroll
-          bind = $mainMod, mouse_down, workspace, e+1
-          bind = $mainMod, mouse_up, workspace, e-1
+          ];
 
           # Move/resize windows with mainMod + LMB/RMB and dragging
-          bindm = $mainMod, mouse:272, movewindow
-          bindm = $mainMod, mouse:273, resizewindow
+          bindm = [
+            "$mainMod, mouse:272, movewindow"
+            "$mainMod, mouse:273, resizewindow"
+          ];
 
-          # Media keys
-          bind = ,XF86AudioRaiseVolume, exec, pw-volume change '+5%'
-          bind = ,XF86AudioLowerVolume, exec, pw-volume change '-5%'
-          bind = ,XF86AudioMute, exec, pw-volume mute toggle
-          bind = ,XF86MonBrightnessDown, exec, brightnessctl set '5%-'
-          bind = ,XF86MonBrightnessUp, exec, brightnessctl set '+5%'
+          exec-once = [
+            # Notifications
+            "${pkgs.swaynotificationcenter}/bin/swaync"
 
-          # Color picker
-          bind = $mainMod ALT, P, exec, hyprpicker --autocopy --no-fancy
+            # Keyboard layout per window
+            "${pkgs.hyprland-per-window-layout}/bin/hyprland-per-window-layout"
 
-          # Screenshots
-          bind = $mainMod, S, exec, TO_FILE=false FULL_SCREEN=true ~/.config/hypr/screenshot.sh
-          bind = $mainMod ALT, S, exec, TO_FILE=true FULL_SCREEN=true ~/.config/hypr/screenshot.sh
-          bind = $mainMod SHIFT, S, exec, TO_FILE=false FULL_SCREEN=false ~/.config/hypr/screenshot.sh
-          bind = $mainMod SHIFT ALT, S, exec, TO_FILE=true FULL_SCREEN=false ~/.config/hypr/screenshot.sh
-
-          # Notifications
-          exec-once = ${pkgs.swaynotificationcenter}/bin/swaync
-          bind = $mainMod, N, exec, swaync-client --toggle-panel
-          bind = $mainMod, D, exec, swaync-client --toggle-dnd
-
-          # Keyboard layout per window
-          exec-once = ${pkgs.hyprland-per-window-layout}/bin/hyprland-per-window-layout
-
-          # Wallpaper
-          exec-once = ${pkgs.hyprpaper}/bin/hyprpaper
-          '';
+            # Wallpaper
+            "${pkgs.hyprpaper}/bin/hyprpaper"
+          ];
         };
+        extraConfig = config.my-config.hypr.extraConfig;
+      };
 
-        home.file = {
-          "./.config/hypr/hyprpaper.conf".text = ''
-            ipc = off
-            preload = /home/wrbbz/.pictures/bg.png
-            wallpaper = ,contain:/home/wrbbz/.pictures/bg.png
-          '';
-        };
+      home.file = {
+        "./.config/hypr/hyprpaper.conf".text = config.my-config.hypr.paperConfig;
+      };
 
-        #home.activation.screenshotActication = home-manager.dag.entryAfter ["WriteBoundary"] ''
-        #  chmod +x ~/.config/hypr/screenshot.sh
-        #'';
-
-        home.file = {
-          "wl-screenshot" = {
-            target = ".config/hypr/screenshot.sh";
-            source = ./screenshot.sh;
-          };
-        };
       };
     };
   }

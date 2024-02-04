@@ -1,26 +1,22 @@
 { pkgs, ... }: {
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-25.9.0"
+  ];
+
+  networking = {
+    useDHCP = true;
+    networkmanager.enable = false;
+  };
+
+  services.resolved.enable = true;
+
   programs.tmux = {
     enable = true;
     newSession = true;
     terminal = "tmux-direct";
   };
   services.emacs.enable = false;
-
-  networking.useDHCP = true;
-  networking.networkmanager.enable = false;
-
-  services.resolved.enable = true;
-
-  # Enable sound.
-  # sound.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-  };
 
   environment.etc = {
     "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
