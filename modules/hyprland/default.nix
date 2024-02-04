@@ -40,8 +40,8 @@ in {
       default = ''
         ipc = off
         splash = off
-        preload = /home/ejiek/pictures/bg.jpg
-        wallpaper = ,contain:/home/ejiek/pictures/bg.jpg
+        preload = /home/wrbbz/.pictures/bg.png
+        wallpaper = ,contain:/home/wrbbz/.pictures/bg.png
         '';
     };
   };
@@ -237,7 +237,7 @@ in {
             "$mainMod, E, exec, rofimoji"
             "$mainMod SHIFT, E, exec, rofi -show emoji"
             "$mainMod SHIFT, C, killactive,"
-            "$mainMod SHIFT, Q, exec, swaylock -f -i ~/pictures/lock.jpg"
+            "$mainMod SHIFT, Q, exec, swaylock -f -i ~/.pictures/lock.png"
             "$mainMod, Q, exec, qutebrowser"
             "$mainMod ALT, F, togglefloating,"
             "$mainMod, F, fullscreen, 0"
