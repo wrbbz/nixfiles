@@ -54,8 +54,8 @@
     mpv
     nix-prefetch-github
     nodejs
-    obs-studio
-    obs-studio-plugins.obs-backgroundremoval
+    # obs-studio
+    # obs-studio-plugins.obs-backgroundremoval
     pandoc
     pulumi-bin
     tdesktop
