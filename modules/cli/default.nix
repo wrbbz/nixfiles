@@ -11,18 +11,21 @@ in {
 
   config = mkIf config.my-config.cli.enable {
     environment.systemPackages = with pkgs; [
-      figlet
       bottom
+      figlet
+      file
       glab
       hdparm
-      joshuto
-      pulsemixer
+      ipcalc
       pwgen
       pw-volume
+      nix-tree
+      nvd # https://gitlab.com/khumba/nvd
       ranger
       ripgrep
       tmate
       wget
+      whois
       yt-dlp
     ];
   };
