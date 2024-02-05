@@ -93,9 +93,6 @@
     };
   };
 
-  networking.nftables.enable = true;
-  networking.firewall.enable = true;
-
   i18n = {
     defaultLocale = "en_US.utf8";
     extraLocaleSettings = {
@@ -109,5 +106,10 @@
       LC_TELEPHONE = "en_US.utf8";
       LC_TIME = "en_US.utf8";
     };
+  };
+
+  networking = {
+    nftables.enable = true;
+    firewall.enable = true;
   };
 }
