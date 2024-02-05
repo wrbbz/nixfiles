@@ -70,4 +70,6 @@
     wofi.enable = true;
     zsh.enable = true;
   };
+
+  security.polkit.enable = true;
 }
