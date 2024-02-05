@@ -70,15 +70,15 @@ in {
     # (/org/freedesktop/portal/desktop).
     # The portal interfaces include APIs for file access, opening URIs,
     # printing and others.
-    # services.dbus.enable = true;
-    # xdg.portal = {
-    #   enable = true;
-    #   config.common.default = "xdg-desktop-portal-hyprland";
-    #   extraPortals = with pkgs; [
-    #     xdg-desktop-portal-hyprland
-    #     xdg-desktop-portal-gtk
-    #   ];
-    # };
+    services.dbus.enable = true;
+    xdg.portal = {
+      enable = true;
+      config.common.default = "xdg-desktop-portal-hyprland";
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
+      ];
+    };
 
     home-manager.users.wrbbz = {
       home.packages = with pkgs; [
@@ -92,7 +92,7 @@ in {
         swaynotificationcenter
         wireplumber
         wl-clipboard
-        #xdg-utils
+        xdg-utils
         (writeShellApplication {
           name = "hypr-screenshot";
           runtimeInputs = [
