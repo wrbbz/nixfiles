@@ -1,9 +1,7 @@
-# configuration in this file only applies to exampleHost host
-#
 # only my-config.* and zfs-root.* options can be defined in this file.
 #
 # all others goes to `configuration.nix` under the same directory as
-# this file. 
+# this file.
 
 { system, pkgs, ... }: {
   inherit pkgs system;
@@ -16,13 +14,11 @@
       removableEfi = true;
       kernelParams = [ ];
       sshUnlock = {
-        # read sshUnlock.txt file.
         enable = false;
         authorizedKeys = [ ];
       };
     };
     networking = {
-      # read changeHostName.txt file.
       hostName = "wrbbzCool";
       timeZone = "Europe/Moscow";
       hostId = "400fb1e7";
