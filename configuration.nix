@@ -24,14 +24,6 @@
     home.stateVersion = "23.05";
   };
 
-  ## enable GNOME desktop.
-  ## You need to configure a normal, non-root user.
-  # services.xserver = {
-  #  enable = true;
-  #  desktopManager.gnome.enable = true;
-  #  displayManager.gdm.enable = true;
-  # };
-
   ## enable ZFS auto snapshot on datasets
   ## You need to set the auto snapshot property to "true"
   ## on datasets for this to work, such as
