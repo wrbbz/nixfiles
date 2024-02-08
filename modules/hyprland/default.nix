@@ -155,7 +155,6 @@ in {
           enable = true;
         };
         systemd.enable = true;
-
         settings = {
           monitor = config.my-config.hypr.monitors;
           xwayland = {
