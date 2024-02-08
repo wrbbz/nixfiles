@@ -56,6 +56,7 @@
   security = {
     doas.enable = true;
     sudo.enable = false;
+    polkit.enable = true;
   };
 
   environment.systemPackages = builtins.attrValues {
