@@ -233,8 +233,8 @@ in {
 
           bind = [
             "$mainMod, Return, exec, alacritty"
-            "$mainMod, Space, exec, rofi -show drun"
-            "$mainMod, P, exec, rofi-rbw"
+            "$mainMod, Space, exec, wofi --dmenu --show run"
+            "$mainMod, P, exec, tessen --dmenu wofi --action autotype"
             "$mainMod, E, exec, rofimoji"
             "$mainMod SHIFT, E, exec, rofi -show emoji"
             "$mainMod SHIFT, C, killactive,"
