@@ -12,6 +12,7 @@
     ./joshuto
     ./networking
     ./nvim
+    ./opengl
     ./pass
     ./podman
     ./qutebrowser

@@ -62,6 +62,7 @@
     joshuto.enable = true;
     nvim.enable = true;
     one-password.enable = true;
+    opengl.enable = true;
     pass.enable = true;
     podman.enable = true;
     qutebrowser.enable = true;
