@@ -36,6 +36,11 @@
       monitors = [
         ",preferred,auto,auto"
       ];
+      extraConfig = ''
+        debug {
+           disable_logs = false
+        }
+      '';
       # workspaces = [
       #   "1, monitor:HDMI-A-1, default:true"
       #   "2, monitor:HDMI-A-1"
