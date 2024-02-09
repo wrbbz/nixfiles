@@ -8,7 +8,7 @@
 #   true: captures all screen estate of all monitors
 #   false: lets user select an area to catch
 
-SAVE_FOLDER="$HOME/pictures/screenshots"
+SAVE_FOLDER="$HOME/screenshots"
 TMP="/tmp/screenshot.png"
 DATE=$(date +%Y-%m-%d_%H-%M-%S)
 
