@@ -42,6 +42,7 @@
     fira-code
     fira-mono
     firefox
+    glow
     go
     jq
     k9s
