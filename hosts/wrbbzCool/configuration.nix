@@ -43,6 +43,7 @@
     fira-mono
     firefox
     go
+    jq
     k9s
     kubectl
     kubelogin-oidc
