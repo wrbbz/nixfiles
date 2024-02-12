@@ -5,8 +5,8 @@
   ];
 
   networking = {
-    useDHCP = true;
-    networkmanager.enable = false;
+    # useDHCP = true;
+    networkmanager.enable = true;
   };
 
   services.resolved.enable = true;
