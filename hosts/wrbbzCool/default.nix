@@ -26,6 +26,7 @@
   };
 
   my-config = {
+    aerc.enable = true;
     alacritty.enable = true;
     bluetooth.enable = true;
     cli.enable = true;

@@ -2,6 +2,7 @@
   imports = [
     ./1password
     ./alacritty
+    ./aerc
     ./boot
     ./bluetooth
     ./cli
