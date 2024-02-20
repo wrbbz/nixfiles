@@ -51,8 +51,8 @@
       paperConfig = ''
         ipc = off
         splash = off
-        preload = /home/wrbbz/.pictures/bg.jpg
-        wallpaper = HDMI-A-1,contain:/home/wrbbz/.pictures/bg.jpg
+        preload = /home/wrbbz/.pictures/bg.png
+        wallpaper = HDMI-A-1,contain:/home/wrbbz/.pictures/bg.png
       '';
     };
     joshuto.enable = true;
