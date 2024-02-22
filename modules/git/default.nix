@@ -25,6 +25,7 @@ in {
           pull = {
             rebase = true;
           };
+          core.hooksPath = "~/.config/git/hooks";
         };
         ignores = [
           "*.swp"
@@ -48,6 +49,10 @@ in {
       };
       home.file = {
         ".config/git/message" = { source = ./message; };
+        ".config/git/hooks/commit-msg" = {
+          executable = true;
+          source = ./hooks/commit-msg;
+        };
       };
     };
   };
