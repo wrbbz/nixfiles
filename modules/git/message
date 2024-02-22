@@ -1,0 +1,40 @@
+TYPE(SCOPE): SUBJECT
+
+# Fill in impact for CFC when the change is deployed
+# valid options
+# [MINOR] -  No impact on CFC operations (adding new alerts for k8s apps, new validation steps for deployment script, etc).
+# [INTERMEDIATE] -
+# [MAJOR] - Any change that cause network interruption (weave pod restarts), rolling cluster rebuild, version upgrades, etc
+
+Impact:
+# Optional, mention a Jira issue to create a link between commit and issue
+# Part of PTMT-404
+
+### Format:
+#
+# <type>(<scope>): <subject>
+# <BLANK LINE>
+# <body>
+#
+### Valid Types:
+#
+# feat:     A new feature
+#
+# fix:      A bug fix
+#
+# docs:     Documentation only changes
+#
+# style:    Changes that do not affect the meaning of the code
+#           (white-space, formatting, missing semi-colons, etc)
+#
+# refactor: A code change that neither fixes a bug nor adds a feature
+#
+# perf:     A code change that improves performance
+#
+# test:     Adding missing tests
+#
+# ci:       Changes to the build process
+#
+# config:   Changes configuration values that do not affect any code functionality
+#
+# reference-update:     changes to referenced packages and components, e.g semantic version tags/commit hashes etc

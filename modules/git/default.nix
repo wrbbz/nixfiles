@@ -31,6 +31,13 @@ in {
           ".envrc"
         ];
         includes = [{
+          contents = {
+            commit = {
+              template = "~/.config/git/message";
+            };
+          };
+        }
+        {
           condition = "gitdir:~/work/";
           contents = {
             user = {
@@ -38,6 +45,9 @@ in {
             };
           };
         }];
+      };
+      home.file = {
+        ".config/git/message" = { source = ./message; };
       };
     };
   };
