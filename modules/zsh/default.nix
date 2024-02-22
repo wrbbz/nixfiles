@@ -38,6 +38,7 @@ in {
           sdfailed="systemctl list-units --failed";
           ssproxy="ssh -D 1080 -C -q -N";
           suspendless="systemd-inhibit --what=handle-lid-switch sleep infinity";
+          sudo="doas";
         };
         localVariables = {
           WORDCHARS = "*?_[]~=&;!#$%^(){}<>";
