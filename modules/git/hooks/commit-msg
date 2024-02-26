@@ -3,7 +3,7 @@
 # @author : Mak Sophea
 # @version : 1.0#
 # Create a regex for a conventional commit.
-commit_types="(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test|wip)"
+commit_types="(build|config|ci|docs|feat|fix|perf|refactor|reference-update|revert|style|test)"
 convetional_commit_regex="^${commit_types}(\([a-z \-]+\))?!?: .+$"
 
 # Get the commit message (the parameter we're given is just the path to the
