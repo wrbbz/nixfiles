@@ -25,7 +25,6 @@ in {
           pull = {
             rebase = true;
           };
-          core.hooksPath = "~/.config/git/hooks";
         };
         ignores = [
           "*.swp"
@@ -33,18 +32,15 @@ in {
           ".npmrc"
         ];
         includes = [{
-          contents = {
-            commit = {
-              template = "~/.config/git/message";
-            };
-          };
-        }
-        {
           condition = "gitdir:~/work/";
           contents = {
             user = {
               email = "a.zorin@cs.money";
             };
+            commit = {
+              template = "~/.config/git/message";
+            };
+            core.hooksPath = "~/.config/git/hooks";
           };
         }];
       };
