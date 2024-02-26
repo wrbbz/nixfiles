@@ -30,6 +30,7 @@ in {
         ignores = [
           "*.swp"
           ".envrc"
+          ".npmrc"
         ];
         includes = [{
           contents = {
