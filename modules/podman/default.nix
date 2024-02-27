@@ -14,7 +14,7 @@ in {
       podman = {
         enable = true;
         # Create a `docker` alias
-        dockerCompat = true;
+        # dockerCompat = true;
         defaultNetwork.settings.dns_enabled = true;
       };
 
