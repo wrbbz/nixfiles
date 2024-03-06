@@ -46,6 +46,7 @@
     go
     jq
     k9s
+    kooha
     kubectl
     kubelogin-oidc
     libimobiledevice
