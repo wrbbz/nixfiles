@@ -11,6 +11,10 @@ in {
 
   config = mkIf config.my-config.git.enable {
     home-manager.users.wrbbz = {
+      home.packages = with pkgs; [
+        git-cliff
+        glab
+      ];
       programs.git = {
         enable = true;
         userEmail = "me@wrbbz.com";

@@ -15,7 +15,6 @@ in {
       dig
       figlet
       file
-      glab
       hdparm
       ipcalc
       pwgen
