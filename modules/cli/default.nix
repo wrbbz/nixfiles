@@ -12,6 +12,7 @@ in {
   config = mkIf config.my-config.cli.enable {
     environment.systemPackages = with pkgs; [
       bottom
+      dig
       figlet
       file
       glab
