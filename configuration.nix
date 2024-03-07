@@ -54,7 +54,13 @@
   programs.git.enable = true;
 
   security = {
-    doas.enable = true;
+    doas ={
+      enable = true;
+      extraRules = [{
+        users = ["wrbbz"];
+        persist = true;
+      }];
+    };
     sudo.enable = false;
     polkit.enable = true;
   };
