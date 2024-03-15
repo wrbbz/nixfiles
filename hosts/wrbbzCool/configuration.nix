@@ -35,6 +35,11 @@
     package = pkgs.usbmuxd2;
   };
 
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
+
   environment.systemPackages = with pkgs; [
     cider
     droidcam

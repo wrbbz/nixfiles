@@ -19,6 +19,7 @@
     ./qutebrowser
     ./slack
     ./starship
+    ./steam
     ./unfree
     ./v4l2
     ./wofi

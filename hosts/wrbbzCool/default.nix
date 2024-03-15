@@ -5,6 +5,11 @@
 
 { system, pkgs, ... }: {
   inherit pkgs system;
+  fileSystems."/home/wrbbz/.local/share/Steam" = {
+    device = "/dev/disk/by-id/ata-Samsung_SSD_870_EVO_1TB_S6PTNM0T520867R-part1";
+    fsType = "ext4";
+    options = [ "noatime" ];
+  };
   zfs-root = {
     boot = {
       devNodes = "/dev/disk/by-id/";
@@ -64,6 +69,7 @@
     qutebrowser.enable = true;
     slack.enable = true;
     starship.enable = true;
+    steam.enable = true;
     v4l2.enable = true;
     wofi.enable = true;
     zsh.enable = true;
