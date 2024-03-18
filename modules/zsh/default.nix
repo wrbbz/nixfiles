@@ -20,7 +20,7 @@ in {
         enable = true;
         enableCompletion = true;
         syntaxHighlighting.enable = true;
-        enableAutosuggestions = true;
+        autosuggestion.enable = true;
         history = {
           share = true;
           ignoreDups = true;
