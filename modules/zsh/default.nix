@@ -36,7 +36,7 @@ in {
           nwitch="doas nixos-rebuild switch --flake /home/wrbbz/.nixfiles#wrbbzChief";
           nest="doas nixos-rebuild test --flake /home/wrbbz/.nixfiles#wrbbzChief";
           sdfailed="systemctl list-units --failed";
-          ssproxy="ssh -D 1080 -C -q -N";
+          ssproxy="ssh -D 8118 -C -q -N";
           suspendless="systemd-inhibit --what=handle-lid-switch sleep infinity";
           # sudo="doas";
         };
