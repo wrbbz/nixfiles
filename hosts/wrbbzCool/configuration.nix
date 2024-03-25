@@ -41,6 +41,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    aichat
     cider
     droidcam
     fira
