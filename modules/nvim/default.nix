@@ -260,19 +260,6 @@ in {
 
               lsp.preset("recommended")
 
-              local cmp = require('cmp')
-              local cmp_select = {behavior = cmp.SelectBehavior.Select}
-              local cmp_mappings = lsp.defaults.cmp_mappings({
-                ['<C-p>'] = cmp.mapping.select_prev_item(cpm_select),
-                ['<C-n>'] = cmp.mapping.select_next_item(cpm_select),
-                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-                ["<C-Space>"] = cmp.mapping.complete(),
-                ['<CR>'] = cmp.mapping.confirm({
-                  behavior = cmp.ConfirmBehavior.Replace,
-                  select = false,
-                }),
-              })
-
               lsp.on_attach(function(client, bufnr)
                 lsp.default_keymaps({ buffer = bufnr })
               end)
@@ -290,13 +277,37 @@ in {
 
               lsp.setup()
 
+              local cmp = require('cmp')
+              local cmp_action = lsp.cmp_action()
               cmp.setup({
-                mapping = cmp_mappings,
+                window = {
+                  completion = cmp.config.window.bordered(),
+                  documentation = cmp.config.window.bordered(),
+                },
+                mapping = cmp.mapping.preset.insert({
+                  -- Confirm completion with `Enter` (default is `Ctrl-y`)
+                  ['<CR>'] = cmp.mapping.confirm({select = false}),
+                  -- Navigate completion with `Tab` and `Shift-Tab`
+                  -- (default are `Ctrl+` `n` and `p`)
+                  -- (defaults alse trigger completion)
+                  ['<Tab>'] = cmp_action.tab_complete(),
+                  ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
+                  -- Initialize completion
+                  ['<C-Space>'] = cmp.mapping.complete(),
+                  -- Navigate documentation
+                  ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+                  ['<C-d>'] = cmp.mapping.scroll_docs(4),
+                  -- Navigate snippet placeholders
+                  ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+                  ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+                }),
                 sources = {
                   {name = 'copilot'},
                   {name = 'nvim_lsp'},
+                  {name = 'luasnip'},
                   {name = 'path'},
-                }
+                },
+
               })
             '';
           }
