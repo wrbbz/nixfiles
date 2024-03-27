@@ -232,7 +232,7 @@ in {
           "$mainMod" = "SUPER";
 
           bind = [
-            "$mainMod, Return, exec, alacritty"
+            "$mainMod, Return, exec, alacritty msg create-window || alacritty"
             "$mainMod, Space, exec, wofi --dmenu --show run"
             "$mainMod, P, exec, tessen --dmenu wofi --action autotype"
             "$mainMod, E, exec, rofimoji"
