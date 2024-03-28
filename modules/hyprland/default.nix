@@ -227,6 +227,7 @@ in {
             new_is_master = false;
             no_gaps_when_only = true;
             orientation = "center";
+            allow_small_split = true;
           };
 
           "$mainMod" = "SUPER";
