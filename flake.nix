@@ -73,7 +73,7 @@
             inherit system;
             modules = [
                 # Module 0: zfs-root
-                ./modules
+                ./modules/darwin.nix
 
                 # Module 1: host-specific config, if exist
                 (if (builtins.pathExists
