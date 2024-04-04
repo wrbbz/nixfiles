@@ -77,8 +77,8 @@
 
                 # Module 1: host-specific config, if exist
                 (if (builtins.pathExists
-                ./hosts/${hostName}/configuration.nix) then
-                (import ./hosts/${hostName}/configuration.nix { inherit pkgs nixos-hardware; })
+                  ./hosts/${hostName}/configuration.nix) then
+                  (import ./hosts/${hostName}/configuration.nix { inherit pkgs nixos-hardware; })
                 else
                 { })
 
@@ -90,19 +90,19 @@
                 else
                     throw "refuse to build: git tree is dirty";
                 system.stateVersion = "23.05";
-                imports = [
-                    "${nixpkgs}/nixos/modules/installer/scan/not-detected.nix"
-                ];
+                # imports = [
+                #     "${nixpkgs}/nixos/modules/installer/scan/not-detected.nix"
+                # ];
                 }) {
                 inherit my-config pkgs;
-                lib = nixpkgs.lib;
+                  lib = nixpkgs.lib;
                 })
 
                 # Module 3: home-manager
                 home-manager.nixosModules.home-manager
                 {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
                 }
 
                 # Module 4: config shared by all hosts
@@ -110,8 +110,8 @@
             ];
             })
             (import ./hosts/${hostName} {
-            system = system;
-            pkgs = nixpkgs.legacyPackages.${system};
+              system = system;
+              pkgs = nixpkgs.legacyPackages.${system};
             }));
     in {
       nixosConfigurations = {
