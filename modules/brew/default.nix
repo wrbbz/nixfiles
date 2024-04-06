@@ -17,3 +17,4 @@ in {
       casks = pkgs.callPackage ./casks.nix {};
     };
   };
+}
