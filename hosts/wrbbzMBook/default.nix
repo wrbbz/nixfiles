@@ -3,5 +3,6 @@
 
   my-config = {
     git.enable = true;
+    zsh.enable = true;
   };
 }
