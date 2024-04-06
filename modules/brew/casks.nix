@@ -2,6 +2,7 @@ _:
 
 [
   # Development
+  "alacritty"
   "zed"
 
   # Communication
