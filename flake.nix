@@ -106,7 +106,7 @@
                 }
 
                 # Module 4: config shared by all hosts
-                # (import ./configuration.nix { inherit pkgs; })
+                (import ./darwin.nix { inherit pkgs; })
               ];
             })
             (import ./hosts/${hostName} {
