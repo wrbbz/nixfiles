@@ -10,6 +10,8 @@
     shell = pkgs.zsh;
   };
 
+  security.pam.enableSudoTouchIdAuth = true;
+
   home-manager.users.wrbbz = {
     home = {
       username = "wrbbz";
