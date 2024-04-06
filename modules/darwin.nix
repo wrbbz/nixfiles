@@ -2,5 +2,6 @@
   imports = [
     ./git
     ./nvim
+    ./zsh
   ];
 }
