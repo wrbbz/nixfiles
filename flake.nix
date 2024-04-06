@@ -132,6 +132,21 @@
 
            # Module 4: config shared by all hosts
            (import ./darwin.nix { inherit pkgs; })
+
+           home-manager.darwinModules.home-manager
+           nix-homebrew.darwinModules.nix-homebrew {
+             nix-homebrew = {
+               user = "wrbbz";
+               enable = true;
+               taps = {
+                 "homebrew/homebrew-core" = homebrew-core;
+                 "homebrew/homebrew-cask" = homebrew-cask;
+                 "homebrew/homebrew-bundle" = homebrew-bundle;
+               };
+               mutableTaps = false;
+               autoMigrate = true;
+             };
+           }
          ];
        })
        (import ./hosts/${hostName} {
