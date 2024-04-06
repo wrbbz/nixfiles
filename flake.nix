@@ -17,7 +17,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-darwin, home-manager, nixos-hardware }:
+  outputs = { self, nixpkgs, nix-darwin, nix-homebrew, home-manager, nixos-hardware }:
     let
       mkHost = hostName: system:
         (({ my-config, zfs-root, pkgs, system, ... }:
