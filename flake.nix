@@ -12,6 +12,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nix-homebrew = {
+      url = "github:zhaofengli-wip/nix-homebrew";
+    };
   };
 
   outputs = { self, nixpkgs, nix-darwin, home-manager, nixos-hardware }:
