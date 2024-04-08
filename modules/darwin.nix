@@ -4,6 +4,7 @@
     ./brew
     ./git
     ./nvim
+    ./pass
     ./zsh
   ];
 }
