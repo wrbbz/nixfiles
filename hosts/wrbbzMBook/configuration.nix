@@ -4,6 +4,7 @@
     k9s
     kubectl
     kubelogin-oidc
+    nodejs
     pass
     pulumi-bin
   ];
