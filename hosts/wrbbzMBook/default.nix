@@ -6,6 +6,7 @@
     brew.enable = true;
     git.enable = true;
     nvim.enable = true;
+    starship.enable = true;
     zsh.enable = true;
   };
 }

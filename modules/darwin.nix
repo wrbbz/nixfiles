@@ -5,6 +5,7 @@
     ./git
     ./nvim
     ./pass
+    ./starship
     ./zsh
   ];
 }
