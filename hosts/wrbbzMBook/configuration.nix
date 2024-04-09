@@ -7,5 +7,6 @@
     nodejs
     pass
     pulumi-bin
+    telepresence2
   ];
 }
