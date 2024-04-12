@@ -14,6 +14,7 @@ in {
       # This is a module from nix-darwin
       # Homebrew is *installed* via the flake input nix-homebrew
       enable = true;
+      brews = pkgs.callPackage ./brews.nix {};
       casks = pkgs.callPackage ./casks.nix {};
     };
   };
