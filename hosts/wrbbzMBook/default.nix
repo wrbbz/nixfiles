@@ -1,7 +1,7 @@
 { system, pkgs, ... }: {
   inherit pkgs system;
 
-  networking = {
+  options.networking = {
     computerName = "wrbbzMBook";
   };
 
