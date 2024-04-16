@@ -16,6 +16,12 @@ in {
       enable = true;
       brews = pkgs.callPackage ./brews.nix {};
       casks = pkgs.callPackage ./casks.nix {};
+      taps = [
+        "homebrew/cask"
+      ];
+      onActivation = {
+        cleanup = "zap";
+      };
     };
   };
 }
