@@ -1,6 +1,10 @@
 { system, pkgs, ... }: {
   inherit pkgs system;
 
+  networking = {
+    computerName = "wrbbzMBook";
+  };
+
   my-config = {
     alacritty.enable = true;
     brew.enable = true;
