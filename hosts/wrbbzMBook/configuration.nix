@@ -1,5 +1,9 @@
 { pkgs, ... }: {
 
+  networking = {
+    hostName = "wrbbzMBook";
+  };
+
   environment.systemPackages = with pkgs; [
     jq
     k9s
