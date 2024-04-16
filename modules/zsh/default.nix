@@ -61,6 +61,9 @@ in {
           if [[ ! $DISPLAY && $XDG_VTNR -eq 2 ]]; then
             exec gamescope -e -- steam
           fi
+          if [[ $(uname -m) == 'arm64' ]]; then
+               eval "$(/opt/homebrew/bin/brew shellenv)"
+          fi
         '';
       };
       programs.direnv = {
@@ -95,7 +98,7 @@ in {
 #   }
 #
 ###### weather ######
-# 
+#
 #   alias wttr="__wttr"
 #   __wttr() {
 #     curl "wttr.in/$*"
