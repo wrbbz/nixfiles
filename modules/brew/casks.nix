@@ -3,6 +3,7 @@ _:
 [
   # Development
   "alacritty"
+  "firefox"
   "zed"
 
   # Communication
