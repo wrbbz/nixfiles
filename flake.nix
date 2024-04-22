@@ -27,6 +27,10 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    homebrew-tabby = {
+      url = "github:tabbyml/homebrew-tabby";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -37,6 +41,7 @@
     homebrew-bundle,
     homebrew-cask,
     homebrew-core,
+    homebrew-tabby,
     home-manager,
     nixos-hardware
   }:
@@ -142,6 +147,7 @@
                  "homebrew/homebrew-core" = homebrew-core;
                  "homebrew/homebrew-cask" = homebrew-cask;
                  "homebrew/homebrew-bundle" = homebrew-bundle;
+                 "tabbyml/homebrew-tabby" = homebrew-tabby;
                };
                mutableTaps = false;
                autoMigrate = true;
