@@ -103,6 +103,22 @@
         "type": "github"
       }
     },
+    "homebrew-tabby": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715754390,
+        "narHash": "sha256-Kv1dclh3ASqoTPBuMMjOrt/PtfcvcvUmIkAtViE7MIQ=",
+        "owner": "tabbyml",
+        "repo": "homebrew-tabby",
+        "rev": "11440c2e9bc139f5740c2dbce9866f1c3ba69cc9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tabbyml",
+        "repo": "homebrew-tabby",
+        "type": "github"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -230,6 +246,7 @@
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
+        "homebrew-tabby": "homebrew-tabby",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
         "nixos-hardware": "nixos-hardware",
