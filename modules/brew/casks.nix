@@ -13,4 +13,7 @@ _:
 
   # Security
   "1password"
+
+  # Tools
+  "elgato-stream-deck"
 ]
