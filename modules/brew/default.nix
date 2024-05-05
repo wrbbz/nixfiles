@@ -16,10 +16,6 @@ in {
       enable = true;
       brews = pkgs.callPackage ./brews.nix {};
       casks = pkgs.callPackage ./casks.nix {};
-      taps = pkgs.callPackage ./taps.nix {};
-      onActivation = {
-        cleanup = "zap";
-      };
     };
   };
 }
