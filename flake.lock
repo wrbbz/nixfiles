@@ -103,6 +103,22 @@
         "type": "github"
       }
     },
+    "homebrew-krr": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1713513546,
+        "narHash": "sha256-6qEsQsGkERPt5jAhbpeAm9g3VfKOP16S2BYEnIbVQAY=",
+        "owner": "robusta-dev",
+        "repo": "homebrew-krr",
+        "rev": "a01b9c762fca8f41b61876fc211357369814e2e2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "robusta-dev",
+        "repo": "homebrew-krr",
+        "type": "github"
+      }
+    },
     "homebrew-tabby": {
       "flake": false,
       "locked": {
@@ -246,6 +262,7 @@
         "homebrew-bundle": "homebrew-bundle",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",
+        "homebrew-krr": "homebrew-krr",
         "homebrew-tabby": "homebrew-tabby",
         "nix-darwin": "nix-darwin",
         "nix-homebrew": "nix-homebrew",
