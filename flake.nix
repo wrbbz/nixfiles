@@ -31,10 +31,6 @@
       url = "github:tabbyml/homebrew-tabby";
       flake = false;
     };
-    homebrew-krr = {
-      url = "github:robusta-dev/homebrew-krr";
-      flake = false;
-    };
   };
 
   outputs = {
@@ -46,7 +42,6 @@
     homebrew-cask,
     homebrew-core,
     homebrew-tabby,
-    homebrew-krr,
     home-manager,
     nixos-hardware
   }:
@@ -153,7 +148,6 @@
                  "homebrew/homebrew-cask" = homebrew-cask;
                  "homebrew/homebrew-bundle" = homebrew-bundle;
                  "tabbyml/homebrew-tabby" = homebrew-tabby;
-                 "robusta-dev/homebrew-krr" = homebrew-krr;
                };
                mutableTaps = false;
                autoMigrate = true;

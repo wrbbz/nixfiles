@@ -7,5 +7,4 @@ _:
 
   # Utils
   "iproute2mac"
-  "krr"
 ]
