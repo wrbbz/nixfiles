@@ -16,4 +16,5 @@ _:
 
   # Tools
   "elgato-stream-deck"
+  "tailscale"
 ]
