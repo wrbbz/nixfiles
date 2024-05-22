@@ -6,7 +6,8 @@ There might be serious idiomatic & structural flaws.
 
 | Machine       | System        | Status |
 | --            | --            | --     |
-| Desktop       | NixOS         | WIP    |
+| Desktop       | NixOS         | Done   |
+| Laptop        | MacOS         | WIP    |
 
 ## Roadmap
 
@@ -20,41 +21,21 @@ Using Flake means that `nixpkgs` are no longer controlled by `nix-channel` of Ni
 Instead, `nixpkgs` are locked to flake input.
 To update the system one needs to update the input:
 
-```bash
-nix flake lock --update-input nixpkgs
-```
-
-Next step is testing new version of the system. I have it aliased to `ntest`:
-
-```bash
-sudo nixos-rebuild test --flake /home/wrbbz/.nixfiles/flake.nix#
-```
-
-The final step is to use new system/ switch to it. I have it aliased to `nwitch`:
-
-```bash
-sudo nixos-rebuild switch --flake /home/wrbbz/.nixfiles/flake.nix#
-```
-
-There are other inputs in this flake. To get a list:
-
-```bash
-nix flake metadata
-```
-
-Updating inputs one by one makes it easier to understand which one is responsible for a failure.
-Nevertheless, for a lucky path it's easier to update them all at once:
-
-```bash
-nix flake update
-```
-
-You can even commit the change:
-
-```bash
+```sh
 nix flake update --commit-lock-file
 ```
 
+Next step is checking, what exactly was updated:
+
+```sh
+doas nixos-rebuild build --flake '/etc/nixos#' && nvd diff /run/current-system resu
+```
+
+The final step is to use new system/ switch to it:
+
+```sh
+doas nixos-rebuild switch --flake '/etc/nixos#'
+```
 
 ### Updating nix-env packages
 
