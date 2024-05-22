@@ -15,7 +15,7 @@ in {
         enable = true;
         package = pkgs.pass-wayland.withExtensions (exts: [ exts.pass-otp ]);
 	settings = {
-	  PASSWORD_STORE_DIR = "/home/wrbbz/.password-store";
+	  PASSWORD_STORE_DIR = "~/.password-store";
 	};
       };
 
