@@ -13,5 +13,6 @@
     pass
     pulumi-bin
     telepresence2
+    zola
   ];
 }
