@@ -29,6 +29,8 @@ in {
           decorations = "None";
           dynamic_title = true;
           dynamic_padding = true;
+          # MacOS option only
+          option_as_alt = "OnlyLeft";
         };
         cursor = {
           unfocused_hollow = true;
