@@ -51,10 +51,7 @@
     glow
     go
     jq
-    k9s
     kooha
-    kubectl
-    kubelogin-oidc
     libimobiledevice
     mpv
     nix-prefetch-github

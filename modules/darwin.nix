@@ -3,6 +3,7 @@
     ./alacritty
     ./brew
     ./git
+    ./kubernetes
     ./nvim
     ./pass
     ./starship

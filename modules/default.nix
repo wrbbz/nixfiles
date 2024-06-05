@@ -11,6 +11,7 @@
     ./git
     ./hyprland
     ./joshuto
+    ./kubernetes
     ./networking
     ./nvim
     ./opengl

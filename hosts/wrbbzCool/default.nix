@@ -61,6 +61,7 @@
       '';
     };
     joshuto.enable = true;
+    kubernetes.enable = true;
     nvim.enable = true;
     one-password.enable = true;
     opengl.enable = true;
