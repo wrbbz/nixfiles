@@ -4,6 +4,7 @@ _:
   # Development
   "alacritty"
   "firefox"
+  "insomnia"
   "zed"
 
   # Communication
