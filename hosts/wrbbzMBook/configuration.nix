@@ -5,6 +5,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    go
     jq
     k9s
     kubectl
