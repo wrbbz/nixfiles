@@ -3,6 +3,7 @@ _:
 [
   # Development
   "alacritty"
+  "balenaetcher"
   "firefox"
   "insomnia"
   "zed"
