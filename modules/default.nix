@@ -6,6 +6,7 @@
     ./boot
     ./bluetooth
     ./cli
+    ./dev
     ./discord
     ./fileSystems
     ./git

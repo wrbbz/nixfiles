@@ -49,22 +49,16 @@
     fira-mono
     firefox
     glow
-    go
-    jq
     kooha
     libimobiledevice
     mpv
     nix-prefetch-github
-    nodejs
     # obs-studio
     # obs-studio-plugins.obs-backgroundremoval
     pandoc
-    pulumi-bin
     tdesktop
-    telepresence2
     tessen
     trivy
-    yarn
   ];
 
   programs.wireshark.enable = true;

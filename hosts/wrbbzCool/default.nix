@@ -35,6 +35,7 @@
     alacritty.enable = true;
     bluetooth.enable = true;
     cli.enable = true;
+    dev.enable = true;
     discord.enable = true;
     git.enable = true;
     hypr = {
