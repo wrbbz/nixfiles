@@ -18,5 +18,6 @@ _:
 
   # Tools
   "elgato-stream-deck"
+  "imazing"
   "tailscale"
 ]
