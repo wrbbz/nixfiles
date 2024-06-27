@@ -11,6 +11,7 @@ in {
 
   config = mkIf config.my-config.dev.enable {
     environment.systemPackages = with pkgs; [
+      dive
       go
       jq
       nodejs
