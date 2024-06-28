@@ -32,6 +32,7 @@
       dock = {
         autohide = true;
         orientation = "right";
+        show-recents = false;
       };
       NSGlobalDomain = {
         NSAutomaticSpellingCorrectionEnabled = false;
