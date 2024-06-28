@@ -18,6 +18,7 @@ _:
 
   # Tools
   "elgato-stream-deck"
+  "keymapp"
   "imazing"
   "tailscale"
 ]
