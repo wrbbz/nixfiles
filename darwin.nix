@@ -46,10 +46,9 @@
     };
 
     # # Reload all settings without relog/reboot
-    # activationScripts.postUserActivation.text = ''
-    #   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    # '';
-    stateVersion = 4;
+    activationScripts.postUserActivation.text = ''
+      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    '';
 
     keyboard = {
       enableKeyMapping = true;
