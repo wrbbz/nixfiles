@@ -28,9 +28,14 @@
   };
 
   system = {
-    defaults.dock = {
-      autohide = true;
-      orientation = "right";
+    defaults = {
+      dock = {
+        autohide = true;
+        orientation = "right";
+      };
+      NSGlobalDomain = {
+        NSAutomaticSpellingCorrectionEnabled = false;
+      };
     };
 
     keyboard = {
