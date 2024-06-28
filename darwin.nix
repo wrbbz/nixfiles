@@ -27,20 +27,25 @@
     };
   };
 
-  system.keyboard = {
-    enableKeyMapping = true;
-    /* Swaps caps and esc */
-    userKeyMapping = [
-      {
-        HIDKeyboardModifierMappingSrc = 30064771129;
-        HIDKeyboardModifierMappingDst = 30064771113;
-      }
-      {
-        HIDKeyboardModifierMappingSrc = 30064771113;
-        HIDKeyboardModifierMappingDst = 30064771129;
-      }
-    ];
+  system = {
+    defaults.dock = {
+      autohide = true;
+      orientation = "right";
+    };
 
+    keyboard = {
+      enableKeyMapping = true;
+      /* Swaps caps and esc */
+      userKeyMapping = [
+        {
+          HIDKeyboardModifierMappingSrc = 30064771129;
+          HIDKeyboardModifierMappingDst = 30064771113;
+        }
+        {
+          HIDKeyboardModifierMappingSrc = 30064771113;
+          HIDKeyboardModifierMappingDst = 30064771129;
+        }
+      ];
+    };
   };
-
 }
