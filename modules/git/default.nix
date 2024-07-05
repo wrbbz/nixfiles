@@ -34,6 +34,7 @@ in {
           "*.swp"
           ".envrc"
           ".npmrc"
+          ".werf*"
         ];
         includes = [{
           condition = "gitdir:~/work/";
