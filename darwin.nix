@@ -52,6 +52,7 @@
 
     keyboard = {
       enableKeyMapping = true;
+      nonUS.remapTilde = true;
       /* Swaps caps and esc */
       userKeyMapping = [
         {
