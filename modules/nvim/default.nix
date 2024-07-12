@@ -79,6 +79,9 @@ in {
           " Navigation with russian layout
           set langmap=!\\"№\\;%?*ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;!@#$%&*`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
+          " ssh config.d/* syntax highlighting
+          autocmd BufRead,BufNewFile ~/.ssh/config.d/**/* set syntax=sshconfig
+
           set spell spelllang=en,ru
 
           " Disable mouse support
