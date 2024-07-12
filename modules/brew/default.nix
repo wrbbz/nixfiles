@@ -19,6 +19,8 @@ in {
       taps = pkgs.callPackage ./taps.nix {};
       onActivation = {
         cleanup = "zap";
+        upgrade = true;
+        autoUpdate = false;
       };
     };
   };
