@@ -41,6 +41,7 @@
         show-recents = false;
       };
       NSGlobalDomain = {
+        NSAutomaticCapitalizationEnabled = false;
         NSAutomaticSpellingCorrectionEnabled = false;
       };
     };
