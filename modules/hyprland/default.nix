@@ -42,9 +42,9 @@ let
           dots_spacing = 0.15 # Scale of dots' absolute size, 0.0 - 1.0
           dots_center = false
           dots_rounding = -1 # -1 default circle, -2 follow input-field rounding
-          outer_color = rgb(60, 56, 54)
-          inner_color = rgb(251, 241, 199)
-          font_color = rgb(60, 56, 54)
+          outer_color = rgb(251, 241, 199)
+          inner_color = rgb(40, 40, 40)
+          font_color = rgb(251, 241, 199)
           fade_on_empty = true
           fade_timeout = 200 # Milliseconds before fade_on_empty is triggered.
           placeholder_text = Say friend & enter
