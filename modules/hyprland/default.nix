@@ -323,7 +323,7 @@ in {
             no_gaps_when_only = true;
           };
           master = {
-            new_is_master = false;
+            new_status = "slave";
             no_gaps_when_only = true;
             orientation = "center";
             allow_small_split = true;
