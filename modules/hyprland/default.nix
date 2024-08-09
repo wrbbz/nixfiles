@@ -1,5 +1,84 @@
 { config, lib, pkgs, ... }:
-let inherit (lib) types mkIf mkDefault mkOption;
+let
+  inherit (lib) types mkIf mkDefault mkOption;
+  lockConfig = {
+    backgroundType = lib.types.submodule {
+      options = {
+        monitor = lib.mkOption {
+          type = lib.types.str;
+          description = "Monitor identifier";
+        };
+        path = lib.mkOption {
+          type = lib.types.path;
+          description = "Path to the background image";
+        };
+      };
+    };
+    backgroundToString = instance: ''
+      background {
+        monitor = ${instance.monitor}
+        path = ${instance.path}
+        color = rgba(25, 20, 20, 1.0)
+      }
+      '';
+    positionAndMonitorType = lib.types.submodule {
+      options = {
+        monitor = lib.mkOption {
+          type = lib.types.str;
+          description = "Monitor identifier";
+        };
+        position = lib.mkOption {
+          type = lib.types.str;
+          description = "X&Y offsets";
+        };
+      };
+    };
+    inputToString = instance: ''
+      input-field {
+          monitor = ${instance.monitor}
+          size = 360, 50
+          outline_thickness = 3
+          dots_size = 0.33 # Scale of input-field height, 0.2 - 0.8
+          dots_spacing = 0.15 # Scale of dots' absolute size, 0.0 - 1.0
+          dots_center = false
+          dots_rounding = -1 # -1 default circle, -2 follow input-field rounding
+          outer_color = rgb(60, 56, 54)
+          inner_color = rgb(251, 241, 199)
+          font_color = rgb(60, 56, 54)
+          fade_on_empty = true
+          fade_timeout = 200 # Milliseconds before fade_on_empty is triggered.
+          placeholder_text = Say friend & enter
+          hide_input = false
+          rounding = -1 # -1 means complete rounding (circle/oval)
+          check_color = rgb(7, 102, 120)
+          fail_color = rgb(175, 58, 3) # if authentication failed, changes outer_color and fail message color
+          fail_text = <b>Pathetic </b>
+          fail_transition = 300 # transition time in ms between normal outer_color and fail_color
+          capslock_color = -1
+          numlock_color = -1
+          bothlock_color = -1 # when both locks are active. -1 means don't change outer color (same for above)
+          invert_numlock = false # change color if numlock is off
+
+          position = ${instance.position}
+          halign = center
+          valign = bottom
+      }
+    '';
+     timeToString = instance: ''
+       label {
+           monitor = ${instance.monitor}
+           text = $TIME
+           color = rgba(251, 241, 199, 1.0)
+           font_size = 155
+           font_family = FiraCode Nerd Font Mono
+
+           position = ${instance.position}
+           halign = center
+           valign = top
+       }
+     '';
+
+  };
 in {
   options.my-config = {
     hypr.enable = mkOption {
@@ -44,12 +123,32 @@ in {
         wallpaper = ,contain:/home/wrbbz/.pictures/bg.png
         '';
     };
+    hypr.lockConfig = mkOption {
+      description = "Lockscreen setup";
+      type = types.attrsOf (lib.types.oneOf [lockConfig.positionAndMonitorType (types.listOf lockConfig.backgroundType)]);
+      default = {
+        background = [
+          {
+            monitor = "";
+            path = "/home/wrbbz/.pictures/lock.png";
+          }
+        ];
+        input = {
+          monitor = "";
+          position = "0, 100";
+        };
+        time = {
+          monitor = "";
+          position = "0, -300";
+        };
+      };
+    };
   };
 
   # if my-config.template.desktop.gnome.enable is set to true
   # set the following options
   config = mkIf config.my-config.hypr.enable {
-    security.pam.services.swaylock = {};
+    security.pam.services.hyprlock = {};
 
     programs.dconf.enable = true;
 
@@ -84,11 +183,11 @@ in {
       home.packages = with pkgs; [
         brightnessctl
         hyprland-per-window-layout
+        hyprlock
         hyprpaper
         hyprpicker
         notify-desktop
         pulsemixer
-        swaylock
         swaynotificationcenter
         wireplumber
         wl-clipboard
@@ -239,7 +338,7 @@ in {
             "$mainMod, E, exec, rofimoji"
             "$mainMod SHIFT, E, exec, rofi -show emoji"
             "$mainMod SHIFT, C, killactive,"
-            "$mainMod SHIFT, Q, exec, swaylock -f -i ~/.pictures/lock.png"
+            "$mainMod SHIFT, Q, exec, hyprlock"
             "$mainMod, Q, exec, qutebrowser"
             "$mainMod ALT, F, togglefloating,"
             "$mainMod, F, fullscreen, 0"
@@ -340,6 +439,14 @@ in {
         "./.config/hypr/hyprpaper.conf".text = config.my-config.hypr.paperConfig;
       };
 
+      home.file = {
+        "./.config/hypr/hyprlock.conf".text =
+          lib.strings.concatStrings [
+            "${lib.concatStrings (map lockConfig.backgroundToString config.my-config.hypr.lockConfig.background)}"
+            "${lockConfig.inputToString config.my-config.hypr.lockConfig.input}"
+            "${lockConfig.timeToString config.my-config.hypr.lockConfig.time}"
+          ];
       };
     };
-  }
+  };
+}
