@@ -12,6 +12,7 @@
     ./git
     ./hyprland
     ./joshuto
+    ./keymapp
     ./kubernetes
     ./networking
     ./nvim
