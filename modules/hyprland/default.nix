@@ -117,7 +117,7 @@ in {
           package = pkgs.gnome-themes-extra;
         };
         iconTheme = {
-          package = pkgs.gnome.adwaita-icon-theme;
+          package = pkgs.adwaita-icon-theme;
           name = "Adwaita";
         };
         cursorTheme = {
