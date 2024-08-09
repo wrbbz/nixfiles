@@ -23,9 +23,6 @@ in {
           pkgs.pass.withExtensions (exts: [ exts.pass-otp ])
         else
           pkgs.pass-wayland.withExtensions (exts: [ exts.pass-otp ]);
-        settings = {
-          PASSWORD_STORE_DIR = "~/.password-store";
-        };
       };
 
       programs.gpg = {
@@ -37,5 +34,6 @@ in {
         pinentryPackage = pkgs.pinentry-curses;
       };
     };
+    environment.systemPackages = with pkgs; [ pwgen ];
   };
 }
