@@ -10,6 +10,6 @@ in {
   };
 
   config = mkIf config.my-config.opengl.enable {
-    hardware.opengl.enable = true;
+    hardware.graphics.enable = true;
   };
 }
