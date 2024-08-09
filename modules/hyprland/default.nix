@@ -114,7 +114,7 @@ in {
         font = { name = "sans-serif"; };
         theme = {
           name = "Adwaita";
-          package = pkgs.gnome.gnome-themes-extra;
+          package = pkgs.gnome-themes-extra;
         };
         iconTheme = {
           package = pkgs.gnome.adwaita-icon-theme;
