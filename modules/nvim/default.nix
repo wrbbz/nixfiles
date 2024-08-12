@@ -81,6 +81,7 @@ in {
 
           " ssh config.d/* syntax highlighting
           autocmd BufRead,BufNewFile ~/.ssh/config.d/**/* set syntax=sshconfig
+          autocmd BufRead,BufNewFile ~/.ssh/config.d/* set syntax=sshconfig
 
           set spell spelllang=en,ru
 
