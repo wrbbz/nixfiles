@@ -59,6 +59,7 @@
     tdesktop
     tessen
     trivy
+    webcord
   ];
 
   programs.wireshark.enable = true;
