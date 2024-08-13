@@ -7,7 +7,6 @@
     ./bluetooth
     ./cli
     ./dev
-    ./discord
     ./fileSystems
     ./git
     ./hyprland
