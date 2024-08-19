@@ -22,6 +22,7 @@
     ./slack
     ./starship
     ./steam
+    ./telepresence
     ./unfree
     ./v4l2
     ./wofi

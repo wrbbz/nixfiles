@@ -18,7 +18,6 @@ in {
       jq
       nodejs
       pulumi-bin
-      telepresence2
       usql
       yarn
     ];
