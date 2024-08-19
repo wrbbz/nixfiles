@@ -342,7 +342,7 @@ in {
             "$mainMod, Q, exec, qutebrowser"
             "$mainMod ALT, F, togglefloating,"
             "$mainMod, F, fullscreen, 0"
-            "$mainMod SHIFT, F, fakefullscreen"
+            "$mainMod SHIFT, F, fullscreenstate, -1 1"
 
             # Move windows
             "$mainMod SHIFT, H, swapwindow, l"
