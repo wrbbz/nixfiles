@@ -49,6 +49,9 @@ in {
             core.hooksPath = "~/.config/git/hooks";
           };
         }];
+        delta = {
+          enable = true;
+        };
       };
       home.file = {
         ".config/git/message" = { source = ./message; };
