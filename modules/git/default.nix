@@ -35,6 +35,7 @@ in {
           ".envrc"
           ".npmrc"
           ".werf*"
+          ".netrc"
         ];
         includes = [{
           condition = "gitdir:~/work/";
