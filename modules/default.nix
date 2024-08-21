@@ -22,6 +22,7 @@
     ./slack
     ./starship
     ./steam
+    ./tailscale
     ./telepresence
     ./unfree
     ./v4l2
