@@ -64,6 +64,7 @@
     keymapp.enable = true;
     kubernetes.enable = true;
     nvim.enable = true;
+    obs.enable = true;
     one-password.enable = true;
     opengl.enable = true;
     pass.enable = true;
@@ -74,7 +75,6 @@
     steam.enable = true;
     tailscale.enable = true;
     telepresence.enable = true;
-    v4l2.enable = true;
     wofi.enable = true;
     zsh.enable = true;
   };

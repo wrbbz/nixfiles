@@ -15,6 +15,7 @@
     ./kubernetes
     ./networking
     ./nvim
+    ./obs
     ./opengl
     ./pass
     ./podman
@@ -25,7 +26,6 @@
     ./tailscale
     ./telepresence
     ./unfree
-    ./v4l2
     ./wofi
     ./zsh
   ];
