@@ -19,7 +19,8 @@ _:
   # Tools
   "elgato-camera-hub"
   "elgato-stream-deck"
-  "keymapp"
+  "flipper"
   "imazing"
+  "keymapp"
   "tailscale"
 ]
