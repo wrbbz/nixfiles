@@ -19,6 +19,7 @@ in {
       ipcalc
       pwgen
       pw-volume
+      nix-prefetch
       nix-tree
       nvd # https://gitlab.com/khumba/nvd
       ranger

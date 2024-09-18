@@ -52,7 +52,6 @@
     kooha
     libimobiledevice
     mpv
-    nix-prefetch-github
     # obs-studio
     # obs-studio-plugins.obs-backgroundremoval
     pandoc
