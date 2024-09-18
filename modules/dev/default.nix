@@ -14,6 +14,7 @@ in {
       cloudflared
       devbox
       dive
+      gnumake
       go
       jq
       nodejs
