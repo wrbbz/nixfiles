@@ -72,6 +72,7 @@ in {
           pochta = "https://www.pochta.ru/tracking#{}";
           pdb = "https://www.protondb.com/search?q={}";
           pulumi = "https://www.pulumi.com/docs/#stq={}&stp=1";
+          pulreg = "https://www.pulumi.com/registry/packages/{}";
           rcgo = "https://rc-go.ru/search/?s={}";
           rstd = "https://doc.rust-lang.org/std/?search={}";
           reddit = "https://reddit.com/search?q={}";
