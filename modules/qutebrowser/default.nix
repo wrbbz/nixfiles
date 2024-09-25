@@ -86,69 +86,37 @@ in {
           yt = "https://youtube.com/results?search_query={}";
           "я" = "https://yandex.ru/search/?lr=2&text={}";
         };
-        extraConfig = ''
-          c.editor.command = ['alacritty', '-e', 'vim', '{}']
-          c.editor.encoding = 'utf-8'
-
-          c.url.start_pages = 'qute://start'
-          c.url.default_page = 'qute://start'
-          c.url.open_base_url = True
-
-          c.downloads.location.directory = '~/Downloads'
-          c.downloads.location.prompt = False
-
-          c.content.notifications.enabled = False
-
-          # Gruvbox light colours
-          c.colors.completion.fg = '#3c3836'
-          c.colors.completion.odd.bg = '#fbf1c7'
-          c.colors.completion.even.bg = '#ebdbb2'
-          c.colors.completion.category.fg = '#3c3836'
-          c.colors.completion.category.bg = 'qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #fbf1c7, stop:1 #bdae93)'
-          c.colors.completion.category.border.top = 'black'
-          c.colors.completion.category.border.bottom = 'black'
-
-          c.colors.completion.item.selected.bg = '#d79921'
-
-          c.colors.statusbar.normal.fg = '#3c3836'
-          c.colors.statusbar.normal.bg = '#fbf1c7'
-          c.colors.statusbar.command.fg = '#3c3836'
-          c.colors.statusbar.command.bg = '#fbf1c7'
-          c.colors.statusbar.caret.bg = '#b16286'
-          c.colors.statusbar.progress.bg = '#3c3836'
-          c.colors.statusbar.url.success.http.fg = '#d79921'
-          c.colors.statusbar.url.success.https.fg = '#98971a'
-          c.colors.statusbar.url.error.fg = '#d65d0e'
-          c.colors.statusbar.url.warn.fg = '#d79921'
-          c.colors.statusbar.url.hover.fg = '#689d6a'
-
-          c.colors.tabs.odd.fg = '#3c3836'
-          c.colors.tabs.odd.bg = '#7c6f64'
-          c.colors.tabs.even.fg = '#3c3836'
-          c.colors.tabs.even.bg = '#928374'
-          c.colors.tabs.selected.odd.fg = '#3c3836'
-          c.colors.tabs.selected.odd.bg = '#fbf1c7'
-          c.colors.tabs.selected.even.fg = '#3c3836'
-          c.colors.tabs.selected.even.bg = '#fbf1c7'
-
-          c.colors.downloads.bar.bg = '#3c3836'
-          c.colors.downloads.start.bg = '#458588'
-          c.colors.downloads.stop.bg = '#98971a'
-          c.colors.webpage.bg = '#fbf1c7'
-
-          c.colors.messages.error.fg = '#3c3836'
-          c.colors.messages.warning.fg = '#3c3836'
-
-          c.colors.prompts.fg = '#3c3836'
-          c.colors.prompts.bg = '#458588'
-        '';
+        settings = {
+          editor = {
+            command = ["alacritty" "-e" "vim" "{}"];
+            encoding = "utf-8";
           };
-          home.file = {
-            "qute-1pass" = {
-              target = ".config/qutebrowser/qute-1pass";
-              source = ./qute-1pass;
-            };
+          url = {
+            start_pages = "qute://start";
+            default_page = "qute://start";
+            open_base_url = true;
           };
+          downloads = {
+            location.directory = "~/Downloads";
+            location.prompt = false;
+          };
+          content.notifications.enabled = false;
         };
+        extraConfig = ''
+          # Gruvbox dark colours
+          config.source('dark-gruvbox.py')
+        '';
+      };
+      home.file = {
+        "qute-1pass" = {
+          target = ".config/qutebrowser/qute-1pass";
+          source = ./qute-1pass;
+        };
+        "dark-gruvbox.py" = {
+          target = ".config/qutebrowser/dark-gruvbox.py";
+          source = ./dark-gruvbox.py;
+        };
+      };
+    };
   };
 }
