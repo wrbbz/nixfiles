@@ -2,6 +2,7 @@
   imports = [
     ./alacritty
     ./brew
+    ./cli
     ./dev
     ./git
     ./kubernetes
