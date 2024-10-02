@@ -270,7 +270,7 @@ in {
 
               lsp.setup_servers({
                 'astro',
-                'tsserver',
+                'ts_ls',
                 'eslint',
                 'rust_analyzer',
                 'nil_ls',
