@@ -17,7 +17,6 @@ in {
       file
       ipcalc
       pwgen
-      pw-volume
       nix-prefetch
       nix-tree
       nvd # https://gitlab.com/khumba/nvd
@@ -27,6 +26,10 @@ in {
       wget
       whois
       yt-dlp
-    ];
+    ]
+    ++(pkgs.lib.optionals pkgs.stdenv.isLinux [ 
+      hdparm
+      pw-volume
+    ]);
   };
 }
