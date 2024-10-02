@@ -17,8 +17,6 @@ _:
   "1password"
 
   # Tools
-  "elgato-camera-hub"
-  "elgato-stream-deck"
   "flipper"
   "imazing"
   "keymapp"
