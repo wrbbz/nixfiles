@@ -1,32 +1,33 @@
 { config, lib, pkgs, ... }: {
   imports = [
-    ./1password
-    ./alacritty
     ./aerc
-    ./boot
-    ./bluetooth
+    ./alacritty
     ./cli
     ./dev
-    ./fileSystems
     ./git
-    ./hyprland
     ./joshuto
-    ./keymapp
     ./kubernetes
-    ./networking
     ./nvim
+    ./pass
+    ./starship
+    ./telepresence
+    ./zsh
+    ./1password
+    ./bluetooth
+    ./boot
+    ./fileSystems
+    ./hyprland
+    ./keymapp
+    ./networking
     ./obs
     ./opengl
-    ./pass
     ./podman
     ./qutebrowser
     ./slack
-    ./starship
     ./steam
     ./tailscale
-    ./telepresence
     ./unfree
     ./wofi
-    ./zsh
+    ./brew
   ];
 }
