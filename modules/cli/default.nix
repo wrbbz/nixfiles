@@ -15,7 +15,6 @@ in {
       dig
       figlet
       file
-      hdparm
       ipcalc
       pwgen
       pw-volume
