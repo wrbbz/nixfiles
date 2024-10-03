@@ -7,18 +7,13 @@ in {
       type = types.bool;
       default = false;
     };
-    pass.isDarwin = mkOption {
-      description = "Flag for specifiying wether the current host is darwin system or not";
-      type = types.bool;
-      default = false;
-    };
   };
 
   config = mkIf config.my-config.pass.enable {
     home-manager.users.wrbbz = {
       programs.password-store = {
         enable = true;
-        package = if config.my-config.pass.isDarwin
+        package = if pkgs.stdenv.isDarwin
         then
           pkgs.pass.withExtensions (exts: [ exts.pass-otp ])
         else
@@ -29,7 +24,7 @@ in {
         enable = true;
       };
 
-      services.gpg-agent = mkIf (!config.my-config.pass.isDarwin) {
+      services.gpg-agent = mkIf (pkgs.stdenv.isLinux) {
         enable = true;
         pinentryPackage = pkgs.pinentry-curses;
       };

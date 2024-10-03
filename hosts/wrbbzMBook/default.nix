@@ -9,10 +9,7 @@
     git.enable = true;
     kubernetes.enable = true;
     nvim.enable = true;
-    pass = {
-      enable = true;
-      isDarwin = true;
-    };
+    pass.enable = true;
     starship.enable = true;
     zsh.enable = true;
   };
