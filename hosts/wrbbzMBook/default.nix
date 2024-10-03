@@ -11,6 +11,7 @@
     nvim.enable = true;
     pass.enable = true;
     starship.enable = true;
+    telepresence.enable = true;
     zsh.enable = true;
   };
 }
