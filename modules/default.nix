@@ -12,22 +12,5 @@
     ./starship
     ./telepresence
     ./zsh
-    ./1password
-    ./bluetooth
-    ./boot
-    ./fileSystems
-    ./hyprland
-    ./keymapp
-    ./networking
-    ./obs
-    ./opengl
-    ./podman
-    ./qutebrowser
-    ./slack
-    ./steam
-    ./tailscale
-    ./unfree
-    ./wofi
-    ./brew
   ];
 }
