@@ -33,8 +33,17 @@ in {
           ls="eza -Slhg --icons=always";
           la="eza -Slhga --icons=always";
           maps="telnet mapscii.me";
-          nwitch="doas nixos-rebuild switch --flake /home/wrbbz/.nixfiles#wrbbzChief";
-          nest="doas nixos-rebuild test --flake /home/wrbbz/.nixfiles#wrbbzChief";
+          nxwitch = if pkgs.stdenv.isLinux
+          then
+            "doas nixos-rebuild switch --flake /etc/nixos"
+          else
+            "nix run nix-darwin -- switch --flake ~/repos/nixfiles";
+          nxuild = if pkgs.stdenv.isLinux
+          then
+            "doas nixos-rebuild build --flake /etc/nixos"
+          else 
+            "nix run nix-darwin -- build --flake ~/repos/nixfiles"
+          +" && nvd diff /run/current-system result";
           sdfailed="systemctl list-units --failed";
           ssproxy="ssh -D 8118 -C -q -N";
           suspendless="systemd-inhibit --what=handle-lid-switch sleep infinity";
