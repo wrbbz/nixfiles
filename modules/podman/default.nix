@@ -10,7 +10,6 @@ in {
   };
 
   config = mkIf config.my-config.podman.enable {
-    assertions = lib.hm.linuxOnly "podman.enable";
     virtualisation = {
       podman = {
         enable = true;
