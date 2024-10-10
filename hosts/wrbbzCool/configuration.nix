@@ -55,6 +55,7 @@
     # obs-studio
     # obs-studio-plugins.obs-backgroundremoval
     pandoc
+    streamcontroller
     tdesktop
     tessen
     trivy
