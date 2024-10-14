@@ -19,6 +19,7 @@ in {
       pwgen
       nix-prefetch
       nix-tree
+      nixpkgs-review
       nvd # https://gitlab.com/khumba/nvd
       ranger
       ripgrep
