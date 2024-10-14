@@ -13,6 +13,8 @@ in {
     home-manager.users.wrbbz = {
       home.packages = with pkgs; [
         telepresence2
+      ]
+      ++(pkgs.lib.optionals pkgs.stdenv.isLinux [
         (writeShellApplication {
           name = "sudo";
           # runtimeInputs = [
@@ -20,7 +22,7 @@ in {
           # ];
           text = (builtins.readFile ./sudo2doas.sh);
         })
-      ];
+      ]);
     };
   };
 }
