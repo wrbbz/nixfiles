@@ -17,7 +17,12 @@ in {
 
     programs.gamemode.enable = true;
 
-    nixpkgs.allowUnfreePackages = [ "steam" "steam-original" "steam-run" ];
+    nixpkgs.allowUnfreePackages = [
+      "steam"
+      "steam-original"
+      "steam-run"
+      "steam-unwrapped"
+    ];
 
     # local share
     networking.firewall.allowedTCPPorts = [ 24070 ];
