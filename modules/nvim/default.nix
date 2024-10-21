@@ -144,10 +144,11 @@ in {
           }
           {
             plugin = gruvbox-community;
+            type = "lua";
             config = ''
-              set termguicolors
-              colorscheme gruvbox
-              set background=dark
+              termguicolors = true
+              vim.cmd [[colorscheme gruvbox]]
+              vim.o.background = "dark"
             '';
           }
           vim-nix
