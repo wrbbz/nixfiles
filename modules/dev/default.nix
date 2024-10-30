@@ -15,7 +15,7 @@ in {
       devbox
       dive
       gnumake
-      go_1_23
+      go
       jq
       nodejs
       pulumi-bin
