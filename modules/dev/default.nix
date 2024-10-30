@@ -17,6 +17,7 @@ in {
       gnumake
       go
       jq
+      just
       nodejs
       pulumi-bin
       usql
