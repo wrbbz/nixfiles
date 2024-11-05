@@ -5,7 +5,11 @@ default:
 
 # Updates flake and commits lock files
 update:
+  git stash
+  git pull
   nix flake update --commit-lock-file
+  git push
+  git stash pop
 
 # Updates flake only
 update-dry:
