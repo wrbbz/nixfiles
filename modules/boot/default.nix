@@ -24,6 +24,11 @@ in {
       description = "Specify boot devices";
       type = types.nonEmptyListOf types.str;
     };
+    bootloader = mkOption {
+      description = "Sepcify which bootloader to use";
+      default = "grub";
+      type = types.enum ["grub" "systemd"];
+    };
     availableKernelModules = mkOption {
       type = types.nonEmptyListOf types.str;
       default = [ "uas" "nvme" "ahci" ];
@@ -41,6 +46,11 @@ in {
       description = "install bootloader to fallback location";
       type = types.bool;
       default = true;
+    };
+    partitions = mkOption {
+      default = 5;
+      description = "Amount of partitions";
+      type = types.int;
     };
     partitionScheme = mkOption {
       default = {
@@ -66,14 +76,19 @@ in {
   };
   config = mkIf (cfg.enable) (mkMerge [
     {
-      zfs-root.fileSystems.datasets = {
-        "rpool/nixos/home" = mkDefault "/home";
-        "rpool/nixos/var/lib" = mkDefault "/var/lib";
-        "rpool/nixos/var/log" = mkDefault "/var/log";
-        "bpool/nixos/root" = "/boot";
-      };
+      zfs-root.fileSystems.datasets =
+        if cfg.partitions == 3 then {
+          "rpool/root" = mkDefault "/";
+          "rpool/home" = mkDefault "/home";
+        } else if cfg.partitions == 5 then {
+          "rpool/nixos/home" = mkDefault "/home";
+          "rpool/nixos/var/lib" = mkDefault "/var/lib";
+          "rpool/nixos/var/log" = mkDefault "/var/log";
+          "bpool/nixos/root" = "/boot";
+        } else
+          abort "Unsupported partitions amount";
     }
-    (mkIf (!cfg.immutable) {
+    (mkIf (!cfg.immutable && cfg.partitions == 5) {
       zfs-root.fileSystems.datasets = { "rpool/nixos/root" = "/"; };
     })
     (mkIf cfg.immutable {
@@ -104,8 +119,6 @@ in {
           (map (diskName: diskName + cfg.partitionScheme.swap) cfg.bootDevices);
       };
       boot = {
-        kernelPackages =
-          mkDefault config.boot.zfs.package.latestCompatibleLinuxPackages;
         initrd.availableKernelModules = cfg.availableKernelModules;
         kernelParams = cfg.kernelParams;
         supportedFilesystems = [ "zfs" ];
@@ -114,14 +127,15 @@ in {
           forceImportRoot = mkDefault false;
         };
         loader = {
-          efi = {
+          generationsDir.copyKernels = true;
+          systemd-boot.enable = (if cfg.bootloader == "systemd" then true else false);
+	  efi = {
             canTouchEfiVariables = (if cfg.removableEfi then false else true);
             efiSysMountPoint = ("/boot/efis/" + (head cfg.bootDevices)
               + cfg.partitionScheme.efiBoot);
-          };
-          generationsDir.copyKernels = true;
+	  };
           grub = {
-            enable = true;
+            enable = (if cfg.bootloader == "grub" then true else false);
             devices = (map (diskName: cfg.devNodes + diskName) cfg.bootDevices);
             efiInstallAsRemovable = cfg.removableEfi;
             copyKernels = true;
