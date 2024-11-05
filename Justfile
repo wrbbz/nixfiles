@@ -1,3 +1,4 @@
+propagate := if "{{ os }}" == "linux" { "doas" } else { "sudo" }
 [private]
 default:
   @just --list
@@ -33,7 +34,7 @@ switch:
 # Garbage collect all unused nix store entries
 gc:
   # garbage collect all unused nix store entries(system-wide)
-  doas nix-collect-garbage --delete-older-than 7d
+  {{ propagate }} nix-collect-garbage --delete-older-than 7d
   # garbage collect all unused nix store entries(for the user - home-manager)
   # https://github.com/NixOS/nix/issues/8508
   nix-collect-garbage --delete-older-than 7d
