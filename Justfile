@@ -9,7 +9,7 @@ update:
   git pull
   nix flake update --commit-lock-file
   git push
-  git stash pop
+  git stash pop || true
 
 # Updates flake only
 update-dry:
