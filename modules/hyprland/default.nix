@@ -327,6 +327,7 @@ in {
             no_gaps_when_only = true;
             orientation = "center";
             allow_small_split = true;
+            always_center_master = true;
           };
 
           "$mainMod" = "SUPER";
