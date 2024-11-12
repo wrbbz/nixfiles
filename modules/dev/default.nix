@@ -22,6 +22,7 @@ in {
       pulumi-bin
       usql
       yarn
+      yq-go
     ];
   };
 }
