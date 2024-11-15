@@ -322,11 +322,11 @@ in {
           dwindle = {
             pseudotile = "yes";
             preserve_split = "yes";
-            no_gaps_when_only = true;
+            # no_gaps_when_only = true;
           };
           master = {
             new_status = "slave";
-            no_gaps_when_only = true;
+            # no_gaps_when_only = true;
             orientation = "center";
             allow_small_split = true;
             always_center_master = true;
