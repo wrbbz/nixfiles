@@ -42,11 +42,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731887066,
-        "narHash": "sha256-uw7K/RsYioJicV79Nl39yjtfhdfTDU2aRxnBgvFhkZ8=",
+        "lastModified": 1731968878,
+        "narHash": "sha256-+hTCwETOE9N8voTAaF+IzdUZz28Ws3LDpH90FWADrEE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f3a2ff69586f3a54b461526e5702b1a2f81e740a",
+        "rev": "a42fa14b53ceab66274a21da480c9f8e06204173",
         "type": "github"
       },
       "original": {
@@ -74,11 +74,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1731914213,
-        "narHash": "sha256-l3SNTyUI/YjjnciatDQoyEmzzTFC5KwZDyn9gyfySeI=",
+        "lastModified": 1732004364,
+        "narHash": "sha256-cfNgOtj4daOOjnhPQSvwlDHxsoYfkvn5Dyg3kCUgLZU=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "bf825d0066152bf2afa2f46a7a72eae83f522cea",
+        "rev": "8d0e1ea8c4c2ff6daebf17f109be67a7c3a6da10",
         "type": "github"
       },
       "original": {
@@ -90,11 +90,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1731908936,
-        "narHash": "sha256-KwsX/AF5VCgxoc7fRX5KvPsCU2Jlq+RynuJYtCFg4ZY=",
+        "lastModified": 1732003177,
+        "narHash": "sha256-1aRfeeUSDphKkJjzOgSy7XCvXK/BqEOiH4LfF0kJi0M=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "0ec7ac0f63161f9f5661b0293f468de30bc744b2",
+        "rev": "a20f1015831a856ecf8217dafb2b2e5fe1a46b9f",
         "type": "github"
       },
       "original": {
@@ -106,11 +106,11 @@
     "homebrew-tabby": {
       "flake": false,
       "locked": {
-        "lastModified": 1731379233,
+        "lastModified": 1732003313,
         "narHash": "sha256-7qke0WMetlJVEhZ+wMzYcmh6YWKMrlO1FcUh7KPnnhs=",
         "owner": "tabbyml",
         "repo": "homebrew-tabby",
-        "rev": "1e4c5f2c4fea2962accd9ce98bacf95c5892c853",
+        "rev": "65772a66155c9c6db92d42caa7889cf22c33434e",
         "type": "github"
       },
       "original": {
