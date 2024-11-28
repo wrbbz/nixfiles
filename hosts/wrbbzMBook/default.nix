@@ -8,6 +8,7 @@
     dev.enable = true;
     git.enable = true;
     kubernetes.enable = true;
+    mkalias.enable = true;
     nvim.enable = true;
     pass.enable = true;
     starship.enable = true;
