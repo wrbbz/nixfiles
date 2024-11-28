@@ -2,7 +2,7 @@ _:
 
 [
   # Development
-  "alacritty"
+#  "alacritty"
   "balenaetcher"
   "firefox"
   "insomnia"
