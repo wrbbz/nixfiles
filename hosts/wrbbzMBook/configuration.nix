@@ -5,7 +5,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    pass
     trivy
     zola
   ];
