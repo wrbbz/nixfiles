@@ -17,6 +17,10 @@ in {
       brews = pkgs.callPackage ./brews.nix {};
       casks = pkgs.callPackage ./casks.nix {};
       taps = pkgs.callPackage ./taps.nix {};
+      # masApps = pkgs.callPackage ./mas.nix {};
+      masApps = {
+        WireGuard = 1451685025;
+      };
       onActivation = {
         cleanup = "zap";
         upgrade = true;
