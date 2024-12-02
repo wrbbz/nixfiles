@@ -1,4 +1,5 @@
-propagate := if "{{ os }}" == "linux" { "doas" } else { "sudo" }
+propagate := if os() == "linux" { "doas" } else { "sudo" }
+
 [private]
 default:
   @just --list
