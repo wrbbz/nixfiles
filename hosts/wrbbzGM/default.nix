@@ -38,6 +38,7 @@
     cli.enable = true;
     dev.enable = true;
     git.enable = true;
+    jellyfin.enable = true;
     joshuto.enable = true;
     nvim.enable = true;
     pass.enable = true;

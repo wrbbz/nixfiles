@@ -5,6 +5,7 @@
     ./boot
     ./fileSystems
     ./hyprland
+    ./jellyfin
     ./keymapp
     ./networking
     ./obs

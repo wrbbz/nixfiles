@@ -3,9 +3,12 @@
   networking = {
     # useDHCP = true;
     networkmanager.enable = true;
+    firewall.allowedTCPPorts = [ 80 443];
   };
 
   services.resolved.enable = true;
+
+  services.nginx.enable = true;
 
   programs.tmux = {
     enable = true;
