@@ -1,11 +1,28 @@
 { config, lib, pkgs, ... }:
-let inherit (lib) types mkIf mkDefault mkOption;
+let inherit (lib) types mkIf mkDefault mkMerge mkOption;
 in {
   options.my-config = {
-    git.enable = mkOption {
-      description = "Enable my customized git";
-      type = types.bool;
-      default = false;
+    git = {
+      enable = mkOption {
+        description = "Enable my customized git";
+        type = types.bool;
+        default = false;
+      };
+      signing = {
+        enable = mkOption {
+          description = "Enables signing commits and tags";
+          type = types.bool;
+          default = false;
+        };
+        work = mkOption {
+          description = "Work signing key";
+          type = types.string;
+        };
+        personal = mkOption {
+          description = "Personal signing key";
+          type = types.string;
+        };
+      };
     };
   };
 
@@ -19,8 +36,8 @@ in {
         enable = true;
         userEmail = "me@wrb.bz";
         userName = "Arsenii Zorin";
-        signing = {
-          key = "0xB43D995D25011DFA";
+        signing = mkIf config.my-config.git.signing.enable {
+          key = config.my-config.git.signing.personal;
           signByDefault = true;
         };
         aliases = {
@@ -44,10 +61,14 @@ in {
         includes = [{
           condition = "gitdir:~/work/";
           contents = {
-            user = {
-              email = "a.zorin@cs.money";
-              signingkey = "0x38AB470860769724";
-            };
+            user = mkMerge [
+              {
+                email = "a.zorin@cs.money";
+              }
+              (mkIf config.my-config.git.signing.enable {
+                signingkey = config.my-config.git.signing.work;
+              })
+            ];
             commit = {
               template = "~/.config/git/message";
             };
