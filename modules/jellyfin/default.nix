@@ -12,6 +12,11 @@ in {
       type = types.str;
       default = "jellyfin.wrb.bz";
     };
+    jellyfin.port = mkOption {
+      description = "Port for jellyfin";
+      type = types.port;
+      default = 8096;
+    };
   };
 
   config = mkIf config.my-config.jellyfin.enable {
@@ -21,19 +26,19 @@ in {
       ];
     };
     services = {
-      nginx = {
-        virtualHosts."${config.my-config.jellyfin.domain}" = {
-          forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/jellyfin.wrb.bz/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/jellyfin.wrb.bz/privkey.pem";
-          locations."/" = {
-            proxyPass = "http://localhost:8096";
-          };
-        };
-      };
       jellyfin = {
         enable = true;
         openFirewall = true;
+      };
+      nginx = {
+        virtualHosts."${config.my-config.jellyfin.domain}" = {
+          forceSSL = true;
+          sslCertificate = "/etc/letsencrypt/live/${config.my-config.jellyfin.domain}/fullchain.pem";
+          sslCertificateKey = "/etc/letsencrypt/live/${config.my-config.jellyfin.domain}/privkey.pem";
+          locations."/" = {
+            proxyPass = "http://localhost:${toString config.my-config.jellyfin.port}";
+          };
+        };
       };
     };
   };
