@@ -15,6 +15,7 @@
     ./slack
     ./steam
     ./tailscale
+    ./transmission
     ./unfree
     ./wofi
   ];

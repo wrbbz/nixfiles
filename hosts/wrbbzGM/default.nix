@@ -52,6 +52,7 @@
     podman.enable = true;
     starship.enable = true;
     tailscale.enable = true;
+    transmission.enable = true;
     zsh.enable = true;
   };
 }
