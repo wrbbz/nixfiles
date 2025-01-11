@@ -37,7 +37,14 @@
     bluetooth.enable = true;
     cli.enable = true;
     dev.enable = true;
-    git.enable = true;
+    git = {
+      enable = true;
+      signing = {
+        enable = true;
+        personal = "0xFC7707860149E41E";
+        work = "0xEE08CED442647AB9";
+      };
+    };
     jellyfin.enable = true;
     joshuto.enable = true;
     nvim.enable = true;

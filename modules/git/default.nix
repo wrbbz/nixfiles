@@ -16,11 +16,11 @@ in {
         };
         work = mkOption {
           description = "Work signing key";
-          type = types.string;
+          type = types.str;
         };
         personal = mkOption {
           description = "Personal signing key";
-          type = types.string;
+          type = types.str;
         };
       };
     };
