@@ -36,7 +36,14 @@
     bluetooth.enable = true;
     cli.enable = true;
     dev.enable = true;
-    git.enable = true;
+    git = {
+      enable = true;
+      signing = {
+        enable = true;
+        personal = "0xB43D995D25011DFA";
+        work = "0x38AB470860769724";
+      };
+    };
     hypr = {
       enable = true;
       monitors = [
