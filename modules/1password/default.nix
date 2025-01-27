@@ -10,7 +10,6 @@ in {
   };
 
   config = mkIf config.my-config.one-password.enable {
-    environment.systemPackages = with pkgs; [ slack ];
     nixpkgs.allowUnfreePackages = [ "1password" "1password-gui" "1password-cli" ];
     programs._1password.enable = true;
     programs._1password-gui = {
