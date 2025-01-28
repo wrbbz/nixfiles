@@ -16,7 +16,6 @@
     ./steam
     ./tailscale
     ./transmission
-    ./unfree
     ./wofi
   ];
 }

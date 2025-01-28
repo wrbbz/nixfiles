@@ -11,6 +11,7 @@
     ./pass
     ./starship
     ./telepresence
+    ./unfree
     ./yamusic
     ./zsh
   ];
