@@ -326,10 +326,9 @@ in {
           };
           master = {
             new_status = "slave";
-            # no_gaps_when_only = true;
             orientation = "center";
             allow_small_split = true;
-            always_center_master = true;
+            slave_count_for_center_master = 0;
           };
 
           "$mainMod" = "SUPER";
