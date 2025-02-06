@@ -12,6 +12,7 @@ in {
   config = mkIf config.my-config.dev.enable {
     environment.systemPackages = with pkgs; [
       cloudflared
+      cobra-cli
       devbox
       dive
       gnumake
