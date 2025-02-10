@@ -9,7 +9,6 @@
     ./kubernetes
     ./nvim
     ./pass
-    ./qutebrowser
     ./starship
     ./telepresence
     ./unfree
