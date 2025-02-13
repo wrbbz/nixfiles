@@ -35,6 +35,7 @@
     alacritty.enable = true;
     bluetooth.enable = true;
     cli.enable = true;
+    cloudflare.enable = true;
     dev.enable = true;
     git = {
       enable = true;
