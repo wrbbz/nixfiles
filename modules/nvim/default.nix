@@ -200,17 +200,17 @@ in {
           nvim-treesitter-parsers.toml
           nvim-treesitter-parsers.typescript
           nvim-treesitter-parsers.yaml
-	  {
-	    plugin = nvim-colorizer-lua;
-	    type = "lua";
-	    config = ''
-	      require 'colorizer'.setup{
+          {
+            plugin = nvim-colorizer-lua;
+            type = "lua";
+            config = ''
+              require 'colorizer'.setup{
                 user_default_options = {
-		  mode = "virtualtext";
-		},
-	      }
-	    '';
-	  }
+                  mode = "virtualtext";
+                },
+              }
+            '';
+          }
           {
             plugin = harpoon2;
             type = "lua";
@@ -218,7 +218,7 @@ in {
               local harpoon = require("harpoon")
               harpoon:setup()
 
-              vim.keymap.set("n", "<leader>a", function() harpoon:list():append() end)
+              vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
               vim.keymap.set("n", "<A-g>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
               vim.keymap.set("n", "<A-a>", function() harpoon:list():select(1) end)
@@ -257,6 +257,22 @@ in {
           nvim-cmp
           luasnip
           cmp-nvim-lsp
+          nvim-dap
+          {
+            plugin = nvim-dap-go;
+            type = "lua";
+            config = ''
+              require("dap-go").setup()
+              local dap = require("dap")
+
+              vim.keymap.set('n', '<Leader>dc', ":DapContinue<CR>")
+              vim.keymap.set('n', '<Leader>do', ":DapStepOver<CR>")
+              vim.keymap.set('n', '<Leader>di', ":DapStepIn<CR>")
+              vim.keymap.set('n', '<Leader>dO', ":DapStepOut<CR>")
+              vim.keymap.set('n', '<Leader>db', ":DapToggleBreakpoint<CR>")
+              vim.keymap.set('n', '<Leader>de', ":DapEval<CR>")
+            '';
+          }
           {
             plugin = lsp-zero-nvim;
             type = "lua";
@@ -321,6 +337,8 @@ in {
       };
 
       home.packages = with pkgs; [
+        # dap dependencies
+        delve
         # telescope dependencies
         bat
         fd
