@@ -262,7 +262,12 @@ in {
             plugin = nvim-dap-go;
             type = "lua";
             config = ''
-              require("dap-go").setup()
+              require("dap-go").setup {
+                dap_configurations = {
+                  program = "''${workspaceFolder}",
+                  cwd = "''${workspaceRoot}",
+                }
+              }
               local dap = require("dap")
 
               vim.keymap.set('n', '<Leader>dc', ":DapContinue<CR>")
@@ -270,7 +275,7 @@ in {
               vim.keymap.set('n', '<Leader>di', ":DapStepIn<CR>")
               vim.keymap.set('n', '<Leader>dO', ":DapStepOut<CR>")
               vim.keymap.set('n', '<Leader>db', ":DapToggleBreakpoint<CR>")
-              vim.keymap.set('n', '<Leader>de', ":DapEval<CR>")
+              vim.keymap.set('n', '<Leader>de', ":DapToggleBreakpoint<CR>")
             '';
           }
           {
