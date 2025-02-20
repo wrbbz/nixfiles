@@ -151,6 +151,7 @@ in {
               vim.o.background = "dark"
             '';
           }
+          vim-just
           vim-nix
           vim-table-mode
           yankring
