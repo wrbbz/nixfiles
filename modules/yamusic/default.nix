@@ -10,6 +10,9 @@ in {
   };
 
   config = mkIf config.my-config.yamusic.enable {
+    environment.systemPackages = with pkgs; [
+      yandex-music
+    ];
     nixpkgs.allowUnfreePackages = [ "yandex-music" ];
   };
 }
