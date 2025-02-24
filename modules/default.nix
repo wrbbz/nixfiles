@@ -3,7 +3,6 @@
     ./aerc
     ./alacritty
     ./cli
-    ./cloudflare
     ./dev
     ./git
     ./joshuto

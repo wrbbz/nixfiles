@@ -6,6 +6,7 @@ _:
   "balenaetcher"
   "firefox"
   "insomnia"
+  "cloudflare-warp"
   "zed"
 
   # Communication

@@ -3,6 +3,7 @@
     ./1password
     ./bluetooth
     ./boot
+    ./cloudflare
     ./fileSystems
     ./hyprland
     ./jellyfin
