@@ -20,6 +20,7 @@ in {
       # masApps = pkgs.callPackage ./mas.nix {};
       masApps = {
         WireGuard = 1451685025;
+        Bitwarden = 1352778147;
       };
       onActivation = {
         cleanup = "zap";
