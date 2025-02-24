@@ -20,7 +20,7 @@ in {
       # masApps = pkgs.callPackage ./mas.nix {};
       masApps = {
         WireGuard = 1451685025;
-        Bitwarden = 1352778147;
+        Bitwarden = 1352778147; # App from AppStore installs Safari extension
       };
       onActivation = {
         cleanup = "zap";
