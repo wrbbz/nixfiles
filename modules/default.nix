@@ -4,6 +4,7 @@
     ./alacritty
     ./cli
     ./dev
+    ./firefox
     ./git
     ./joshuto
     ./kubernetes

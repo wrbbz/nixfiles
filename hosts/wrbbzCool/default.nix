@@ -37,6 +37,7 @@
     cli.enable = true;
     cloudflare.enable = true;
     dev.enable = true;
+    firefox.enable = true;
     git = {
       enable = true;
       signing = {

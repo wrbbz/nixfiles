@@ -47,7 +47,6 @@
     fira
     fira-code
     fira-mono
-    firefox
     glow
     kooha
     libimobiledevice
