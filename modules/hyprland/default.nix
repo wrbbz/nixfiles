@@ -337,6 +337,7 @@ in {
             "$mainMod, Return, exec, alacritty msg create-window || alacritty"
             "$mainMod, Space, exec, wofi --dmenu --show run"
             "$mainMod, P, exec, tessen --dmenu wofi --action autotype"
+            "$mainMod, V, exec, rofi-rbw"
             "$mainMod, E, exec, rofimoji"
             "$mainMod SHIFT, E, exec, rofi -show emoji"
             "$mainMod SHIFT, C, killactive,"

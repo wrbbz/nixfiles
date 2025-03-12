@@ -13,6 +13,7 @@
     ./opengl
     ./podman
     ./qutebrowser
+    ./rbw
     ./slack
     ./steam
     ./tailscale
