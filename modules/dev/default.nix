@@ -18,6 +18,7 @@ in {
       go
       jq
       just
+      jwt-cli
       nodejs
       pulumi-bin
       usql
