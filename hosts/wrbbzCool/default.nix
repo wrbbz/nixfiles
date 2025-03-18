@@ -86,7 +86,7 @@
     tailscale.enable = true;
     telepresence.enable = true;
     wofi.enable = true;
-    yamusic.enable = true;
+    yamusic.enable = false;
     zsh.enable = true;
   };
 }
