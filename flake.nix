@@ -13,8 +13,7 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-homebrew = {
-      # url = "github:zhaofengli-wip/nix-homebrew";
-      url = "git+https://github.com/zhaofengli/nix-homebrew?ref=refs/pull/71/merge";
+      url = "github:zhaofengli-wip/nix-homebrew";
     };
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
