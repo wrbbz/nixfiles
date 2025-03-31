@@ -244,6 +244,7 @@ in {
             "$mainMod SHIFT, Q, exec, hyprlock"
             "$mainMod, Q, exec, qutebrowser"
             "$mainMod ALT, F, togglefloating,"
+            "$mainMod ALT, C, centerwindow,"
             "$mainMod, F, fullscreen, 0"
             "$mainMod SHIFT, F, fullscreenstate, -1 1"
 
@@ -266,6 +267,12 @@ in {
             # Move window to anothe monitor
             "$mainMod SHIFT, I, movewindow, mon:l"
             "$mainMod SHIFT, O, movewindow, mon:r"
+
+            # Cycle workspaces
+            "$mainMod ALT, J, workspace, +1"
+            "$mainMod ALT, K, workspace, -1"
+            "$mainMod SHIFT ALT, J, movetoworkspace, +1"
+            "$mainMod SHIFT ALT, K, movetoworkspace, -1"
 
             # Switch workspaces with mainMod + [0-9]
             "$mainMod, 1, workspace, 1"
