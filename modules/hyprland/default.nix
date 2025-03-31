@@ -434,6 +434,10 @@ in {
             # Wallpaper
             "${pkgs.hyprpaper}/bin/hyprpaper"
           ];
+          env = [
+            "HYPRCURSOR_THEME,Nordzy-cursors"
+            "HYPRCURSOR_SIZE,${toString config.my-config.hypr.cursor.size}"
+          ];
         };
         extraConfig = config.my-config.hypr.extraConfig;
       };
