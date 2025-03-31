@@ -1,84 +1,6 @@
 { config, lib, pkgs, ... }:
 let
   inherit (lib) types mkIf mkDefault mkOption;
-  lockConfig = {
-    backgroundType = lib.types.submodule {
-      options = {
-        monitor = lib.mkOption {
-          type = lib.types.str;
-          description = "Monitor identifier";
-        };
-        path = lib.mkOption {
-          type = lib.types.path;
-          description = "Path to the background image";
-        };
-      };
-    };
-    backgroundToString = instance: ''
-      background {
-        monitor = ${instance.monitor}
-        path = ${instance.path}
-        color = rgba(25, 20, 20, 1.0)
-      }
-      '';
-    positionAndMonitorType = lib.types.submodule {
-      options = {
-        monitor = lib.mkOption {
-          type = lib.types.str;
-          description = "Monitor identifier";
-        };
-        position = lib.mkOption {
-          type = lib.types.str;
-          description = "X&Y offsets";
-        };
-      };
-    };
-    inputToString = instance: ''
-      input-field {
-          monitor = ${instance.monitor}
-          size = 360, 50
-          outline_thickness = 3
-          dots_size = 0.33 # Scale of input-field height, 0.2 - 0.8
-          dots_spacing = 0.15 # Scale of dots' absolute size, 0.0 - 1.0
-          dots_center = false
-          dots_rounding = -1 # -1 default circle, -2 follow input-field rounding
-          outer_color = rgb(251, 241, 199)
-          inner_color = rgb(40, 40, 40)
-          font_color = rgb(251, 241, 199)
-          fade_on_empty = true
-          fade_timeout = 200 # Milliseconds before fade_on_empty is triggered.
-          placeholder_text = Say friend & enter
-          hide_input = false
-          rounding = -1 # -1 means complete rounding (circle/oval)
-          check_color = rgb(7, 102, 120)
-          fail_color = rgb(175, 58, 3) # if authentication failed, changes outer_color and fail message color
-          fail_text = <b>Pathetic </b>
-          fail_transition = 300 # transition time in ms between normal outer_color and fail_color
-          capslock_color = -1
-          numlock_color = -1
-          bothlock_color = -1 # when both locks are active. -1 means don't change outer color (same for above)
-          invert_numlock = false # change color if numlock is off
-
-          position = ${instance.position}
-          halign = center
-          valign = bottom
-      }
-    '';
-     timeToString = instance: ''
-       label {
-           monitor = ${instance.monitor}
-           text = $TIME
-           color = rgba(251, 241, 199, 1.0)
-           font_size = 155
-           font_family = FiraCode Nerd Font Mono
-
-           position = ${instance.position}
-           halign = center
-           valign = top
-       }
-     '';
-
-  };
 in {
   options.my-config = {
     hypr.enable = mkOption {
@@ -122,26 +44,6 @@ in {
         preload = /home/wrbbz/.pictures/bg.png
         wallpaper = ,contain:/home/wrbbz/.pictures/bg.png
         '';
-    };
-    hypr.lockConfig = mkOption {
-      description = "Lockscreen setup";
-      type = types.attrsOf (lib.types.oneOf [lockConfig.positionAndMonitorType (types.listOf lockConfig.backgroundType)]);
-      default = {
-        background = [
-          {
-            monitor = "";
-            path = "/home/wrbbz/.pictures/lock.png";
-          }
-        ];
-        input = {
-          monitor = "";
-          position = "0, 100";
-        };
-        time = {
-          monitor = "";
-          position = "0, -300";
-        };
-      };
     };
   };
 
@@ -442,17 +344,128 @@ in {
         extraConfig = config.my-config.hypr.extraConfig;
       };
 
-      home.file = {
-        "./.config/hypr/hyprpaper.conf".text = config.my-config.hypr.paperConfig;
+      programs.hyprlock = {
+        enable = true;
+        settings = {
+          background = [
+            {
+              monitor = "";
+              path = "~/.pictures/lock.png";
+            }
+          ];
+          general = {
+            no_fade_in = false;
+            grace = 0;
+            disable_loading_bar = false;
+          };
+          # Profile photo
+          image = {
+            monitor = "";
+            path = "~/pictures/avatar.jpg";
+            border_size = 2;
+            border_color = "rgba(60, 56, 54, 1)";
+            size = 100;
+            rounding = -1;
+            rotate = 0;
+            reload_time = -1;
+            reload_cmd = "";
+            position = "0, 200";
+            halign = "center";
+            valign = "center";
+          };
+          label = [
+            { # Name of the user
+              monitor = "";
+              text = "Arsenii Zorin";
+              color = "rgba(251, 241, 199, 0.9)";
+              outline_thickness = 0;
+              dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
+              dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
+              dots_center = true;
+              font_size = 20;
+              font_family = "SF Pro Display Bold";
+              position = "0, 110";
+              halign = "center";
+              valign = "center";
+            }
+            { # Time
+              monitor = "";
+              text = "cmd[update:1000] echo \"<span>$(date +\"%H:%M\")</span>\"";
+              color = "rgba(251, 241, 199, 0.9)";
+              font_size = 60;
+              font_family = "SF Pro Display Bold";
+              position = "0, -8";
+              halign = "center";
+              valign = "center";
+            }
+            { # Day-Month-Date
+              monitor = "";
+              text = "cmd[update:1000] echo -e \"$(date +\"%A, %B %d\")\"";
+              color = "rgba(251, 241, 199, 0.9)";
+              font_size = 19;
+              font_family = "SF Pro Display Bold";
+              position = "0, -60";
+              halign = "center";
+              valign = "center";
+            }
+            { # USER
+              monitor = "";
+              text = "    $USER";
+              color = "rgba(251, 241, 199, 0.9)";
+              outline_thickness = 0;
+              dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
+              dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
+              dots_center = true;
+              font_size = 16;
+              font_family = "SF Pro Display Bold";
+              position = "0, -190";
+              halign = "center";
+              valign = "center";
+            }
+          ];
+          # USER-BOX
+
+          shape = {
+            monitor = "";
+            size = "320, 55";
+            color = "rgba(255, 255, 255, 0.1)";
+            rounding = -1;
+            border_size = 0;
+            border_color = "rgba(255, 255, 255, 1)";
+            rotate = 0;
+            xray = false; # if true, make a "hole" in the background (rectangle of specified size, no rotation)
+            position = "0, -190";
+            halign = "center";
+            valign = "center";
+          };
+          # INPUT FIELD
+          input-field = {
+            monitor = "";
+            size = "320, 55";
+            outline_thickness = 0;
+            dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
+            dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
+            dots_center = true;
+            outer_color = "rgba(255, 255, 255, 0)";
+            inner_color = "rgba(255, 255, 255, 0.1)";
+            font_color = "rgba(251, 241, 199, 1.0)";
+            fade_on_empty = false;
+            font_family = "SF Pro Display Bold";
+            placeholder_text = "<span foreground=\"##ffffff99\">🔒  <i>Say friend and enter</i></span>";
+            check_color = "rgb(7, 102, 120)";
+            fail_color = "rgb(175, 58, 3)";
+            fail_text = "<span foreground=\"##d7992199\"></span> <span foreground=\"##ebdbb299\"><b>Pathetic </b></span> <span foreground=\"##d7992199\"> </span>";
+            fail_transition = 300;
+            hide_input = false;
+            position = "0, -268";
+            halign = "center";
+            valign = "center";
+          };
+        };
       };
 
       home.file = {
-        "./.config/hypr/hyprlock.conf".text =
-          lib.strings.concatStrings [
-            "${lib.concatStrings (map lockConfig.backgroundToString config.my-config.hypr.lockConfig.background)}"
-            "${lockConfig.inputToString config.my-config.hypr.lockConfig.input}"
-            "${lockConfig.timeToString config.my-config.hypr.lockConfig.time}"
-          ];
+        "./.config/hypr/hyprpaper.conf".text = config.my-config.hypr.paperConfig;
       };
     };
   };
