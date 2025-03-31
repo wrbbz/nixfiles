@@ -107,7 +107,6 @@ in {
       home.sessionVariables = {
         QT_QPA_PLATFORM = "wayland";
         NIXOS_OZONE_WL = "1";
-        HYPRLAND_LOG_WLR = "1";
       };
 
       gtk = {
@@ -224,7 +223,6 @@ in {
           dwindle = {
             pseudotile = "yes";
             preserve_split = "yes";
-            # no_gaps_when_only = true;
           };
           master = {
             new_status = "slave";
