@@ -47,6 +47,7 @@
     };
     jellyfin.enable = true;
     joshuto.enable = true;
+    miniflux.enable = true;
     nvim.enable = true;
     pass.enable = true;
     podman.enable = true;

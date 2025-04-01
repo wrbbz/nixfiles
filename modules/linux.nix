@@ -9,6 +9,7 @@
     ./hyprland
     ./jellyfin
     ./keymapp
+    ./miniflux
     ./networking
     ./obs
     ./opengl
