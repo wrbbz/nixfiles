@@ -16,6 +16,7 @@
     newSession = true;
     terminal = "tmux-direct";
   };
+  programs.ssh.startAgent = true;
   services.emacs.enable = false;
 
   # environment.etc = {
