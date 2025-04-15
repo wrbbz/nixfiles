@@ -85,6 +85,7 @@
     steam.enable = true;
     tailscale.enable = true;
     telepresence.enable = true;
+    v4l2.enable = true;
     wofi.enable = true;
     yamusic.enable = false;
     zsh.enable = true;

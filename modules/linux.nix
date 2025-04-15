@@ -20,6 +20,7 @@
     ./steam
     ./tailscale
     ./transmission
+    ./v4l2
     ./wofi
   ];
 }
