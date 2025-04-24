@@ -52,12 +52,11 @@ in {
           sdfailed="systemctl list-units --failed";
           ssproxy="ssh -D 8118 -C -q -N";
           suspendless="systemd-inhibit --what=handle-lid-switch sleep infinity";
-          # sudo="doas";
         };
         localVariables = {
           WORDCHARS = "*?_[]~=&;!#$%^(){}<>";
         };
-        initExtra = ''
+        initContent = ''
           bindkey -e
           # Searches for lines with same beginning
           autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
