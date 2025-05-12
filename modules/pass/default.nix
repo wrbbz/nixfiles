@@ -26,7 +26,7 @@ in {
 
       services.gpg-agent = mkIf (pkgs.stdenv.isLinux) {
         enable = true;
-        pinentryPackage = pkgs.pinentry-curses;
+        pinentry.package = pkgs.pinentry-curses;
       };
     };
     environment.systemPackages = with pkgs; [ pwgen ];
