@@ -178,6 +178,9 @@ in {
 
           workspace = config.my-config.hypr.workspaces;
 
+          ecosystem = {
+            no_update_news = true;
+          };
           general = {
             gaps_in = 5;
             gaps_out = 20;
