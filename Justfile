@@ -34,7 +34,7 @@ switch:
 # Switches to the built nix-darwin revision
 [macos]
 switch:
-  nix run nix-darwin -- switch --flake ~/repos/nixfiles
+  sudo nix run nix-darwin -- switch --flake ~/repos/nixfiles
 
 # Garbage collect all unused nix store entries
 gc:

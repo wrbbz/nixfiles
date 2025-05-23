@@ -25,6 +25,7 @@
   };
 
   system = {
+    primaryUser = "wrbbz";
     defaults = {
       dock = {
         autohide = true;
@@ -44,9 +45,9 @@
     };
 
     # # Reload all settings without relog/reboot
-    activationScripts.postUserActivation.text = ''
-      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-    '';
+    # activationScripts.postUserActivation.text = ''
+    #   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    # '';
 
     keyboard = {
       enableKeyMapping = true;
