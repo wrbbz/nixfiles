@@ -14,9 +14,6 @@ _:
   "slack"
   "telegram"
 
-  # Security
-  "1password"
-
   # Tools
   "flipper"
   "imazing"

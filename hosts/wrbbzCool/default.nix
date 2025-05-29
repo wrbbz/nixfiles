@@ -74,7 +74,6 @@
     kubernetes.enable = true;
     nvim.enable = true;
     obs.enable = true;
-    one-password.enable = true;
     opengl.enable = true;
     pass.enable = true;
     podman.enable = true;
