@@ -41,7 +41,7 @@ in {
             installation_mode = "force_installed";
           };
           # FoxyProxy:
-          "{01fdc22c-7b3a-46c5-9648-cde481bcceec}" = {
+          "foxyproxy@eric.h.jung" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/foxyproxy-standard/latest.xpi";
             installation_mode = "force_installed";
           };
