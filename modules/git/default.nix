@@ -47,6 +47,7 @@ in {
           init = {
             defaultBranch = "main";
           };
+          safe.directory = "/etc/nixos";
           pull = {
             rebase = true;
           };
