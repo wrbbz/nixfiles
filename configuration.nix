@@ -21,7 +21,7 @@
 
   home-manager.users.wrbbz = {
     home.username = "wrbbz";
-    home.stateVersion = "24.05";
+    home.stateVersion = "25.05";
   };
 
   ## enable ZFS auto snapshot on datasets
