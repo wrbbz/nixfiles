@@ -4,7 +4,7 @@
 
   users.users = {
     root = {
-      initialHashedPassword = "$6$XlS5gk5Nbc8u2Kfr$f47mT6DH5c/rlKxsQltQpHF0xFu5xxlopidrJOtDq8yVvBXOVH40yU24Kg5KlCbIAiyL/xzSC3362VahvNyue1";
+      initialHashedPassword = "$6$yHlmdy2ARXLh0JaN$UPKqJEoWrj5af6eAM2AnJKOjHWjGEkhyNQznrI./2B5yFDHzZvtPFgCKlJKpEgxbzWznF2mXe2I2PLvX4ETGz1";
       openssh.authorizedKeys.keys = [ "sshKey_placeholder" ];
     };
   };

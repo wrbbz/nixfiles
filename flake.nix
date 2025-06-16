@@ -165,6 +165,7 @@
     nixosConfigurations = {
       wrbbzCool = mkHost "wrbbzCool" "x86_64-linux";
       wrbbzGM = mkHost "wrbbzGM" "x86_64-linux";
+      wrbbzLian = mkHost "wrbbzLian" "x86_64-linux";
     };
     darwinConfigurations = {
       wrbbzMBook = mkDarwin "wrbbzMBook" "aarch64-darwin";
