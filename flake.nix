@@ -69,7 +69,7 @@
                 self.rev
               else
                 throw "refuse to build: git tree is dirty";
-              system.stateVersion = "23.05";
+              system.stateVersion = "25.05";
               imports = [
                 "${nixpkgs}/nixos/modules/installer/scan/not-detected.nix"
                 # "${nixpkgs}/nixos/modules/profiles/hardened.nix"
@@ -165,6 +165,7 @@
     nixosConfigurations = {
       wrbbzCool = mkHost "wrbbzCool" "x86_64-linux";
       wrbbzGM = mkHost "wrbbzGM" "x86_64-linux";
+      wrbbzLian = mkHost "wrbbzLian" "x86_64-linux";
     };
     darwinConfigurations = {
       wrbbzMBook = mkDarwin "wrbbzMBook" "aarch64-darwin";

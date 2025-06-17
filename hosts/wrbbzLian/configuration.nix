@@ -7,9 +7,6 @@
   networking = {
     # useDHCP = true;
     networkmanager.enable = true;
-    extraHosts = ''
-      51.89.89.82 vault.agreatpieceofcluster.com
-    '';
   };
 
   services.resolved.enable = true;
@@ -40,7 +37,7 @@
   };
 
   programs.gamescope = {
-    enable = true;
+    enable = false;
     capSysNice = true;
   };
 
