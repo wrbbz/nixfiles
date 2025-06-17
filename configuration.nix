@@ -4,7 +4,7 @@
 
   users.users = {
     root = {
-      initialHashedPassword = "$6$XlS5gk5Nbc8u2Kfr$f47mT6DH5c/rlKxsQltQpHF0xFu5xxlopidrJOtDq8yVvBXOVH40yU24Kg5KlCbIAiyL/xzSC3362VahvNyue1";
+      initialHashedPassword = "$6$o.yY8ETd3VmTj2n4$APQjNsOuNsbheay7H4CEg7hbG7TfISDnR/mGuz6xuPQr9HpKm8Nx0CEHwLmFhDD6ZdNQ/CmZvvz48JmQhgfoi/";
       openssh.authorizedKeys.keys = [ "sshKey_placeholder" ];
     };
   };
@@ -21,7 +21,7 @@
 
   home-manager.users.wrbbz = {
     home.username = "wrbbz";
-    home.stateVersion = "23.05";
+    home.stateVersion = "25.05";
   };
 
   ## enable ZFS auto snapshot on datasets
