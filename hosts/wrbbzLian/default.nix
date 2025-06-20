@@ -15,7 +15,7 @@
       devNodes = "/dev/disk/by-id/";
       bootDevices = [  "nvme-Samsung_SSD_980_PRO_1TB_S5GXNS0XA07327Z" ];
       immutable = false;
-      availableKernelModules = [ "nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
+      availableKernelModules = [ "nvme" "amdgpu" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
       removableEfi = true;
       kernelParams = [ ];
       sshUnlock = {
