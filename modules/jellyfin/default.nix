@@ -10,7 +10,7 @@ in {
     jellyfin.domain = mkOption {
       description = "Domain for jellyfin";
       type = types.str;
-      default = "jellyfin.wrb.bz";
+      default = "wrb.bz";
     };
     jellyfin.port = mkOption {
       description = "Port for jellyfin";
@@ -25,22 +25,13 @@ in {
         jellyfin
       ];
     };
-    security.acme = {
-      acceptTerms = true;
-      defaults.email = "me+acme@wrb.bz";
-      certs."${config.my-config.jellyfin.domain}" = {
-        dnsProvider = "cloudflare";
-        environmentFile = "/opt/certs/cf/acme.credentials";
-        group = config.services.nginx.group;
-      };
-    };
     services = {
       jellyfin = {
         enable = true;
         openFirewall = true;
       };
       nginx = {
-        virtualHosts."${config.my-config.jellyfin.domain}" = {
+        virtualHosts."jellyfin.${config.my-config.jellyfin.domain}" = {
           forceSSL = true;
           sslCertificate = "/var/lib/acme/${config.my-config.jellyfin.domain}/cert.pem";
           sslCertificateKey = "/var/lib/acme/${config.my-config.jellyfin.domain}/key.pem";

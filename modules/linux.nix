@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }: {
   imports = [
     ./1password
+    ./acme
     ./bluetooth
     ./boot
     ./cloudflare

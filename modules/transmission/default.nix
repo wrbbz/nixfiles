@@ -10,7 +10,7 @@ in {
     transmission.domain = mkOption {
       description = "Domain for transmission";
       type = types.str;
-      default = "transmission.wrb.bz";
+      default = "wrb.bz";
     };
     transmission.port = mkOption {
       description = "Port for transmission";
@@ -25,15 +25,6 @@ in {
         transmission_4-qt
       ];
     };
-    security.acme = {
-      acceptTerms = true;
-      defaults.email = "me+acme@wrb.bz";
-      certs."${config.my-config.transmission.domain}" = {
-        dnsProvider = "cloudflare";
-        environmentFile = "/opt/certs/cf/acme.credentials";
-        group = config.services.nginx.group;
-      };
-    };
     services = {
       transmission = {
         enable = true;
@@ -46,7 +37,7 @@ in {
         };
       };
       nginx = {
-        virtualHosts."${config.my-config.transmission.domain}" = {
+        virtualHosts."transmission.${config.my-config.transmission.domain}" = {
           forceSSL = true;
           sslCertificate = "/var/lib/acme/${config.my-config.transmission.domain}/cert.pem";
           sslCertificateKey = "/var/lib/acme/${config.my-config.transmission.domain}/key.pem";
