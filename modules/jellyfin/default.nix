@@ -25,6 +25,15 @@ in {
         jellyfin
       ];
     };
+    security.acme = {
+      acceptTerms = true;
+      defaults.email = "me+acme@wrb.bz";
+      certs."${config.my-config.jellyfin.domain}" = {
+        dnsProvider = "cloudflare";
+        environmentFile = "/opt/certs/cf/acme.credentials";
+        group = config.services.nginx.group;
+      };
+    };
     services = {
       jellyfin = {
         enable = true;
@@ -33,8 +42,8 @@ in {
       nginx = {
         virtualHosts."${config.my-config.jellyfin.domain}" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/${config.my-config.jellyfin.domain}/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/${config.my-config.jellyfin.domain}/privkey.pem";
+          sslCertificate = "/var/lib/acme/${config.my-config.jellyfin.domain}/cert.pem";
+          sslCertificateKey = "/var/lib/acme/${config.my-config.jellyfin.domain}/key.pem";
           locations."/" = {
             proxyPass = "http://localhost:${toString config.my-config.jellyfin.port}";
           };

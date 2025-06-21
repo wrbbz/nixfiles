@@ -25,6 +25,15 @@ in {
         transmission_4-qt
       ];
     };
+    security.acme = {
+      acceptTerms = true;
+      defaults.email = "me+acme@wrb.bz";
+      certs."${config.my-config.transmission.domain}" = {
+        dnsProvider = "cloudflare";
+        environmentFile = "/opt/certs/cf/acme.credentials";
+        group = config.services.nginx.group;
+      };
+    };
     services = {
       transmission = {
         enable = true;
@@ -39,8 +48,8 @@ in {
       nginx = {
         virtualHosts."${config.my-config.transmission.domain}" = {
           forceSSL = true;
-          sslCertificate = "/etc/letsencrypt/live/${config.my-config.transmission.domain}/fullchain.pem";
-          sslCertificateKey = "/etc/letsencrypt/live/${config.my-config.transmission.domain}/privkey.pem";
+          sslCertificate = "/var/lib/acme/${config.my-config.transmission.domain}/cert.pem";
+          sslCertificateKey = "/var/lib/acme/${config.my-config.transmission.domain}/key.pem";
           locations."/" = {
             proxyPass = "http://localhost:${toString config.my-config.transmission.port}";
           };
