@@ -77,7 +77,7 @@
     opengl.enable = true;
     pass.enable = true;
     podman.enable = true;
-    qutebrowser.enable = true;
+    # qutebrowser.enable = true;
     rbw.enable = true;
     slack.enable = true;
     starship.enable = true;
