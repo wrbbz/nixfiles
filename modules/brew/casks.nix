@@ -18,5 +18,4 @@ _:
   "flipper"
   "imazing"
   "keymapp"
-  "tailscale"
 ]
