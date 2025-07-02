@@ -6,7 +6,6 @@
 
   environment.systemPackages = with pkgs; [
     cloudflared
-    tailscale
     trivy
     zola
   ];

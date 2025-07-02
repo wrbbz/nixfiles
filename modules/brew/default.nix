@@ -21,6 +21,7 @@ in {
       masApps = {
         WireGuard = 1451685025;
         Bitwarden = 1352778147; # App from AppStore installs Safari extension
+        Tailscale = 1475387142;
       };
       onActivation = {
         cleanup = "zap";
