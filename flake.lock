@@ -24,11 +24,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1751336185,
-        "narHash": "sha256-ptnVr2x+sl7cZcTuGx/0BOE2qCAIYHTcgfA+/h60ml0=",
+        "lastModified": 1751429452,
+        "narHash": "sha256-4s5vRtaqdNhVBnbOWOzBNKrRa0ShQTLoEPjJp3joeNI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "96354906f58464605ff81d2f6c2ea23211cbf051",
+        "rev": "df12269039dcf752600b1bcc176bacf2786ec384",
         "type": "github"
       },
       "original": {
@@ -56,11 +56,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1751344412,
-        "narHash": "sha256-3Oc7hBFM+iNLlfPOSFRVmwACTt6inXqIVAnjZbBG/uM=",
+        "lastModified": 1751437597,
+        "narHash": "sha256-/IAYCt9VhcW/X6xAKI2mciBLvGLZY64svat5gIIDbbQ=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "6c8f685afc9f2d02f8fbad159d5bbac90f01b8ad",
+        "rev": "02be589f1fc53f38a588445ba46f678cbf25f0e1",
         "type": "github"
       },
       "original": {
@@ -72,11 +72,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1751356980,
-        "narHash": "sha256-8EM3sPDGGCxkgjmTfkC42PpcRQ48Y+CZq6ZBdUkGQPw=",
+        "lastModified": 1751437192,
+        "narHash": "sha256-W2TWwmNUYNq4bMMSy0WqwPPQUFrdFl/A5lbjJuzF6aQ=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "9de9053f2fdd4fb9239ef7656f9ddae929148584",
+        "rev": "6504ff7847a634bf71b2109f834fd258f6c7e5ec",
         "type": "github"
       },
       "original": {
@@ -88,11 +88,11 @@
     "homebrew-tabby": {
       "flake": false,
       "locked": {
-        "lastModified": 1747882690,
-        "narHash": "sha256-eg8V6QzTGsnpWoUV9lA7H/ugkQS/tuHNDb3klJwW0Ko=",
+        "lastModified": 1751428234,
+        "narHash": "sha256-FzxNYOthc9DchdE6OGlnZND7/IzpzE3ZY8YzPUv/CM8=",
         "owner": "tabbyml",
         "repo": "homebrew-tabby",
-        "rev": "a88e11bfba3cf2b12dd9f2c6c636728c97770f7f",
+        "rev": "5ef1b410e1fb9a37583cffda8823124f0fd6ffea",
         "type": "github"
       },
       "original": {
@@ -142,11 +142,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1750837715,
-        "narHash": "sha256-2m1ceZjbmgrJCZ2PuQZaK4in3gcg3o6rZ7WK6dr5vAA=",
+        "lastModified": 1751432711,
+        "narHash": "sha256-136MeWtckSHTN9Z2WRNRdZ8oRP3vyx3L8UxeBYE+J9w=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "98236410ea0fe204d0447149537a924fb71a6d4f",
+        "rev": "497ae1357f1ac97f1aea31a4cb74ad0d534ef41f",
         "type": "github"
       },
       "original": {
