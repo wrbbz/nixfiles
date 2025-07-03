@@ -12,7 +12,7 @@ in {
   config = mkIf config.my-config.tailscale.enable {
     services.tailscale = {
       enable = true;
-      useRoutingFeatures = "client";
+      useRoutingFeatures = "server";
     };
   };
 }
