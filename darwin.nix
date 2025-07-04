@@ -6,7 +6,10 @@
       interval = { Weekday = 0; Hour = 2; Minute = 0; };
       options = "--delete-older-than 14d";
     };
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      sandbox = true;
+    };
   };
 
   users.users.wrbbz = {
