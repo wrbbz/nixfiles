@@ -13,5 +13,8 @@ in {
     environment.systemPackages = with pkgs; [
       kanata
     ];
+    home-manager.users.wrbbz = {
+      home.file.".config/kanata/kanata.kbd".source = ./kanata.kdb;
+    };
   };
 }
