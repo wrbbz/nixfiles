@@ -14,6 +14,7 @@
         work = "0x192BF2433F457001";
       };
     };
+    kanata.enable = true;
     kubernetes.enable = true;
     mkalias.enable = true;
     nvim.enable = true;
