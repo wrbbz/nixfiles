@@ -345,6 +345,7 @@ in {
             "${pkgs.hyprpaper}/bin/hyprpaper"
           ];
           env = [
+            "QMLSCENE_DEVICE,softwarecontext"
             "HYPRCURSOR_THEME,Nordzy-cursors"
             "HYPRCURSOR_SIZE,${toString config.my-config.hypr.cursor.size}"
           ];
