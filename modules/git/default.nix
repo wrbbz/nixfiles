@@ -29,6 +29,7 @@ in {
   config = mkIf config.my-config.git.enable {
     home-manager.users.wrbbz = {
       home.packages = with pkgs; [
+        gh
         git-cliff
         glab
       ];
