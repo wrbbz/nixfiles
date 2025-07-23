@@ -190,6 +190,7 @@ in {
           nvim-treesitter-parsers.html
           nvim-treesitter-parsers.javascript
           nvim-treesitter-parsers.json
+          nvim-treesitter-parsers.hjson
           nvim-treesitter-parsers.lua
           nvim-treesitter-parsers.markdown
           nvim-treesitter-parsers.nix
