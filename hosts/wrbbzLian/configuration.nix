@@ -42,7 +42,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    aichat
     cassette
     cider
     droidcam
