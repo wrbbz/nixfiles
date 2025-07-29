@@ -14,8 +14,8 @@ in {
       programs.rbw = {
         enable = true;
         settings = {
-          email = "email";
-          base_url = "domain";
+          email = "a.zorin@cs.money";
+          base_url = "https://password-manager.zaebumba.com";
           pinentry = pkgs.pinentry-curses;
         };
       };
