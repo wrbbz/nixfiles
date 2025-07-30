@@ -19,17 +19,20 @@ update-dry:
 # Builds current revision of NixOs
 [linux]
 build:
-  doas nixos-rebuild build --flake /etc/nixos && nvd diff /run/current-system result
+  # doas nixos-rebuild build --flake /etc/nixos && nvd diff /run/current-system result
+  nh os build .
 
 # Builds current revision of nix-darwin
 [macos]
 build:
-  nix run nix-darwin -- build --flake ~/repos/nixfiles && nvd diff /run/current-system result
+  # nix run nix-darwin -- build --flake ~/repos/nixfiles && nvd diff /run/current-system result
+  nh darwin build .
 
 # Switches to the built NixOs revision
 [linux]
 switch:
-  doas nixos-rebuild switch --flake /etc/nixos
+  # doas nixos-rebuild switch --flake /etc/nixos
+  nh os switch .
 
 # Switches to the built nix-darwin revision
 [macos]

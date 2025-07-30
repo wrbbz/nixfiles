@@ -17,6 +17,7 @@ in {
       file
       ipcalc
       pwgen
+      nh
       nix-prefetch
       nix-tree
       nixpkgs-review
