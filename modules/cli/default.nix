@@ -27,6 +27,7 @@ in {
       tmate
       wget
       whois
+      yazi
       yt-dlp
     ]
     ++(pkgs.lib.optionals pkgs.stdenv.isLinux [
