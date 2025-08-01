@@ -31,8 +31,7 @@ build:
 # Switches to the built NixOs revision
 [linux]
 switch:
-  # doas nixos-rebuild switch --flake /etc/nixos
-  nh os switch .
+  doas nixos-rebuild switch --flake /etc/nixos
 
 # Switches to the built nix-darwin revision
 [macos]
