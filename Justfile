@@ -19,13 +19,11 @@ update-dry:
 # Builds current revision of NixOs
 [linux]
 build:
-  # doas nixos-rebuild build --flake /etc/nixos && nvd diff /run/current-system result
   nh os build .
 
 # Builds current revision of nix-darwin
 [macos]
 build:
-  # nix run nix-darwin -- build --flake ~/repos/nixfiles && nvd diff /run/current-system result
   nh darwin build .
 
 # Switches to the built NixOs revision
@@ -36,12 +34,17 @@ switch:
 # Switches to the built nix-darwin revision
 [macos]
 switch:
-  sudo nix run nix-darwin -- switch --flake ~/repos/nixfiles
+  nh darwin switch .
 
 # Garbage collect all unused nix store entries
+[linux]
 gc:
   # garbage collect all unused nix store entries(system-wide)
   {{ propagate }} nix-collect-garbage --delete-older-than 7d
   # garbage collect all unused nix store entries(for the user - home-manager)
   # https://github.com/NixOS/nix/issues/8508
   nix-collect-garbage --delete-older-than 7d
+
+[macos]
+gc:
+  nh clean all
