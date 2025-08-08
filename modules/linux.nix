@@ -5,6 +5,7 @@
     ./bluetooth
     ./boot
     ./cloudflare
+    ./crush
     ./fileSystems
     ./firefox
     ./hyprland

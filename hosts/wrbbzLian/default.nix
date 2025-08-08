@@ -36,6 +36,7 @@
     bluetooth.enable = true;
     cli.enable = true;
     cloudflare.enable = true;
+    crush.enable = true;
     dev.enable = true;
     firefox.enable = true;
     git = {
