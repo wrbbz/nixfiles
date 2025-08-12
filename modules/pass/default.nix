@@ -28,6 +28,10 @@ in {
         enable = true;
         pinentry.package = pkgs.pinentry-curses;
       };
+      launchd.gpg-agent = mkIf (pkgs.stdenv.isDarwin) {
+        enable = true;
+        pinentry.package = pkgs.pinentry-curses;
+      };
     };
     environment.systemPackages = with pkgs; [ pwgen ];
   };
