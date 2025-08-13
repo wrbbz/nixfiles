@@ -81,6 +81,7 @@
     rbw.enable = true;
     slack.enable = true;
     starship.enable = true;
+    steam.enable = true;
     tailscale.enable = true;
     telepresence.enable = true;
     v4l2.enable = true;
