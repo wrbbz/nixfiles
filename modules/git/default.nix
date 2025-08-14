@@ -64,40 +64,42 @@ in {
           ".werf*"
           ".netrc"
         ];
-        includes = [{
-          condition = "gitdir:~/work/spbpu";
-          contents = {
-            user = mkMerge [
-              {
-                email = "arseny.zorin@spbpu.com";
-              }
-              (mkIf config.my-config.git.signing.enable {
-                signingkey = config.my-config.git.signing.spbpu;
-              })
-            ];
-            commit = {
-              template = "~/.config/git/message";
+        includes = [
+          {
+            condition = "gitdir:~/work/excorp/";
+            contents = {
+              user = mkMerge [
+                {
+                  email = "a.zorin@cs.money";
+                }
+                (mkIf config.my-config.git.signing.enable {
+                  signingkey = config.my-config.git.signing.work;
+                })
+              ];
+              commit = {
+                template = "~/.config/git/message";
+              };
+              core.hooksPath = "~/.config/git/hooks";
             };
-            core.hooksPath = "~/.config/git/hooks";
-          };
-        }
-        {
-          condition = "gitdir:~/work/";
-          contents = {
-            user = mkMerge [
-              {
-                email = "a.zorin@cs.money";
-              }
-              (mkIf config.my-config.git.signing.enable {
-                signingkey = config.my-config.git.signing.work;
-              })
-            ];
-            commit = {
-              template = "~/.config/git/message";
+          }
+          {
+            condition = "gitdir:~/work/spbpu/";
+            contents = {
+              user = mkMerge [
+                {
+                  email = "arseny.zorin@spbpu.com";
+                }
+                (mkIf config.my-config.git.signing.enable {
+                  signingkey = config.my-config.git.signing.spbpu;
+                })
+              ];
+              commit = {
+                template = "~/.config/git/message";
+              };
+              core.hooksPath = "~/.config/git/hooks";
             };
-            core.hooksPath = "~/.config/git/hooks";
-          };
-        }];
+          }
+        ];
         delta = {
           enable = true;
         };
