@@ -18,6 +18,10 @@ in {
           description = "Work signing key";
           type = types.str;
         };
+        spbpu = mkOption {
+          description = "SPbPU signing key";
+          type = types.str;
+        };
         personal = mkOption {
           description = "Personal signing key";
           type = types.str;
@@ -61,6 +65,23 @@ in {
           ".netrc"
         ];
         includes = [{
+          condition = "gitdir:~/work/spbpu";
+          contents = {
+            user = mkMerge [
+              {
+                email = "arseny.zorin@spbpu.com";
+              }
+              (mkIf config.my-config.git.signing.enable {
+                signingkey = config.my-config.git.signing.spbpu;
+              })
+            ];
+            commit = {
+              template = "~/.config/git/message";
+            };
+            core.hooksPath = "~/.config/git/hooks";
+          };
+        }
+        {
           condition = "gitdir:~/work/";
           contents = {
             user = mkMerge [
