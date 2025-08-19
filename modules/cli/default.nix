@@ -15,6 +15,7 @@ in {
       dig
       figlet
       file
+      jira-cli-go
       ipcalc
       pwgen
       nh
