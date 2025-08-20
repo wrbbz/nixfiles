@@ -8,7 +8,8 @@ default:
 update:
   git stash
   git pull
-  nix flake update --commit-lock-file
+  nix flake update
+  git commit -m 'reference-update(flake): updates lock file' flake.lock
   git push
   git stash pop || true
 
