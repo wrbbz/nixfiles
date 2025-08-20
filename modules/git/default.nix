@@ -56,6 +56,10 @@ in {
           pull = {
             rebase = true;
           };
+          commit = {
+            template = "~/.config/git/message";
+          };
+          core.hooksPath = "~/.config/git/hooks";
         };
         ignores = [
           "*.swp"
@@ -76,10 +80,6 @@ in {
                   signingkey = config.my-config.git.signing.work;
                 })
               ];
-              commit = {
-                template = "~/.config/git/message";
-              };
-              core.hooksPath = "~/.config/git/hooks";
             };
           }
           {
@@ -93,10 +93,6 @@ in {
                   signingkey = config.my-config.git.signing.spbpu;
                 })
               ];
-              commit = {
-                template = "~/.config/git/message";
-              };
-              core.hooksPath = "~/.config/git/hooks";
             };
           }
         ];
