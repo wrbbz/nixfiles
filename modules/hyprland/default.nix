@@ -173,7 +173,7 @@ in {
             sensitivity = 0;
           };
           gestures = {
-            workspace_swipe = true;
+            workspace = true;
           };
 
           workspace = config.my-config.hypr.workspaces;
