@@ -31,6 +31,7 @@
       url = "github:tabbyml/homebrew-tabby";
       flake = false;
     };
+    textfox.url = "github:adriankarlen/textfox";
   };
 
   outputs = {
@@ -43,12 +44,15 @@
     homebrew-core,
     homebrew-tabby,
     home-manager,
-    nixos-hardware
-  }:
+    nixos-hardware,
+    textfox,
+    ...
+  }@inputs:
   let
     mkHost = hostName: system:
       (({ my-config, zfs-root, pkgs, system, ... }:
         nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs; };
           inherit system;
           modules = [
             # Module 0: zfs-root
@@ -85,6 +89,9 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+              };
             }
 
             # Module 4: config shared by all hosts
