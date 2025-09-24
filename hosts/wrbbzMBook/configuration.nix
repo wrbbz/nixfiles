@@ -6,6 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     cloudflared
+    telegram-desktop
     trivy
     zola
   ];

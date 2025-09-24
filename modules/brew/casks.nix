@@ -11,8 +11,8 @@ _:
 
   # Communication
   "discord"
-  "slack"
-  "telegram"
+#  "slack"
+#  "telegram"
 
   # Tools
   "flipper"
