@@ -137,30 +137,10 @@ in {
               "move-node-to-workspace 1"
             ];
           }
-
           {
             check-further-callbacks = false;
             "if" = {
-              app-id = "net.imput.helium";
-            };
-            run = [
-              "move-node-to-workspace 1"
-            ];
-          }
-
-          {
-            check-further-callbacks = false;
-            "if" = {
-              app-id = "com.vscodium";
-            };
-            run = [
-              "move-node-to-workspace 2"
-            ];
-          }
-          {
-            check-further-callbacks = false;
-            "if" = {
-              app-id = "dev.zed.Zed";
+              app-id = "com.tdesktop.Telegram";
             };
             run = [
               "move-node-to-workspace 2"
