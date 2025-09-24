@@ -2,6 +2,7 @@
   inherit pkgs system;
 
   my-config = {
+    aerospace.enable = true;
     alacritty.enable = true;
     brew.enable = true;
     cli.enable = true;
