@@ -32,6 +32,7 @@
       flake = false;
     };
     textfox.url = "github:adriankarlen/textfox";
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs = {
@@ -46,6 +47,7 @@
     home-manager,
     nixos-hardware,
     textfox,
+    mac-app-util,
     ...
   }@inputs:
   let
@@ -111,6 +113,7 @@
          inherit system;
          modules = [
            # Module 0: zfs-root
+           mac-app-util.darwinModules.default
            ./modules
            ./modules/darwin.nix
 
@@ -142,6 +145,9 @@
            {
              home-manager.useGlobalPkgs = true;
              home-manager.useUserPackages = true;
+             home-manager.sharedModules = [
+               mac-app-util.homeManagerModules.default
+             ];
            }
 
            # Module 4: config shared by all hosts
