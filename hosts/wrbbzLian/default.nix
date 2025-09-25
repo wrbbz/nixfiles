@@ -42,9 +42,19 @@
       enable = true;
       signing = {
         enable = true;
-        personal = "0x00D495F616F34162";
-        spbpu = "0xADA1FCB93A0ACD9A";
-        work = "0xD0FF7FAE00628EB5";
+      };
+      profiles = {
+        personal = {
+          signingKey = "0x00D495F616F34162";
+        };
+        spbpu = {
+          enable = true;
+          signingKey = "0xADA1FCB93A0ACD9A";
+        };
+        work = {
+          enable = true;
+          signingKey = "0xD0FF7FAE00628EB5";
+        };
       };
     };
     hypr = {

@@ -42,8 +42,15 @@
       enable = true;
       signing = {
         enable = true;
-        personal = "0xB43D995D25011DFA";
-        work = "0x38AB470860769724";
+      };
+      profiles = {
+        personal = {
+          signingKey = "0xB43D995D25011DFA";
+        };
+        work = {
+          enable = true;
+          signingKey = "0x38AB470860769724";
+        };
       };
     };
     hypr = {

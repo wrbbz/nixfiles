@@ -14,17 +14,35 @@ in {
           type = types.bool;
           default = false;
         };
-        work = mkOption {
-          description = "Work signing key";
-          type = types.str;
+      };
+      profiles = {
+        work = {
+          enable = mkOption {
+            description = "Enables work profile";
+            type = types.bool;
+            default = false;
+          };
+          signingKey = mkOption {
+            description = "Work signing key";
+            type = types.str;
+          };
         };
-        spbpu = mkOption {
-          description = "SPbPU signing key";
-          type = types.str;
+        spbpu = {
+          enable = mkOption {
+            description = "Enables spbpu profile";
+            type = types.bool;
+            default = false;
+          };
+          signingKey = mkOption {
+            description = "SPbPU signing key";
+            type = types.str;
+          };
         };
-        personal = mkOption {
-          description = "Personal signing key";
-          type = types.str;
+        personal = {
+          signingKey = mkOption {
+            description = "Personal signing key";
+            type = types.str;
+          };
         };
       };
     };
@@ -42,7 +60,7 @@ in {
         userEmail = "me@wrb.bz";
         userName = "Arsenii Zorin";
         signing = mkIf config.my-config.git.signing.enable {
-          key = config.my-config.git.signing.personal;
+          key = config.my-config.git.profiles.personal.signingKey;
           signByDefault = true;
         };
         aliases = {
@@ -69,7 +87,7 @@ in {
           ".netrc"
         ];
         includes = [
-          {
+          (mkIf config.my-config.git.profiles.work.enable {
             condition = "gitdir:~/work/excorp/";
             contents = {
               user = mkMerge [
@@ -77,12 +95,12 @@ in {
                   email = "a.zorin@cs.money";
                 }
                 (mkIf config.my-config.git.signing.enable {
-                  signingkey = config.my-config.git.signing.work;
+                  signingkey = config.my-config.git.profiles.work.signingKey;
                 })
               ];
             };
-          }
-          {
+          })
+          (mkIf config.my-config.git.profiles.spbpu.enable {
             condition = "gitdir:~/work/spbpu/";
             contents = {
               user = mkMerge [
@@ -90,11 +108,11 @@ in {
                   email = "arseny.zorin@spbpu.com";
                 }
                 (mkIf config.my-config.git.signing.enable {
-                  signingkey = config.my-config.git.signing.spbpu;
+                  signingkey = config.my-config.git.profiles.spbpu.signingKey;
                 })
               ];
             };
-          }
+          })
         ];
         delta = {
           enable = true;

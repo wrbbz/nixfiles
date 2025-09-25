@@ -11,9 +11,19 @@
       enable = true;
       signing = {
         enable = true;
-        personal = "0x8B5C43DC91052999";
-        spbpu = "0xA6F136267FC4B239";
-        work = "0x192BF2433F457001";
+      };
+      profiles = {
+        personal = {
+          signingKey = "0x8B5C43DC91052999";
+        };
+        spbpu = {
+          enable = true;
+          signingKey = "0xA6F136267FC4B239";
+        };
+        work = {
+          enable = true;
+          signingKey = "0x192BF2433F457001";
+        };
       };
     };
     kanata.enable = true;
