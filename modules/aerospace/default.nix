@@ -58,83 +58,10 @@ in {
           {
             check-further-callbacks = false;
             "if" = {
-              app-id = "com.apple.finder";
+              app-id = "aplt";
             };
             run = [
-              "layout floating"
-            ];
-          }
-          {
-            check-further-callbacks = false;
-            "if" = {
-              app-id = "dev.kdrag0n.MacVirt";
-            };
-            run = [
-              "layout floating"
-            ];
-          }
-          {
-            check-further-callbacks = false;
-            "if" = {
-              app-id = "com.github.th-ch.youtube-music";
-            };
-            run = [
-              "layout floating"
-            ];
-          }
-          {
-            check-further-callbacks = false;
-            "if" = {
-              app-id = "com.apple.Passwords";
-            };
-            run = [
-              "layout floating"
-            ];
-          }
-          {
-            check-further-callbacks = false;
-            "if" = {
-              app-id = "com.utmapp.UTM";
-            };
-            run = [
-              "layout floating"
-            ];
-          }
-          {
-            check-further-callbacks = false;
-            "if" = {
-              app-id = "org.qbittorrent.qBittorrent";
-            };
-            run = [
-              "layout floating"
-            ];
-          }
-          {
-            check-further-callbacks = false;
-            "if" = {
-              app-id = "com.vmware.fusion";
-            };
-            run = [
-              "layout floating"
-            ];
-          }
-          {
-            check-further-callbacks = false;
-            "if" = {
-              app-id = "com.aone.keka";
-            };
-            run = [
-              "layout floating"
-            ];
-          }
-          ####### Specific spaces for apps #######
-          {
-            check-further-callbacks = false;
-            "if" = {
-              app-id = "app.zen-browser.zen";
-            };
-            run = [
-              "move-node-to-workspace 1"
+              "layout tiles"
             ];
           }
           {
