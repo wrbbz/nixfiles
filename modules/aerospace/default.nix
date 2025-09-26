@@ -70,6 +70,10 @@ in {
 
           alt-tab = "workspace-back-and-forth";
 
+          cmd-f = "fullscreen";
+          cmd-t = "layout floating tiling";
+          cmd-w = "close";
+
           cmd-h = "focus left";
           cmd-j = "focus down";
           cmd-k = "focus up";
