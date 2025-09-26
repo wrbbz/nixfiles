@@ -31,7 +31,7 @@
     mkalias.enable = true;
     nvim.enable = true;
     pass.enable = true;
-    # slack.enable = true;
+    slack.enable = true;
     starship.enable = true;
     telepresence.enable = true;
     zsh.enable = true;

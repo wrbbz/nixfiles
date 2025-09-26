@@ -9,6 +9,7 @@
     ./kubernetes
     ./nvim
     ./pass
+    ./slack
     ./starship
     ./telepresence
     ./unfree

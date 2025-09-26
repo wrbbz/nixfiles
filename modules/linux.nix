@@ -17,7 +17,6 @@
     ./podman
     ./qutebrowser
     ./rbw
-    ./slack
     ./steam
     ./tailscale
     ./transmission
