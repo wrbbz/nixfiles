@@ -54,16 +54,6 @@ in {
         };
 
         on-window-detected = [
-          ####### Floating Windows #######
-          {
-            check-further-callbacks = false;
-            "if" = {
-              app-id = "aplt";
-            };
-            run = [
-              "layout tiles"
-            ];
-          }
           {
             check-further-callbacks = false;
             "if" = {
