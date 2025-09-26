@@ -3,18 +3,20 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     nix-darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nix-homebrew = {
-      url = "github:zhaofengli-wip/nix-homebrew";
-    };
+
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;
@@ -31,158 +33,163 @@
       url = "github:tabbyml/homebrew-tabby";
       flake = false;
     };
+
     textfox.url = "github:adriankarlen/textfox";
     mac-app-util.url = "github:hraban/mac-app-util";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nix-darwin,
-    nix-homebrew,
-    homebrew-bundle,
-    homebrew-cask,
-    homebrew-core,
-    homebrew-tabby,
-    home-manager,
-    nixos-hardware,
-    textfox,
-    mac-app-util,
-    ...
-  }@inputs:
-  let
-    mkHost = hostName: system:
-      (({ my-config, zfs-root, pkgs, system, ... }:
-        nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          inherit system;
-          modules = [
-            # Module 0: zfs-root
-            ./modules
-            ./modules/linux.nix
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      nixos-hardware,
+      nix-homebrew,
+      homebrew-bundle,
+      homebrew-core,
+      homebrew-cask,
+      homebrew-tabby,
+      mac-app-util,
+      textfox,
+      ...
+    }@inputs:
+    let
+      lib = nixpkgs.lib;
 
-            # Module 1: host-specific config, if exist
-            (if (builtins.pathExists
-              ./hosts/${hostName}/configuration.nix) then
-              (import ./hosts/${hostName}/configuration.nix { inherit pkgs nixos-hardware; })
-            else
-              { })
-
-            # Module 2: entry point
-            (({ my-config, zfs-root, pkgs, lib, ... }: {
-              inherit my-config zfs-root;
-              system.configurationRevision = if (self ? rev) then
-                self.rev
-              else
-                throw "refuse to build: git tree is dirty";
-              system.stateVersion = "25.05";
-              imports = [
-                "${nixpkgs}/nixos/modules/installer/scan/not-detected.nix"
-                # "${nixpkgs}/nixos/modules/profiles/hardened.nix"
-                # "${nixpkgs}/nixos/modules/profiles/qemu-guest.nix"
-              ];
-            }) {
-              inherit my-config zfs-root pkgs;
-              lib = nixpkgs.lib;
-            })
-
-            # Module 3: home-manager
-            home-manager.nixosModules.home-manager
+      mkSystem =
+        {
+          hostName,
+          system,
+          isDarwin ? false,
+        }:
+        (
+          (
             {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-              };
+              my-config ? { },
+              zfs-root ? null,
+              pkgs,
+              system,
+              ...
+            }:
+            let
+              builder = if isDarwin then nix-darwin.lib.darwinSystem else nixpkgs.lib.nixosSystem;
+
+              hmModule =
+                if isDarwin then
+                  home-manager.darwinModules.home-manager
+                else
+                  home-manager.nixosModules.home-manager;
+
+              pkgs = nixpkgs.legacyPackages.${system};
+
+              entryModule =
+                { lib, ... }:
+                {
+                  inherit my-config;
+
+                  # Conditionally include zfs-root only on Linux
+                }
+                // (if isDarwin then { } else { inherit zfs-root; })
+                // {
+
+                  system.configurationRevision =
+                    if (self ? rev) then self.rev else throw "refuse to build: git tree is dirty";
+
+                  system.stateVersion = if isDarwin then 4 else "25.05";
+
+                  imports = lib.optionals (!isDarwin) [
+                    "${nixpkgs}/nixos/modules/installer/scan/not-detected.nix"
+                  ];
+                };
+
+              hostSpecific =
+                if builtins.pathExists ./hosts/${hostName}/configuration.nix then
+                  import ./hosts/${hostName}/configuration.nix (
+                    if isDarwin then { inherit pkgs; } else { inherit pkgs nixos-hardware; }
+                  )
+                else
+                  { };
+
+              sharedConfig = import (if isDarwin then ./darwin.nix else ./configuration.nix) { inherit pkgs; };
+
+              modules =
+                (lib.optionals isDarwin [ mac-app-util.darwinModules.default ])
+                ++ [
+                  ./modules
+                  (if isDarwin then ./modules/darwin.nix else ./modules/linux.nix)
+
+                  hostSpecific
+
+                  (entryModule { inherit lib; })
+
+                  # Home Manager (unified)
+                  hmModule
+                  {
+                    home-manager.useGlobalPkgs = true;
+                    home-manager.useUserPackages = true;
+                    home-manager.extraSpecialArgs = { inherit inputs; };
+                    home-manager.sharedModules = lib.optionals isDarwin [ mac-app-util.homeManagerModules.default ];
+                  }
+
+                  # Shared config per-OS
+                  sharedConfig
+                ]
+                # Darwin-only Homebrew config, placed after shared config.
+                ++ (lib.optionals isDarwin [
+                  nix-homebrew.darwinModules.nix-homebrew
+                  {
+                    nix-homebrew = {
+                      user = "wrbbz";
+                      enable = true;
+                      taps = {
+                        "homebrew/homebrew-core" = homebrew-core;
+                        "homebrew/homebrew-cask" = homebrew-cask;
+                        "homebrew/homebrew-bundle" = homebrew-bundle;
+                        "tabbyml/homebrew-tabby" = homebrew-tabby;
+                      };
+                      mutableTaps = false;
+                      autoMigrate = true;
+                    };
+                  }
+                ]);
+            in
+            builder {
+              inherit system;
+              specialArgs = { inherit inputs; };
+              modules = modules;
             }
+          )
+          (
+            import ./hosts/${hostName} {
+              inherit system;
+              pkgs = nixpkgs.legacyPackages.${system};
+            }
+          )
+        );
+    in
+    {
+      nixosConfigurations = {
+        wrbbzCool = mkSystem {
+          hostName = "wrbbzCool";
+          system = "x86_64-linux";
+        };
+        wrbbzGM = mkSystem {
+          hostName = "wrbbzGM";
+          system = "x86_64-linux";
+        };
+        wrbbzLian = mkSystem {
+          hostName = "wrbbzLian";
+          system = "x86_64-linux";
+        };
+      };
 
-            # Module 4: config shared by all hosts
-            (import ./configuration.nix { inherit pkgs; })
-          ];
-        })
-
-      # configuration input
-        (import ./hosts/${hostName} {
-          system = system;
-          pkgs = nixpkgs.legacyPackages.${system};
-        }));
-
-    mkDarwin = hostName: system:
-       (({ my-config, pkgs, system, ... }:
-         nix-darwin.lib.darwinSystem {
-         specialArgs = { inherit inputs; };
-         inherit system;
-         modules = [
-           # Module 0: zfs-root
-           ./modules
-           ./modules/darwin.nix
-           mac-app-util.darwinModules.default
-
-           # Module 1: host-specific config, if exist
-           (if (builtins.pathExists
-             ./hosts/${hostName}/configuration.nix) then
-             (import ./hosts/${hostName}/configuration.nix { inherit pkgs; })
-           else
-           { })
-
-           # Module 2: entry point
-           (({ my-config, pkgs, lib, ... }: {
-           inherit my-config;
-           system.configurationRevision = if (self ? rev) then
-               self.rev
-           else
-               throw "refuse to build: git tree is dirty";
-           system.stateVersion = 4;
-           # imports = [
-           #     "${nixpkgs}/nixos/modules/installer/scan/not-detected.nix"
-           # ];
-           }) {
-           inherit my-config pkgs;
-             lib = nixpkgs.lib;
-           })
-
-           # Module 3: home-manager
-           home-manager.darwinModules.home-manager
-           {
-             home-manager.useGlobalPkgs = true;
-             home-manager.useUserPackages = true;
-             home-manager.sharedModules = [
-               mac-app-util.homeManagerModules.default
-             ];
-           }
-
-           # Module 4: config shared by all hosts
-           (import ./darwin.nix { inherit pkgs; })
-
-           home-manager.darwinModules.home-manager
-           nix-homebrew.darwinModules.nix-homebrew {
-             nix-homebrew = {
-               user = "wrbbz";
-               enable = true;
-               taps = {
-                 "homebrew/homebrew-core" = homebrew-core;
-                 "homebrew/homebrew-cask" = homebrew-cask;
-                 "homebrew/homebrew-bundle" = homebrew-bundle;
-                 "tabbyml/homebrew-tabby" = homebrew-tabby;
-               };
-               mutableTaps = false;
-               autoMigrate = true;
-             };
-           }
-         ];
-       })
-       (import ./hosts/${hostName} {
-         system = system;
-         pkgs = nixpkgs.legacyPackages.${system};
-       }));
-  in {
-    nixosConfigurations = {
-      wrbbzCool = mkHost "wrbbzCool" "x86_64-linux";
-      wrbbzGM = mkHost "wrbbzGM" "x86_64-linux";
-      wrbbzLian = mkHost "wrbbzLian" "x86_64-linux";
+      darwinConfigurations = {
+        wrbbzMBook = mkSystem {
+          hostName = "wrbbzMBook";
+          system = "aarch64-darwin";
+          isDarwin = true;
+        };
+      };
     };
-    darwinConfigurations = {
-      wrbbzMBook = mkDarwin "wrbbzMBook" "aarch64-darwin";
-    };
-  };
 }
