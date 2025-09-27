@@ -108,10 +108,6 @@ in {
         '';
       };
       home.file = {
-        "qute-1pass" = {
-          target = ".config/qutebrowser/qute-1pass";
-          source = ./qute-1pass;
-        };
         "dark-gruvbox.py" = {
           target = ".config/qutebrowser/dark-gruvbox.py";
           source = ./dark-gruvbox.py;
