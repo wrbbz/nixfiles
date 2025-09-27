@@ -26,7 +26,7 @@ in {
               x = 10;
               y = 2;
             };
-            decorations = "None";
+            decorations = "Buttonless";
             dynamic_title = true;
             dynamic_padding = true;
             # MacOS option only
