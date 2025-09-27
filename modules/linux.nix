@@ -6,7 +6,6 @@
     ./boot
     ./cloudflare
     ./fileSystems
-    ./firefox
     ./hyprland
     ./jellyfin
     ./keymapp

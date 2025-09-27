@@ -110,6 +110,7 @@
     mkDarwin = hostName: system:
        (({ my-config, pkgs, system, ... }:
          nix-darwin.lib.darwinSystem {
+         specialArgs = { inherit inputs; };
          inherit system;
          modules = [
            # Module 0: zfs-root
