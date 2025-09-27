@@ -114,9 +114,9 @@
          inherit system;
          modules = [
            # Module 0: zfs-root
-           mac-app-util.darwinModules.default
            ./modules
            ./modules/darwin.nix
+           mac-app-util.darwinModules.default
 
            # Module 1: host-specific config, if exist
            (if (builtins.pathExists
