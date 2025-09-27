@@ -79,7 +79,7 @@ in {
           cmd-k = "focus up";
           cmd-l = "focus right";
 
-          cmd-enter = "exec-and-forget ${pkgs.alacritty}/bin/alacritty";
+          cmd-enter = "exec-and-forget open -nb org.alacritty";
 
           cmd-shift-h = "move left";
           cmd-shift-j = "move down";
