@@ -3,6 +3,5 @@
     ./aerospace
     ./brew
     ./kanata
-    ./mkalias
   ];
 }

@@ -29,7 +29,6 @@
     };
     kanata.enable = true;
     kubernetes.enable = true;
-    mkalias.enable = true;
     nvim.enable = true;
     pass.enable = true;
     slack.enable = true;
