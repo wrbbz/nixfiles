@@ -34,6 +34,7 @@
     pass.enable = true;
     slack.enable = true;
     starship.enable = true;
+    telegram.enable = true;
     telepresence.enable = true;
     zsh.enable = true;
   };
