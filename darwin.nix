@@ -35,7 +35,6 @@
         orientation = "right";
         persistent-apps = [
           "/Applications/Safari.app"
-          "/Applications/Firefox.app"
           "/System/Applications/Calendar.app"
           "/System/Applications/Mail.app"
         ];
