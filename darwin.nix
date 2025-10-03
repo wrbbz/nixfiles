@@ -52,20 +52,20 @@
     #   /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
     # '';
 
-    keyboard = {
-      enableKeyMapping = true;
-      nonUS.remapTilde = true;
-      /* Swaps caps and esc */
-      userKeyMapping = [
-        {
-          HIDKeyboardModifierMappingSrc = 30064771129;
-          HIDKeyboardModifierMappingDst = 30064771113;
-        }
-        {
-          HIDKeyboardModifierMappingSrc = 30064771113;
-          HIDKeyboardModifierMappingDst = 30064771129;
-        }
-      ];
-    };
+    # kyboard = {
+    #   enableKeyMapping = true;
+    #   nonUS.remapTilde = true;
+    #   /* Swaps caps and esc */
+    #   userKeyMapping = [
+    #     {
+    #       HIDKeyboardModifierMappingSrc = 30064771129;
+    #       HIDKeyboardModifierMappingDst = 30064771113;
+    #     }
+    #     {
+    #       HIDKeyboardModifierMappingSrc = 30064771113;
+    #       HIDKeyboardModifierMappingDst = 30064771129;
+    #     }
+    #   ];
+    # };
   };
 }
