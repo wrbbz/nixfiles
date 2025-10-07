@@ -20,14 +20,10 @@ in {
   };
 
   config = mkIf config.my-config.transmission.enable {
-    home-manager.users.wrbbz = {
-      home.packages = with pkgs; [
-        transmission_4-qt
-      ];
-    };
     services = {
       transmission = {
         enable = true;
+        package = pkgs.transmission_4;
         openRPCPort = true;
         settings = {
           download-dir = "/media/";
