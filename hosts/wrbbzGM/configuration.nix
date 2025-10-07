@@ -3,7 +3,7 @@
   networking = {
     # useDHCP = true;
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [ 80 443];
+    firewall.allowedTCPPorts = [ 80 443 4000];
   };
 
   services.resolved.enable = true;
