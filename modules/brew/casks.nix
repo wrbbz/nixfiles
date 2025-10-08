@@ -12,4 +12,5 @@ _:
   "flipper"
   "imazing"
   "keymapp"
+  "parallels"
 ]
