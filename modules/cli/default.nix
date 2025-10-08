@@ -16,7 +16,7 @@ in {
       figlet
       file
       jira-cli-go
-      ipcalc
+      # ipcalc
       pwgen
       nh
       nix-prefetch
