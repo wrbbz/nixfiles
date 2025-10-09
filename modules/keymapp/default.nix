@@ -10,6 +10,7 @@ in {
   };
 
   config = mkIf config.my-config.keymapp.enable {
+    hardware.keyboard.zsa.enable = true;
     services.udev = {
       extraRules = ''
       # Rules for Oryx web flashing and live training
