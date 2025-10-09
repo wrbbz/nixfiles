@@ -31,6 +31,7 @@
     kubernetes.enable = true;
     nvim.enable = true;
     pass.enable = true;
+    qutebrowser.enable = true;
     slack.enable = true;
     starship.enable = true;
     telegram.enable = true;

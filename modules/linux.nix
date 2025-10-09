@@ -14,7 +14,6 @@
     ./obs
     ./opengl
     ./podman
-    ./qutebrowser
     ./rbw
     ./steam
     ./tailscale

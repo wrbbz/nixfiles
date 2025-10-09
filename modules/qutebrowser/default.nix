@@ -10,11 +10,6 @@ in {
   };
 
   config = mkIf config.my-config.qutebrowser.enable {
-    nixpkgs.overlays = [
-      (final: prev: { qutebrowser = prev.qutebrowser.override { enableWideVine = true; }; })
-    ];
-    nixpkgs.allowUnfreePackages = [ "widevine-cdm" ];
-
     home-manager.users.wrbbz = {
       programs.qutebrowser = {
         enable = true;

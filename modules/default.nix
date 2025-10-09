@@ -10,6 +10,7 @@
     ./kubernetes
     ./nvim
     ./pass
+    ./qutebrowser
     ./slack
     ./starship
     ./telegram
