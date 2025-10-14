@@ -7,7 +7,7 @@
     brew.enable = true;
     cli.enable = true;
     dev.enable = true;
-    firefox.enable = true;
+    firefox.enable = false;
     git = {
       enable = true;
       signing = {
