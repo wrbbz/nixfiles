@@ -357,7 +357,7 @@ in {
         nodePackages.eslint
         rust-analyzer
         nil
-#        nodePackages.pyright
+        pyright
         gopls
         nodePackages.bash-language-server
         shellcheck
