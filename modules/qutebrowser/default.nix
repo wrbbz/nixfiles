@@ -3,7 +3,7 @@ let inherit (lib) types mkIf mkDefault mkOption;
 in {
   options.my-config = {
     qutebrowser.enable = mkOption {
-      description = "Enable my customized git";
+      description = "Enable qutebrowser";
       type = types.bool;
       default = false;
     };
