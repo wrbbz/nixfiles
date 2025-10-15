@@ -9,7 +9,7 @@
     networkmanager.enable = true;
   };
 
-  services.resolved.enable = true;
+  # services.resolved.enable = true;
 
   programs.tmux = {
     enable = true;
