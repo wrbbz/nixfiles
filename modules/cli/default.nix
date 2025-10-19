@@ -30,6 +30,7 @@ in {
       whois
       yazi
       yt-dlp
+      zathura
     ]
     ++(pkgs.lib.optionals pkgs.stdenv.isLinux [
       hdparm
