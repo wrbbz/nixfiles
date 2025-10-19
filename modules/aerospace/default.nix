@@ -70,16 +70,16 @@ in {
 
           alt-tab = "workspace-back-and-forth";
 
-          cmd-f = "fullscreen";
+          cmd-shift-f = "fullscreen";
           cmd-shift-t = "layout floating tiling";
-          cmd-w = "close";
+          cmd-shift-w = "close";
 
           cmd-h = "focus left";
           cmd-j = "focus down";
           cmd-k = "focus up";
           cmd-l = "focus right";
 
-          cmd-enter = "exec-and-forget open -nb org.alacritty";
+          cmd-shift-enter = "exec-and-forget open -nb org.alacritty";
 
           cmd-shift-h = "move left";
           cmd-shift-j = "move down";
