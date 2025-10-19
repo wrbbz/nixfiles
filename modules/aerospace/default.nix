@@ -71,7 +71,7 @@ in {
           alt-tab = "workspace-back-and-forth";
 
           cmd-f = "fullscreen";
-          cmd-t = "layout floating tiling";
+          cmd-shift-t = "layout floating tiling";
           cmd-w = "close";
 
           cmd-h = "focus left";
