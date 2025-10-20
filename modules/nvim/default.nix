@@ -258,6 +258,7 @@ in {
           nvim-lspconfig
           nvim-cmp
           luasnip
+          cmp_luasnip
           cmp-nvim-lsp
           nvim-dap
           {
@@ -281,62 +282,78 @@ in {
             '';
           }
           {
-            plugin = lsp-zero-nvim;
+            plugin = nvim-cmp;
             type = "lua";
             config = ''
-              local lsp = require("lsp-zero")
-
-              lsp.preset("recommended")
-
-              lsp.on_attach(function(client, bufnr)
-                lsp.default_keymaps({ buffer = bufnr })
-              end)
-
-              lsp.setup_servers({
-                'astro',
-                'ts_ls',
-                'eslint',
-                'rust_analyzer',
-                'nil_ls',
-                'pyright',
-                'gopls',
-                'bashls',
-              })
-
-              lsp.setup()
-
               local cmp = require('cmp')
-              local cmp_action = lsp.cmp_action()
+              local luasnip = require('luasnip')
+
               cmp.setup({
+                snippet = {
+                  expand = function(args)
+                    luasnip.lsp_expand(args.body)
+                  end,
+                },
                 window = {
                   completion = cmp.config.window.bordered(),
                   documentation = cmp.config.window.bordered(),
                 },
                 mapping = cmp.mapping.preset.insert({
-                  -- Confirm completion with `Enter` (default is `Ctrl-y`)
+                  -- Confirm completion with Enter
                   ['<CR>'] = cmp.mapping.confirm({select = false}),
-                  -- Navigate completion with `Tab` and `Shift-Tab`
-                  -- (default are `Ctrl+` `n` and `p`)
-                  -- (defaults alse trigger completion)
-                  ['<Tab>'] = cmp_action.tab_complete(),
-                  ['<S-Tab>'] = cmp_action.select_prev_or_fallback(),
+                  -- Navigate completion with Tab and Shift-Tab
+                  ['<Tab>'] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                      cmp.select_next_item()
+                    elseif luasnip.expand_or_jumpable() then
+                      luasnip.expand_or_jump()
+                    else
+                      fallback()
+                    end
+                  end, { 'i', 's' }),
+                  ['<S-Tab>'] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                      cmp.select_prev_item()
+                    elseif luasnip.jumpable(-1) then
+                      luasnip.jump(-1)
+                    else
+                      fallback()
+                    end
+                  end, { 'i', 's' }),
                   -- Initialize completion
                   ['<C-Space>'] = cmp.mapping.complete(),
                   -- Navigate documentation
                   ['<C-u>'] = cmp.mapping.scroll_docs(-4),
                   ['<C-d>'] = cmp.mapping.scroll_docs(4),
-                  -- Navigate snippet placeholders
-                  ['<C-f>'] = cmp_action.luasnip_jump_forward(),
-                  ['<C-b>'] = cmp_action.luasnip_jump_backward(),
                 }),
-                sources = {
-                  {name = 'copilot'},
-                  {name = 'nvim_lsp'},
-                  {name = 'luasnip'},
-                  {name = 'path'},
-                },
+                sources = cmp.config.sources({
+                  { name = 'nvim_lsp' },
+                  { name = 'luasnip' },
+                  { name = 'path' },
+                }),
+               })
 
-              })
+              -- Setup language servers using native vim.lsp.enable()
+              vim.lsp.enable('astro')
+              vim.lsp.enable('bashls')
+              vim.lsp.enable('eslint')
+              vim.lsp.enable('gdscript')
+              vim.lsp.enable('gitlab_ci_ls')
+              vim.lsp.enable('gopls')
+              vim.lsp.enable('html')
+              vim.lsp.enable('htmx')
+              vim.lsp.enable('ltex')
+              vim.lsp.enable('nil_ls')
+              vim.lsp.enable('pyright')
+              vim.lsp.enable('tailwindcss')
+              vim.lsp.enable('ts_ls')
+              vim.lsp.enable('vale_ls')
+              vim.lsp.enable('qmlls')
+
+              local cmp = require('cmp')
+              local cmp_action = lsp.cmp_action()
+
+              vim.env.VALE_CONFIG_PATH = "~/.config/vale/vale.ini"
             '';
           }
           cmp-path
