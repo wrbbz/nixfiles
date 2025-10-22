@@ -58,27 +58,31 @@ in {
       programs = {
         git = {
           enable = true;
-          userEmail = "me@wrb.bz";
-          userName = "Arsenii Zorin";
           signing = mkIf config.my-config.git.signing.enable {
             key = config.my-config.git.profiles.personal.signingKey;
             signByDefault = true;
           };
-          aliases = {
-            lg = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n%C(white)%s%C(reset) %C(dim green)- %an%C(reset)' --all";
-          };
-          extraConfig = {
-            init = {
-              defaultBranch = "main";
+          settings = {
+            user = {
+              email = "me@wrb.bz";
+              name = "Arsenii Zorin";
             };
-            safe.directory = "/etc/nixos";
-            pull = {
-              rebase = true;
+            alias = {
+              lg = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n%C(white)%s%C(reset) %C(dim green)- %an%C(reset)' --all";
             };
-            commit = {
-              template = "~/.config/git/message";
+            extraConfig = {
+              init = {
+                defaultBranch = "main";
+              };
+              safe.directory = "/etc/nixos";
+              pull = {
+                rebase = true;
+              };
+              commit = {
+                template = "~/.config/git/message";
+              };
+              core.hooksPath = "~/.config/git/hooks";
             };
-            core.hooksPath = "~/.config/git/hooks";
           };
           ignores = [
             "*.swp"
