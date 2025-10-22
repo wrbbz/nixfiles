@@ -55,67 +55,70 @@ in {
         git-cliff
         glab
       ];
-      programs.git = {
-        enable = true;
-        userEmail = "me@wrb.bz";
-        userName = "Arsenii Zorin";
-        signing = mkIf config.my-config.git.signing.enable {
-          key = config.my-config.git.profiles.personal.signingKey;
-          signByDefault = true;
-        };
-        aliases = {
-          lg = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n%C(white)%s%C(reset) %C(dim green)- %an%C(reset)' --all";
-        };
-        extraConfig = {
-          init = {
-            defaultBranch = "main";
+      programs = {
+        git = {
+          enable = true;
+          userEmail = "me@wrb.bz";
+          userName = "Arsenii Zorin";
+          signing = mkIf config.my-config.git.signing.enable {
+            key = config.my-config.git.profiles.personal.signingKey;
+            signByDefault = true;
           };
-          safe.directory = "/etc/nixos";
-          pull = {
-            rebase = true;
+          aliases = {
+            lg = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n%C(white)%s%C(reset) %C(dim green)- %an%C(reset)' --all";
           };
-          commit = {
-            template = "~/.config/git/message";
-          };
-          core.hooksPath = "~/.config/git/hooks";
-        };
-        ignores = [
-          "*.swp"
-          ".envrc"
-          ".npmrc"
-          ".werf*"
-          ".netrc"
-        ];
-        includes = [
-          (mkIf config.my-config.git.profiles.work.enable {
-            condition = "gitdir:~/work/excorp/";
-            contents = {
-              user = mkMerge [
-                {
-                  email = "a.zorin@cs.money";
-                }
-                (mkIf config.my-config.git.signing.enable {
-                  signingkey = config.my-config.git.profiles.work.signingKey;
-                })
-              ];
+          extraConfig = {
+            init = {
+              defaultBranch = "main";
             };
-          })
-          (mkIf config.my-config.git.profiles.spbpu.enable {
-            condition = "gitdir:~/work/spbpu/";
-            contents = {
-              user = mkMerge [
-                {
-                  email = "arseny.zorin@spbpu.com";
-                }
-                (mkIf config.my-config.git.signing.enable {
-                  signingkey = config.my-config.git.profiles.spbpu.signingKey;
-                })
-              ];
+            safe.directory = "/etc/nixos";
+            pull = {
+              rebase = true;
             };
-          })
-        ];
+            commit = {
+              template = "~/.config/git/message";
+            };
+            core.hooksPath = "~/.config/git/hooks";
+          };
+          ignores = [
+            "*.swp"
+            ".envrc"
+            ".npmrc"
+            ".werf*"
+            ".netrc"
+          ];
+          includes = [
+            (mkIf config.my-config.git.profiles.work.enable {
+              condition = "gitdir:~/work/excorp/";
+              contents = {
+                user = mkMerge [
+                  {
+                    email = "a.zorin@cs.money";
+                  }
+                  (mkIf config.my-config.git.signing.enable {
+                    signingkey = config.my-config.git.profiles.work.signingKey;
+                  })
+                ];
+              };
+            })
+            (mkIf config.my-config.git.profiles.spbpu.enable {
+              condition = "gitdir:~/work/spbpu/";
+              contents = {
+                user = mkMerge [
+                  {
+                    email = "arseny.zorin@spbpu.com";
+                  }
+                  (mkIf config.my-config.git.signing.enable {
+                    signingkey = config.my-config.git.profiles.spbpu.signingKey;
+                  })
+                ];
+              };
+            })
+          ];
+        };
         delta = {
           enable = true;
+          enableGitIntegration = true;
         };
       };
       home.file = {
