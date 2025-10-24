@@ -17,6 +17,7 @@ in {
       dive
       gnumake
       go
+      gonzo
       jq
       just
       jwt-cli
