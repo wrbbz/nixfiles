@@ -370,7 +370,7 @@ in {
           # Profile photo
           image = {
             monitor = "";
-            path = "~/pictures/avatar.jpg";
+            path = "~/.pictures/avatar.jpg";
             border_size = 2;
             border_color = "rgba(60, 56, 54, 1)";
             size = 100;
@@ -460,7 +460,7 @@ in {
             font_color = "rgba(251, 241, 199, 1.0)";
             fade_on_empty = false;
             font_family = "SF Pro Display Bold";
-            placeholder_text = "<span foreground=\"##ffffff99\">🔒  <i>Say friend and enter</i></span>";
+            placeholder_text = "<span foreground=\"##ffffff99\">🔒  <i>$LAYOUT</i></span>";
             check_color = "rgb(7, 102, 120)";
             fail_color = "rgb(175, 58, 3)";
             fail_text = "<span foreground=\"##d7992199\"></span> <span foreground=\"##ebdbb299\"><b>Pathetic </b></span> <span foreground=\"##d7992199\"> </span>";
