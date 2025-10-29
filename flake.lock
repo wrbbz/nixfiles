@@ -99,11 +99,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761584077,
-        "narHash": "sha256-dISPEZahlfs5K6d58zR4akRRyogfE9P4WSyPPNT7HiE=",
+        "lastModified": 1761666354,
+        "narHash": "sha256-fHr+tIYBJccNF8QWqgowfRmEAtAMSt1deZIRNKL8A7c=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e82585308aef3d4cc2c36c7b6946051c8cdf24ef",
+        "rev": "ca2ab1d877a24d5a437dad62f56b8b2c02e964e9",
         "type": "github"
       },
       "original": {
@@ -131,11 +131,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1761627205,
-        "narHash": "sha256-pD0koWrKdVVT2IOWnCS3zPognTmpk0adDp+pKhJ0g0k=",
+        "lastModified": 1761736022,
+        "narHash": "sha256-HR8byCFfT0g3IylR/Tj3JPbjVM/MRnm6R9UYAArBC3A=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "e73c71f82e6fc502d0b1573f4b106da0713c6725",
+        "rev": "e42096484c9faf852c4ee52e7315edf17c74a83a",
         "type": "github"
       },
       "original": {
@@ -147,11 +147,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1761648508,
-        "narHash": "sha256-gVEeVgVd0wYDkWCodnKXffi5nZObWCEr4H+8+BXTmH0=",
+        "lastModified": 1761743627,
+        "narHash": "sha256-pzjKH6p0DRoURSRVXLkLKNivZgxJot0UA7oA77Od/Aw=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "6d25d6b3a069b033076c45c1ad7c216a973dc6a9",
+        "rev": "30aec88fdfe963d1de7634ac2ac9800b44badc58",
         "type": "github"
       },
       "original": {
@@ -240,11 +240,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1760958188,
-        "narHash": "sha256-2m1S4jl+GEDtlt2QqeHil8Ny456dcGSKJAM7q3j/BFU=",
+        "lastModified": 1761669189,
+        "narHash": "sha256-INBZnPA9JzyDn+Fnni2250PbRzKx7Eafz0T2c7NhXiQ=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "d6645c340ef7d821602fd2cd199e8d1eed10afbc",
+        "rev": "9c0ee5dfa186e10efe9b53505b65d22c81860fde",
         "type": "github"
       },
       "original": {
