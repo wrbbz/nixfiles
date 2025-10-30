@@ -75,7 +75,7 @@
     packages = with pkgs; [
       nerd-fonts.fira-code
       nerd-fonts.hack
-      noto-fonts-emoji
+      noto-fonts-color-emoji
     ];
     fontconfig = {
       enable = true;
