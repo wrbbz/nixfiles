@@ -60,7 +60,7 @@
     # obs-studio-plugins.obs-backgroundremoval
     pandoc
     streamcontroller
-    tdesktop
+    telegram-desktop
     tessen
     trivy
     webcord
