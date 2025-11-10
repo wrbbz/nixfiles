@@ -1,9 +1,5 @@
 { pkgs, ... }: {
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
-
   networking = {
     # useDHCP = true;
     networkmanager.enable = true;

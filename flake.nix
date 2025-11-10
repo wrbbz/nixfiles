@@ -81,7 +81,14 @@
                 else
                   home-manager.nixosModules.home-manager;
 
-              pkgs = nixpkgs.legacyPackages.${system};
+              pkgs = import nixpkgs {
+                inherit system;
+                config = {
+                  permittedInsecurePackages = [
+                    "electron-36.9.5"
+                  ];
+                };
+              };
 
               entryModule =
                 { lib, ... }:
