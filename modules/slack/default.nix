@@ -29,6 +29,11 @@ in {
         else
           slack)
       ];
+
+      # Disable Slack auto-update so it stops trying to install a privileged helper
+      targets.darwin.defaults = mkIf pkgs.stdenv.isDarwin {
+        "com.tinyspeck.slackmacgap" = { AutoUpdate = false; };
+      };
     };
 
     nixpkgs.allowUnfreePackages = [ "slack" ];
