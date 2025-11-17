@@ -70,19 +70,17 @@ in {
             alias = {
               lg = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n%C(white)%s%C(reset) %C(dim green)- %an%C(reset)' --all";
             };
-            extraConfig = {
-              init = {
-                defaultBranch = "main";
-              };
-              safe.directory = "/etc/nixos";
-              pull = {
-                rebase = true;
-              };
-              commit = {
-                template = "~/.config/git/message";
-              };
-              core.hooksPath = "~/.config/git/hooks";
+            init = {
+              defaultBranch = "main";
             };
+            safe.directory = "/etc/nixos";
+            pull = {
+              rebase = true;
+            };
+            commit = {
+              template = "~/.config/git/message";
+            };
+            core.hooksPath = "~/.config/git/hooks";
           };
           ignores = [
             "*.swp"
