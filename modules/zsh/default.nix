@@ -85,10 +85,10 @@ in {
         options = [ "--cmd cd" ];
       };
 
-      # programs.direnv = {
-      #   enable = true;
-      #   enableZshIntegration = true;
-      # };
+      programs.direnv = mkIf (pkgs.stdenv.isLinux) {
+        enable = true;
+        enableZshIntegration = true;
+      };
     };
   };
 }
