@@ -85,7 +85,7 @@ in {
         options = [ "--cmd cd" ];
       };
 
-      programs.direnv = mkIf (pkgs.stdenv.isLinux) {
+      programs.direnv = {
         enable = true;
         enableZshIntegration = true;
       };
