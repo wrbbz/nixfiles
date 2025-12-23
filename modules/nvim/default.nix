@@ -350,9 +350,6 @@ in {
               vim.lsp.enable('vale_ls')
               vim.lsp.enable('qmlls')
 
-              local cmp = require('cmp')
-              local cmp_action = lsp.cmp_action()
-
               vim.env.VALE_CONFIG_PATH = "~/.config/vale/vale.ini"
             '';
           }
