@@ -28,6 +28,7 @@ in {
       tmate
       wget
       whois
+      wtfutil
       yazi
       yt-dlp
       zathura
