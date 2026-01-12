@@ -54,7 +54,7 @@
     telegram-desktop
     tessen
     trivy
-    webcord
+    # webcord
   ];
 
   programs.wireshark.enable = true;
