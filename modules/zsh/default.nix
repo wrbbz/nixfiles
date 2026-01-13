@@ -69,7 +69,7 @@ in {
         # TODO: exec Hyprland and gamescope only when they are enabled
         profileExtra = ''
           if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-            exec Hyprland
+            exec start-hyprland
           fi
           if [[ ! $DISPLAY && $XDG_VTNR -eq 2 ]]; then
             exec gamescope -e -- steam
