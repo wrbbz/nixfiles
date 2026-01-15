@@ -6,6 +6,7 @@
     ./boot
     ./cloudflare
     ./fileSystems
+    ./flatpak
     ./hyprland
     ./jellyfin
     ./keymapp

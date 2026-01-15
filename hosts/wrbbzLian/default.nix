@@ -38,6 +38,7 @@
     cloudflare.enable = true;
     dev.enable = true;
     firefox.enable = true;
+    flatpak.enable = true;
     git = {
       enable = true;
       signing = {
