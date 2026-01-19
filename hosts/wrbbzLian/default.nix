@@ -78,7 +78,10 @@
         ipc = off
         splash = off
         preload = /home/wrbbz/.pictures/bg.png
-        wallpaper = DP-1,/home/wrbbz/.pictures/bg.png
+        wallpaper {
+          monitor = DP-1
+          path = /home/wrbbz/.pictures/bg.png
+        }
       '';
     };
     joshuto.enable = true;
