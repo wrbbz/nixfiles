@@ -170,12 +170,11 @@ in {
             plugin = nvim-treesitter;
             type = "lua";
             config = ''
-              require'nvim-treesitter.configs'.setup {
-                highlight = {
-                  enable = true,
-                },
-                additional_vim_regex_highlighting = false,
-              }
+              vim.api.nvim_create_autocmd("FileType", {
+                callback = function()
+                  pcall(vim.treesitter.start)
+                end,
+              })
             '';
           }
           nvim-treesitter-parsers.astro
