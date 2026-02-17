@@ -116,7 +116,7 @@ in {
         '';
         plugins = with pkgs.vimPlugins; [
           {
-            plugin = airline;
+            plugin = vim-airline;
             config = ''
               let g:airline_powerline_fonts = 1
             '';
@@ -154,7 +154,7 @@ in {
           vim-just
           vim-nix
           vim-table-mode
-          yankring
+          YankRing-vim
           {
             plugin = telescope-nvim;
             config = ''
