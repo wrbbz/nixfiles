@@ -177,30 +177,32 @@ in {
               })
             '';
           }
-          nvim-treesitter-parsers.astro
-          nvim-treesitter-parsers.bash
-          nvim-treesitter-parsers.css
-          nvim-treesitter-parsers.dockerfile
-          nvim-treesitter-parsers.git_config
-          nvim-treesitter-parsers.git_rebase
-          nvim-treesitter-parsers.gitcommit
-          nvim-treesitter-parsers.gitignore
-          nvim-treesitter-parsers.go
-          nvim-treesitter-parsers.html
-          nvim-treesitter-parsers.javascript
-          nvim-treesitter-parsers.json
-          nvim-treesitter-parsers.hjson
-          nvim-treesitter-parsers.lua
-          nvim-treesitter-parsers.markdown
-          nvim-treesitter-parsers.nix
-          nvim-treesitter-parsers.python
-          nvim-treesitter-parsers.rust
-          nvim-treesitter-parsers.sql
-          nvim-treesitter-parsers.terraform
-          nvim-treesitter-parsers.latex
-          nvim-treesitter-parsers.toml
-          nvim-treesitter-parsers.typescript
-          nvim-treesitter-parsers.yaml
+          (nvim-treesitter.withPlugins (p: [
+            p.astro
+            p.bash
+            p.css
+            p.dockerfile
+            p.git_config
+            p.git_rebase
+            p.gitcommit
+            p.gitignore
+            p.go
+            p.hjson
+            p.html
+            p.javascript
+            p.json
+            p.latex
+            p.lua
+            p.markdown
+            p.nix
+            p.python
+            p.rust
+            p.sql
+            p.terraform
+            p.toml
+            p.typescript
+            p.yaml
+          ]))
           {
             plugin = nvim-colorizer-lua;
             type = "lua";
