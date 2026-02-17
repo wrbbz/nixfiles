@@ -35,7 +35,10 @@
     };
 
     textfox.url = "github:adriankarlen/textfox";
-    mac-app-util.url = "github:hraban/mac-app-util";
+    mac-app-util = {
+      url = "github:hraban/mac-app-util";
+      inputs.nixpkgs.url = "github:NixOS/nixpkgs?rev=a84b0a7c509bdbaafbe6fe6e947bdaa98acafb99";
+    };
   };
 
   outputs =
