@@ -146,7 +146,7 @@ in {
             plugin = gruvbox-community;
             type = "lua";
             config = ''
-              termguicolors = true
+              vim.o.termguicolors = true
               vim.cmd [[colorscheme gruvbox]]
               vim.o.background = "dark"
             '';
