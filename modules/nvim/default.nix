@@ -113,6 +113,11 @@ in {
           vim.keymap.set("n", "<leader>Y", "\"+Y")
           vim.keymap.set("n", "<leader>d", "\"_d")
           vim.keymap.set("v", "<leader>d", "\"_d")
+
+          -- float management
+          vim.keymap.set("n", "<leader>fo", vim.diagnostic.open_float)
+          vim.keymap.set("n", "<leader>fn", vim.diagnostic.goto_next)
+          vim.keymap.set("n", "<leader>fp", vim.diagnostic.goto_prev)
         '';
         plugins = with pkgs.vimPlugins; [
           {
