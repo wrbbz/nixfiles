@@ -3,6 +3,9 @@
   networking = {
     # useDHCP = true;
     networkmanager.enable = true;
+    extraHosts = ''
+    51.89.41.40 3d.cs.money
+    '';
   };
 
   # services.resolved.enable = true;
