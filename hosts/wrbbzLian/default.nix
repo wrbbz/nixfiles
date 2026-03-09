@@ -34,6 +34,7 @@
     aerc.enable = true;
     alacritty.enable = true;
     bluetooth.enable = true;
+    claude.enable = true;
     cli.enable = true;
     cloudflare.enable = true;
     dev.enable = true;

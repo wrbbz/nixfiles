@@ -5,6 +5,7 @@
     aerospace.enable = true;
     alacritty.enable = true;
     brew.enable = true;
+    claude.enable = true;
     cli.enable = true;
     dev.enable = true;
     firefox.enable = true;

@@ -2,6 +2,7 @@
   imports = [
     ./aerc
     ./alacritty
+    ./claude
     ./cli
     ./dev
     ./firefox
