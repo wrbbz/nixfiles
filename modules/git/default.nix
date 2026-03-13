@@ -88,6 +88,7 @@ in {
             ".npmrc"
             ".werf*"
             ".netrc"
+            ".DS_Store"
           ];
           includes = [
             (mkIf config.my-config.git.profiles.work.enable {
