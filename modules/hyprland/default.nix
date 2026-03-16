@@ -74,10 +74,10 @@ in {
     services.dbus.enable = true;
     xdg.portal = {
       enable = true;
-      config.common.default = "xdg-desktop-portal-hyprland";
+      config.common.default = [ "hyprland" "gtk" ];
       extraPortals = with pkgs; [
         xdg-desktop-portal-hyprland
-        xdg-desktop-portal-gnome
+        xdg-desktop-portal-gtk
       ];
     };
 
