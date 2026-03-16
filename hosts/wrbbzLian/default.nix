@@ -90,6 +90,7 @@
     kubernetes.enable = true;
     nvim.enable = true;
     obs.enable = true;
+    opendeck.enable = true;
     opengl.enable = true;
     pass.enable = true;
     podman.enable = true;

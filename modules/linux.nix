@@ -13,6 +13,7 @@
     ./miniflux
     ./networking
     ./obs
+    ./opendeck
     ./opengl
     ./podman
     ./rbw
