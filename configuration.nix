@@ -2,6 +2,15 @@
 
 { pkgs, ... }: {
 
+  # sops-nix: use SSH host key for system-level secret decryption (runs as root, no passphrase)
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+
+  # Allow user wrbbz to read the SSH host key for home-manager sops activation
+  users.groups.sops-secrets = {};
+  systemd.tmpfiles.rules = [
+    "z /etc/ssh/ssh_host_ed25519_key 0640 root sops-secrets -"
+  ];
+
   users.users = {
     root = {
       initialHashedPassword = "$6$o.yY8ETd3VmTj2n4$APQjNsOuNsbheay7H4CEg7hbG7TfISDnR/mGuz6xuPQr9HpKm8Nx0CEHwLmFhDD6ZdNQ/CmZvvz48JmQhgfoi/";
@@ -14,6 +23,7 @@
     isNormalUser = true;
     extraGroups = [
       "networkmanager"
+      "sops-secrets"
       "wheel"
     ];
     shell = pkgs.zsh;

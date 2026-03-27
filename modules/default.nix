@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }: {
   imports = [
+    ./sops
     ./aerc
     ./alacritty
     ./claude

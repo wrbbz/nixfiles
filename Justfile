@@ -37,6 +37,25 @@ switch:
 switch:
   nh darwin switch .
 
+# Edit an encrypted secrets file in $EDITOR (sops handles decrypt/re-encrypt)
+# Argument: filename inside secrets/ (with or without path prefix / .yaml extension)
+# Examples: just edit-secrets git  |  just edit-secrets secrets/git.yaml
+edit-secrets file:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  path="{{file}}"
+  path="${path#secrets/}"   # strip leading secrets/ if present
+  path="${path%.yaml}"      # strip .yaml if present
+  sops "secrets/${path}.yaml"
+
+reencrypt file:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  path="{{file}}"
+  path="${path#secrets/}"   # strip leading secrets/ if present
+  path="${path%.yaml}"      # strip .yaml if present
+  sops updatekeys "secrets/${path}.yaml"
+
 # Garbage collect all unused nix store entries
 [linux]
 gc:

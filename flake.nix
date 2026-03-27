@@ -16,6 +16,11 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
@@ -55,6 +60,7 @@
       homebrew-tabby,
       mac-app-util,
       textfox,
+      sops-nix,
       ...
     }@inputs:
     let
@@ -125,6 +131,7 @@
 
               modules =
                 (lib.optionals isDarwin [ mac-app-util.darwinModules.default ])
+                ++ (lib.optionals (!isDarwin) [ sops-nix.nixosModules.sops ])
                 ++ [
                   ./modules
                   (if isDarwin then ./modules/darwin.nix else ./modules/linux.nix)
@@ -139,7 +146,9 @@
                     home-manager.useGlobalPkgs = true;
                     home-manager.useUserPackages = true;
                     home-manager.extraSpecialArgs = { inherit inputs; };
-                    home-manager.sharedModules = lib.optionals isDarwin [ mac-app-util.homeManagerModules.default ];
+                    home-manager.sharedModules =
+                      lib.optionals isDarwin [ mac-app-util.homeManagerModules.default ]
+                      ++ [ sops-nix.homeManagerModules.sops ];
                   }
 
                   # Shared config per-OS

@@ -14,6 +14,7 @@
       signing = {
         enable = true;
       };
+      corporateUrls.enable = true;
       profiles = {
         personal = {
           signingKey = "0x8B5C43DC91052999";
