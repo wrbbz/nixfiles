@@ -10,6 +10,7 @@ keys:
   # -- host keys (automated activation) --
   - &wrbbzMBook_host age1lyjn6an5e4upaa7rz8g2ty5x5evtfsj60xtdgrjexxquk4rswsxs5f2p9l
   - &wrbbzGM_host age15kh45hsryn5ku3ancv0c03hwn0r0c8jluqfdy6zl7slr4j6l45zq7ncaz5
+  - &wrbbzLian_host age1wankc8r72ucxa79l5ykcnzldplmdgpnjum0g8ms5hac7t4dyzyysyrutql
 
   # -- user key (manual editing + macOS activation) --
   - &MBook_user age1ays49ddsveslngnz0tam4qju784dt5dw7tf982nar56jp7rhss6st5t759
@@ -20,4 +21,5 @@ creation_rules:
       - age:
           - *wrbbzMBook_host
           - *wrbbzGM_host
+          - *wrbbzLian_host
           - *MBook_user
