@@ -13,6 +13,7 @@ in {
     home-manager.users.wrbbz = {
       programs.password-store = {
         enable = true;
+
         package = if pkgs.stdenv.isDarwin
         then
           pkgs.pass.withExtensions (exts: [ exts.pass-otp ])

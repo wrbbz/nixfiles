@@ -116,6 +116,10 @@ in {
           name = "Adwaita";
           package = pkgs.gnome-themes-extra;
         };
+        gtk4.theme = {
+          name = "Adwaita";
+          package = pkgs.gnome-themes-extra;
+        };
         iconTheme = {
           package = pkgs.adwaita-icon-theme;
           name = "Adwaita";

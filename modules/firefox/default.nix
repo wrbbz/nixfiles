@@ -69,9 +69,9 @@ in {
 
       textfox = {
         enable = true;
-        profile = "default-release";
+        profiles = [ "default-release" ];
         config = {
-          displayHorizontalTabs = false;
+          tabs.horizontal.enable = false;
           displayWindowControls = false;
           displayNavButtons = true;
           displayUrlbarIcons = true;
