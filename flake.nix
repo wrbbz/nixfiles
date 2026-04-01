@@ -112,7 +112,7 @@
                   system.configurationRevision =
                     if (self ? rev) then self.rev else throw "refuse to build: git tree is dirty";
 
-                  system.stateVersion = if isDarwin then 6 else "25.05";
+                  system.stateVersion = if isDarwin then 6 else "25.11";
 
                   imports = lib.optionals (!isDarwin) [
                     "${nixpkgs}/nixos/modules/installer/scan/not-detected.nix"
