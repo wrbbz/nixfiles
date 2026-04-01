@@ -34,11 +34,6 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
-    homebrew-tabby = {
-      url = "github:tabbyml/homebrew-tabby";
-      flake = false;
-    };
-
     textfox.url = "github:adriankarlen/textfox";
     mac-app-util = {
       url = "github:hraban/mac-app-util";
@@ -57,7 +52,6 @@
       homebrew-bundle,
       homebrew-core,
       homebrew-cask,
-      homebrew-tabby,
       mac-app-util,
       textfox,
       sops-nix,
@@ -165,7 +159,6 @@
                         "homebrew/homebrew-core" = homebrew-core;
                         "homebrew/homebrew-cask" = homebrew-cask;
                         "homebrew/homebrew-bundle" = homebrew-bundle;
-                        "tabbyml/homebrew-tabby" = homebrew-tabby;
                       };
                       mutableTaps = false;
                       autoMigrate = true;
