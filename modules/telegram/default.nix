@@ -10,11 +10,13 @@ in {
     };
   };
 
-  config = mkIf config.my-config.telegram.enable {
-    home-manager.users.wrbbz = {
-      home.packages = with pkgs; [
-        telegram-desktop
-      ];
-    };
-  };
+  config = mkIf config.my-config.telegram.enable (lib.mkMerge [
+    (lib.mkIf pkgs.stdenv.isLinux {
+      home-manager.users.wrbbz.home.packages = [ pkgs.telegram-desktop ];
+    })
+
+    (lib.mkIf pkgs.stdenv.isDarwin {
+      homebrew.masApps.Telegram = 747648890;
+    })
+  ]);
 }
