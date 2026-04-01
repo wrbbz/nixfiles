@@ -10,32 +10,29 @@ in {
     };
   };
 
-  config = mkIf config.my-config.slack.enable {
-    home-manager.users.wrbbz = {
-      home.packages = with pkgs; [
-        (if pkgs.stdenv.isLinux then
-          (slack.overrideAttrs (old: {
-            nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ pkgs.makeWrapper ];
-            # append to postInstall to avoid clobbering upstream phases
-            postInstall = (old.postInstall or "") + ''
-              rm -f $out/bin/slack
+  config = mkIf config.my-config.slack.enable (lib.mkMerge [
+    # Linux: install via nixpkgs with Wayland wrapper
+    (lib.mkIf pkgs.stdenv.isLinux {
+      home-manager.users.wrbbz.home.packages = with pkgs; [
+        (slack.overrideAttrs (old: {
+          nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ pkgs.makeWrapper ];
+          # append to postInstall to avoid clobbering upstream phases
+          postInstall = (old.postInstall or "") + ''
+            rm -f $out/bin/slack
 
-              makeWrapper $out/lib/slack/slack $out/bin/slack \
-                --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
-                --prefix PATH : ${lib.makeBinPath [ pkgs.xdg-utils ]} \
-                --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
-            '';
-          }))
-        else
-          slack)
+            makeWrapper $out/lib/slack/slack $out/bin/slack \
+              --prefix XDG_DATA_DIRS : $GSETTINGS_SCHEMAS_PATH \
+              --prefix PATH : ${lib.makeBinPath [ pkgs.xdg-utils ]} \
+              --add-flags "--ozone-platform=wayland --enable-features=UseOzonePlatform,WebRTCPipeWireCapturer"
+          '';
+        }))
       ];
+      nixpkgs.allowUnfreePackages = [ "slack" ];
+    })
 
-      # Disable Slack auto-update so it stops trying to install a privileged helper
-      targets.darwin.defaults = mkIf pkgs.stdenv.isDarwin {
-        "com.tinyspeck.slackmacgap" = { AutoUpdate = false; };
-      };
-    };
-
-    nixpkgs.allowUnfreePackages = [ "slack" ];
-  };
+    # macOS: install via Homebrew cask to avoid Nix store .app bundle issues
+    (lib.mkIf pkgs.stdenv.isDarwin {
+      homebrew.casks = [ "slack" ];
+    })
+  ]);
 }
