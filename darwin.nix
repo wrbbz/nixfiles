@@ -1,9 +1,49 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  # macOS sets com.apple.macl (Mandatory Access Control) on .app bundles when any
+  # sandboxed app opens them. This xattr cannot be removed even by root, and causes
+  # nix's internal chmod call during GC to fail with EPERM — even though rm works fine.
+  # Fix: retry GC, parse the offending path from the error, rm -rf it, repeat.
+  nixGcScript = ''
+    GC=/run/current-system/sw/bin/nix-collect-garbage
+    output=""
+    for _i in $(seq 1 20); do
+      output=$("$GC" --delete-older-than 14d 2>&1)
+      if [ $? -eq 0 ]; then
+        printf '%s\n' "$output"
+        exit 0
+      fi
+      path=$(printf '%s' "$output" | grep -oE 'chmod "[^"]*"' | head -1 | sed 's/chmod "//;s/"//')
+      if [ -z "$path" ]; then
+        printf '%s\n' "$output" >&2
+        exit 1
+      fi
+      store=$(printf '%s' "$path" | grep -oE '^/nix/store/[^/]+')
+      printf 'Removing %s (macOS MAC chmod restriction)\n' "$store" >&2
+      rm -rf "$store"
+    done
+    printf '%s\n' "$output" >&2
+    exit 1
+  '';
+in
+{
+  environment.systemPackages = [
+    # Run as: sudo nix-gc-clean
+    (pkgs.writeShellScriptBin "nix-gc-clean" nixGcScript)
+  ];
+
+  launchd.daemons.nix-gc = {
+    script = nixGcScript;
+    serviceConfig = {
+      StartCalendarInterval = [{ Weekday = 0; Hour = 2; Minute = 0; }];
+      StandardOutPath = "/var/log/nix-gc.log";
+      StandardErrorPath = "/var/log/nix-gc.log";
+    };
+  };
 
   nix = {
     gc = {
-      automatic = true;
-      interval = { Weekday = 0; Hour = 2; Minute = 0; };
+      automatic = false;
       options = "--delete-older-than 14d";
     };
     settings = {
