@@ -8,7 +8,7 @@ default:
 update:
   git stash
   git pull
-  nix flake update --option access-tokens "github.com=$(gh auth token)"
+  {{ if os() == "macos" { "ulimit -n 4096 && " } else { "" } }}nix flake update --option access-tokens "github.com=$(gh auth token)"
   git commit -m 'reference-update(flake): updates lock file' flake.lock
   git push
   git stash pop || true
