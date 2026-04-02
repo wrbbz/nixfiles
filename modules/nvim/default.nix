@@ -372,14 +372,14 @@ in {
         fzf
         ripgrep
         # language servers
-        nodePackages."@astrojs/language-server"
-        nodePackages.typescript-language-server
-        nodePackages.eslint
+        astro-language-server
+        typescript-language-server
+        eslint
         rust-analyzer
         nil
         pyright
         gopls
-        nodePackages.bash-language-server
+        bash-language-server
         shellcheck
       ];
 
