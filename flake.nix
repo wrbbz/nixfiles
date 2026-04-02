@@ -168,7 +168,7 @@
             in
             builder {
               inherit system;
-              specialArgs = { inherit inputs; };
+              specialArgs = { inherit inputs isDarwin; };
               modules = modules;
             }
           )

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, isDarwin ? false, ... }:
 let
   inherit (lib) types mkIf mkDefault mkOption;
 in {
@@ -31,7 +31,7 @@ in {
     })
 
     # macOS: install via Homebrew cask to avoid Nix store .app bundle issues
-    (lib.mkIf pkgs.stdenv.isDarwin {
+    (lib.optionalAttrs isDarwin {
       homebrew.casks = [ "slack" ];
     })
   ]);

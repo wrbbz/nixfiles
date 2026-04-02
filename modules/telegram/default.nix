@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, isDarwin ? false, ... }:
 let
   inherit (lib) types mkIf mkDefault mkOption;
 in {
@@ -15,7 +15,7 @@ in {
       home-manager.users.wrbbz.home.packages = [ pkgs.telegram-desktop ];
     })
 
-    (lib.mkIf pkgs.stdenv.isDarwin {
+    (lib.optionalAttrs isDarwin {
       homebrew.masApps.Telegram = 747648890;
     })
   ]);
