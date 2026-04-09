@@ -26,6 +26,8 @@ in {
       usql
       yarn
       yq-go
-    ];
+    ] ++ (lib.optionals pkgs.stdenv.isDarwin [
+      less
+    ]);
   };
 }
