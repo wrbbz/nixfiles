@@ -79,6 +79,9 @@ in {
           " Navigation with russian layout
           set langmap=!\\"№\\;%?*ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;!@#$%&*`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
+          " Strip trailing whitespace on save
+          autocmd BufWritePre * :%s/\s\+$//e
+
           " ssh config.d/* syntax highlighting
           autocmd BufRead,BufNewFile ~/.ssh/config.d/**/* set syntax=sshconfig
           autocmd BufRead,BufNewFile ~/.ssh/config.d/* set syntax=sshconfig
