@@ -39,7 +39,6 @@
 
   environment.systemPackages = with pkgs; [
     cassette
-    cider
     droidcam
     fira
     fira-code
