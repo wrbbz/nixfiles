@@ -235,7 +235,7 @@ in {
             new_status = "slave";
             orientation = "center";
             allow_small_split = true;
-            slave_count_for_center_master = 0;
+            slave_count_for_center_master = 2;
           };
 
           "$mainMod" = "SUPER";
