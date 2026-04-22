@@ -13,6 +13,7 @@
     ./nvim
     ./pass
     ./qutebrowser
+    ./sidra
     ./slack
     ./starship
     ./telegram

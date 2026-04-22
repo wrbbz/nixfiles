@@ -97,6 +97,7 @@
     podman.enable = true;
     qutebrowser.enable = true;
     rbw.enable = true;
+    sidra.enable = true;
     slack.enable = true;
     starship.enable = true;
     steam.enable = true;

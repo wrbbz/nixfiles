@@ -39,6 +39,7 @@
       url = "github:hraban/mac-app-util";
       inputs.nixpkgs.url = "github:NixOS/nixpkgs?rev=a84b0a7c509bdbaafbe6fe6e947bdaa98acafb99";
     };
+    sidra.url = "github:wimpysworld/sidra";
   };
 
   outputs =
@@ -55,6 +56,7 @@
       mac-app-util,
       textfox,
       sops-nix,
+      sidra,
       ...
     }@inputs:
     let

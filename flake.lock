@@ -155,11 +155,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1776839947,
-        "narHash": "sha256-AXWzCRMLMrjHAm7PxGqiHbFbm0p54Y4YUkxbJxMaG9M=",
+        "lastModified": 1776854410,
+        "narHash": "sha256-fDyNbzCprZCZmgOkjEsrn2yQTzpK+C8FTTuRAIkUnEU=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "32f12c76fa73da5142708eb9fdabeaea75ab88e3",
+        "rev": "97a09d67c2be5cd8d62bc96e2e758e575d4d1695",
         "type": "github"
       },
       "original": {
@@ -171,11 +171,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1776840796,
-        "narHash": "sha256-4NeqnM4JKnmw3ow0ec0TBTBYFbXbVdvtpqTj+C0sqEs=",
+        "lastModified": 1776855086,
+        "narHash": "sha256-w5gBmA8VXVk/gnjsfOtzdJWn50ykLSVmW+E3fgrLO4s=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "bcac962a0cb666729b9aac358307c607808883bb",
+        "rev": "9de5b10efc1a6999556f7265e6d83526c3f83103",
         "type": "github"
       },
       "original": {
@@ -359,6 +359,22 @@
     },
     "nixpkgs_6": {
       "locked": {
+        "lastModified": 1775710090,
+        "narHash": "sha256-ar3rofg+awPB8QXDaFJhJ2jJhu+KqN/PRCXeyuXR76E=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "4c1018dae018162ec878d42fec712642d214fdfa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_7": {
+      "locked": {
         "lastModified": 1728492678,
         "narHash": "sha256-9UTxR8eukdg+XZeHgxW5hQA9fIKHsKCdOIUycTryeVw=",
         "owner": "nixos",
@@ -384,8 +400,27 @@
         "nix-homebrew": "nix-homebrew",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_5",
+        "sidra": "sidra",
         "sops-nix": "sops-nix",
         "textfox": "textfox"
+      }
+    },
+    "sidra": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_6"
+      },
+      "locked": {
+        "lastModified": 1776088309,
+        "narHash": "sha256-a/IICxRlGeb+KrwFA6bHuiL7nI/kAtbQ5+676PF5Cag=",
+        "owner": "wimpysworld",
+        "repo": "sidra",
+        "rev": "bc0cb57cbdf43aad656cfe44f0a1b2e2222e5dd8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wimpysworld",
+        "repo": "sidra",
+        "type": "github"
       }
     },
     "sops-nix": {
@@ -441,7 +476,7 @@
     "textfox": {
       "inputs": {
         "firefox-addons": "firefox-addons",
-        "nixpkgs": "nixpkgs_6"
+        "nixpkgs": "nixpkgs_7"
       },
       "locked": {
         "lastModified": 1774891940,
