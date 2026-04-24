@@ -10,11 +10,12 @@ in {
   };
 
   config = mkIf config.my-config.firefox.enable {
-    home-manager.users.wrbbz = {
+    home-manager.users.wrbbz = { config, ... }: {
       imports = [ inputs.textfox.homeManagerModules.default ];
 
       programs.firefox = {
         enable = true;
+        configPath = "${config.xdg.configHome}/mozilla/firefox";
         languagePacks = [ "ru" "en-US" ];
         policies = {
           DisableTelemetry = true;
