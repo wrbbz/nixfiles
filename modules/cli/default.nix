@@ -17,7 +17,6 @@ in {
       file
       jira-cli-go
       # ipcalc
-      pwgen
       nh
       nix-prefetch
       nix-tree
