@@ -180,7 +180,7 @@ in {
             workspace = true;
           };
 
-          workspace = config.my-config.hypr.workspaces;
+          workspace = [ "w[t1], gapsin:50, gapsout:200 600" ] ++ config.my-config.hypr.workspaces;
 
           ecosystem = {
             no_update_news = true;
