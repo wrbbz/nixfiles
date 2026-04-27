@@ -54,11 +54,6 @@ in {
               install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
               installation_mode = "force_installed";
             };
-            # Sideberry
-            "{3c078156-979c-498b-8990-85f7987dd929}" = {
-              install_url = "https://addons.mozilla.org/firefox/downloads/latest/sidebery/latest.xpi";
-              installation_mode = "force_installed";
-            };
             # Vimium
             "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
               install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
