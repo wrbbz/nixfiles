@@ -38,6 +38,8 @@ in {
         vimAlias = true;
         vimdiffAlias = true;
         defaultEditor = true;
+        withRuby = false;
+        withPython3 = false;
         extraConfig = ''
           " Show current line and distance from it
           set rnu
@@ -125,8 +127,9 @@ in {
         plugins = with pkgs.vimPlugins; [
           {
             plugin = vim-airline;
+            type = "lua";
             config = ''
-              let g:airline_powerline_fonts = 1
+              vim.g.airline_powerline_fonts = 1
             '';
           }
           {
@@ -165,13 +168,14 @@ in {
           YankRing-vim
           {
             plugin = telescope-nvim;
+            type = "lua";
             config = ''
-              let g:telescope_previewer = 'bat'
-              " mapleader defined here because extraConfig is evaluated after plugins
-              let mapleader = "\<Space>"
-              nnoremap <leader>ff <cmd>Telescope find_files<cr>
-              nnoremap <leader>fg <cmd>Telescope git_files<cr>
-              nnoremap <leader>fl <cmd>Telescope live_grep<cr>
+              vim.g.telescope_previewer = 'bat'
+              -- mapleader defined here because extraConfig is evaluated after plugins
+              vim.g.mapleader = " "
+              vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
+              vim.keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>")
+              vim.keymap.set("n", "<leader>fl", "<cmd>Telescope live_grep<cr>")
             '';
           }
           {
