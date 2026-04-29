@@ -90,6 +90,9 @@ in {
 
           set spell spelllang=en,ru
 
+          " Leader key
+          let mapleader = " "
+
           " Disable mouse support
           set mouse=
 
@@ -171,8 +174,6 @@ in {
             type = "lua";
             config = ''
               vim.g.telescope_previewer = 'bat'
-              -- mapleader defined here because extraConfig is evaluated after plugins
-              vim.g.mapleader = " "
               vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
               vim.keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>")
               vim.keymap.set("n", "<leader>fl", "<cmd>Telescope live_grep<cr>")
