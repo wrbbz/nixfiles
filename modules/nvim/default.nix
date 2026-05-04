@@ -27,6 +27,7 @@ in {
   };
 
   config = mkIf config.my-config.nvim.enable {
+    nixpkgs.allowUnfreePackages = [ "vim-table-mode" "YankRing.vim" ];
     home-manager.users.wrbbz = {
       home.sessionVariables = {
         EDITOR = "nvim";
