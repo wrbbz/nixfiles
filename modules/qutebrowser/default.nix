@@ -25,6 +25,7 @@ in {
           "w" = "session-save";
           "wq" = "quit --save";
           "yt" = "open https://youtube.com/feed/subscriptions";
+          "nq" = "open https://nixpkgs-update-logs.nix-community.org/~supervisor/queue.html";
         };
         searchEngines = {
           DEFAULT = "https://duckduckgo.com/?q={}";
