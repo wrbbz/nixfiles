@@ -155,6 +155,7 @@ in {
       # TODO: take a look at https://github.com/Duckonaut/split-monitor-workspaces
       wayland.windowManager.hyprland = {
         enable = true;
+        configType = "hyprlang";
         xwayland = {
           enable = true;
         };
@@ -271,7 +272,7 @@ in {
             "$mainMod, I, focusmonitor, l"
             "$mainMod, O, focusmonitor, r"
 
-            # Move window to anothe monitor
+            # Move window to another monitor
             "$mainMod SHIFT, I, movewindow, mon:l"
             "$mainMod SHIFT, O, movewindow, mon:r"
 
