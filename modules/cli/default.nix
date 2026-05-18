@@ -30,11 +30,11 @@ in {
       wtfutil
       yazi
       yt-dlp
-      zathura
     ]
     ++(pkgs.lib.optionals pkgs.stdenv.isLinux [
       hdparm
       pw-volume
+      zathura
     ]);
   };
 }
