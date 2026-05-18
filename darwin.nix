@@ -48,7 +48,7 @@ in
     };
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-      sandbox = true;
+      sandbox = "relaxed";
     };
   };
 
