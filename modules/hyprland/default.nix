@@ -21,8 +21,8 @@ in {
       ];
     };
     hypr.workspaces = mkOption {
-      description = "Workspaces setup";
-      type = types.listOf types.str;
+      description = "Workspaces setup (list of workspace_rule attrsets)";
+      type = types.listOf (types.attrsOf types.anything);
       default = [ ];
     };
     hypr.cursor.size = mkOption {
@@ -155,206 +155,185 @@ in {
       # TODO: take a look at https://github.com/Duckonaut/split-monitor-workspaces
       wayland.windowManager.hyprland = {
         enable = true;
-        configType = "hyprlang";
-        xwayland = {
-          enable = true;
-        };
+        xwayland.enable = true;
         systemd.enable = true;
         settings = {
-          monitor = config.my-config.hypr.monitors;
-          xwayland = {
-            force_zero_scaling = true;
-          };
+          monitor = map (m: let
+            parts = lib.splitString "," m;
+            get = n: if builtins.length parts > n then builtins.elemAt parts n else "";
+          in {
+            output   = get 0;
+            mode     = let v = get 1; in if v != "" then v else "preferred";
+            position = let v = get 2; in if v != "" then v else "auto";
+            scale    = let v = get 3; in if v != "" then v else "auto";
+          }) config.my-config.hypr.monitors;
 
-          input = {
-            kb_layout = "us,ru";
-            kb_options = "grp:caps_toggle,grp_led:caps";
-            follow_mouse = 1;
-            touchpad = {
-              natural_scroll = true;
-              disable_while_typing = true;
-              clickfinger_behavior = true;
+          workspace_rule = [
+            { workspace = "w[t1]"; gaps_in = 50; gaps_out = { top = 100; right = 600; bottom = 100; left = 600; }; }
+          ] ++ config.my-config.hypr.workspaces;
+
+          config = {
+            xwayland.force_zero_scaling = true;
+            input = {
+              kb_layout  = "us,ru";
+              kb_options = "grp:caps_toggle,grp_led:caps";
+              follow_mouse = 1;
+              touchpad = {
+                natural_scroll     = true;
+                disable_while_typing = true;
+                clickfinger_behavior = true;
+              };
+              sensitivity = 0;
             };
-            sensitivity = 0;
-          };
-          gestures = {
-            workspace = true;
-          };
-
-          workspace = [ "w[t1], gapsin:50, gapsout:100 600" ] ++ config.my-config.hypr.workspaces;
-
-          ecosystem = {
-            no_update_news = true;
-          };
-          general = {
-            gaps_in = 5;
-            gaps_out = 20;
-            border_size = 2;
-            "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-            "col.inactive_border" = "rgba(595959aa)";
-
-            layout = "${config.my-config.hypr.layout}";
-          };
-
-          decoration = {
-            rounding = 5;
-            blur = {
-              enabled = "yes";
-              size = 3;
-              passes = 1;
-              new_optimizations = "on";
+            general = {
+              gaps_in     = 5;
+              gaps_out    = 20;
+              border_size = 2;
+              col = {
+                active_border   = { colors = [ "rgba(33ccffee)" "rgba(00ff99ee)" ]; angle = 45; };
+                inactive_border = "rgba(595959aa)";
+              };
+              layout = config.my-config.hypr.layout;
             };
-            shadow = {
-              enabled = true;
-              range = 4;
-              render_power = 3;
-              color = "rgba(1a1a1aee)";
+            decoration = {
+              rounding = 5;
+              blur = {
+                enabled = true;
+                size    = 3;
+                passes  = 1;
+              };
+              shadow = {
+                enabled      = true;
+                range        = 4;
+                render_power = 3;
+                color        = "rgba(1a1a1aee)";
+              };
             };
-          };
-          animations = {
-            enabled = "yes";
-            bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-            animation = [
-              "windows, 1, 7, myBezier"
-              "windowsOut, 1, 7, default, popin 80%"
-              "border, 1, 10, default"
-              "fade, 1, 7, default"
-              "workspaces, 1, 6, default"
-            ];
-          };
-          misc = {
-            disable_hyprland_logo = true;
-            disable_splash_rendering = true;
-            disable_autoreload = true;
+            animations.enabled = true;
+            misc = {
+              disable_hyprland_logo    = true;
+              disable_splash_rendering = true;
+              disable_autoreload       = true;
+            };
+            dwindle.preserve_split = true;
+            master = {
+              new_status                 = "slave";
+              orientation                = "center";
+              allow_small_split          = true;
+              slave_count_for_center_master = 2;
+            };
+            ecosystem.no_update_news = true;
           };
 
-          dwindle = {
-            preserve_split = "yes";
+          curve = {
+            _args = [ "myBezier" { type = "bezier"; points = [ [ 0.05 0.9 ] [ 0.1 1.05 ] ]; } ];
           };
-          master = {
-            new_status = "slave";
-            orientation = "center";
-            allow_small_split = true;
-            slave_count_for_center_master = 2;
-          };
-
-          "$mainMod" = "SUPER";
-
-          bind = [
-            "$mainMod, Return, exec, alacritty msg create-window || alacritty"
-            "$mainMod, Space, exec, wofi --dmenu --show run"
-            "$mainMod, P, exec, tessen --dmenu wofi --action autotype"
-            "$mainMod, V, exec, rofi-rbw"
-            "$mainMod, E, exec, rofimoji"
-            "$mainMod SHIFT, E, exec, rofi -show emoji"
-            "$mainMod SHIFT, C, killactive,"
-            "$mainMod SHIFT, Q, exec, hyprlock"
-            "$mainMod, Q, exec, qutebrowser"
-            "$mainMod ALT, F, togglefloating,"
-            "$mainMod ALT, C, centerwindow,"
-            "$mainMod, F, fullscreen, 0"
-            "$mainMod SHIFT, F, fullscreenstate, -1 1"
-
-            # Move windows
-            "$mainMod SHIFT, H, swapwindow, l"
-            "$mainMod SHIFT, L, swapwindow, r"
-            "$mainMod SHIFT, K, swapwindow, u"
-            "$mainMod SHIFT, J, swapwindow, d"
-
-            # Move focus with mainMod + hjkl
-            "$mainMod, H, movefocus, l"
-            "$mainMod, L, movefocus, r"
-            "$mainMod, K, movefocus, u"
-            "$mainMod, J, movefocus, d"
-
-            # Move focus to another monitor
-            "$mainMod, I, focusmonitor, l"
-            "$mainMod, O, focusmonitor, r"
-
-            # Move window to another monitor
-            "$mainMod SHIFT, I, movewindow, mon:l"
-            "$mainMod SHIFT, O, movewindow, mon:r"
-
-            # Cycle workspaces
-            "$mainMod ALT, J, workspace, +1"
-            "$mainMod ALT, K, workspace, -1"
-            "$mainMod SHIFT ALT, J, movetoworkspace, +1"
-            "$mainMod SHIFT ALT, K, movetoworkspace, -1"
-
-            # Switch workspaces with mainMod + [0-9]
-            "$mainMod, 1, workspace, 1"
-            "$mainMod, 2, workspace, 2"
-            "$mainMod, 3, workspace, 3"
-            "$mainMod, 4, workspace, 4"
-            "$mainMod, 5, workspace, 5"
-            "$mainMod, 6, workspace, 6"
-            "$mainMod, 7, workspace, 7"
-            "$mainMod, 8, workspace, 8"
-            "$mainMod, 9, workspace, 9"
-            "$mainMod, 0, workspace, 10"
-
-            # Move active window to a workspace with mainMod + SHIFT + [0-9]
-            "$mainMod SHIFT, 1, movetoworkspace, 1"
-            "$mainMod SHIFT, 2, movetoworkspace, 2"
-            "$mainMod SHIFT, 3, movetoworkspace, 3"
-            "$mainMod SHIFT, 4, movetoworkspace, 4"
-            "$mainMod SHIFT, 5, movetoworkspace, 5"
-            "$mainMod SHIFT, 6, movetoworkspace, 6"
-            "$mainMod SHIFT, 7, movetoworkspace, 7"
-            "$mainMod SHIFT, 8, movetoworkspace, 8"
-            "$mainMod SHIFT, 9, movetoworkspace, 9"
-            "$mainMod SHIFT, 0, movetoworkspace, 10"
-
-            # Scroll through existing workspaces with mainMod + scroll
-            "$mainMod, mouse_down, workspace, e+1"
-            "$mainMod, mouse_up, workspace, e-1"
-
-            # Media keys
-            ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-            ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-            ",XF86AudioMute, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ toggle"
-            "$mainMod, M, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-            ",XF86MonBrightnessDown, exec, brightnessctl set '5%-'"
-            ",XF86MonBrightnessUp, exec, brightnessctl set '+5%'"
-
-            # Color picker
-            "$mainMod ALT, P, exec, hyprpicker --autocopy --no-fancy"
-
-            # Screenshots
-            "$mainMod, S, exec, TO_FILE=false FULL_SCREEN=true hypr-screenshot"
-            "$mainMod ALT, S, exec, TO_FILE=true FULL_SCREEN=true hypr-screenshot"
-            "$mainMod SHIFT, S, exec, TO_FILE=false FULL_SCREEN=false hypr-screenshot"
-            "$mainMod SHIFT ALT, S, exec, TO_FILE=true FULL_SCREEN=false hypr-screenshot"
-
-            # Notifications
-            "$mainMod, N, exec, swaync-client --toggle-panel"
-            "$mainMod, D, exec, swaync-client --toggle-dnd"
-
+          animation = [
+            { leaf = "windows";    enabled = true; speed = 7;  bezier = "myBezier"; }
+            { leaf = "windowsOut"; enabled = true; speed = 7;  bezier = "default"; style = "popin 80%"; }
+            { leaf = "border";     enabled = true; speed = 10; bezier = "default"; }
+            { leaf = "fade";       enabled = true; speed = 7;  bezier = "default"; }
+            { leaf = "workspaces"; enabled = true; speed = 6;  bezier = "default"; }
           ];
 
-          # Move/resize windows with mainMod + LMB/RMB and dragging
-          bindm = [
-            "$mainMod, mouse:272, movewindow"
-            "$mainMod, mouse:273, resizewindow"
-          ];
+          gesture = {
+            fingers   = 3;
+            direction = "horizontal";
+            action    = "workspace";
+          };
 
-          exec-once = [
-            # Notifications
-            "${pkgs.swaynotificationcenter}/bin/swaync"
-
-            # Keyboard layout per window
-            "${pkgs.hyprland-per-window-layout}/bin/hyprland-per-window-layout"
-
-            # Wallpaper
-            "${pkgs.hyprpaper}/bin/hyprpaper"
-          ];
           env = [
-            "QMLSCENE_DEVICE,softwarecontext"
-            "HYPRCURSOR_THEME,Nordzy-cursors"
-            "HYPRCURSOR_SIZE,${toString config.my-config.hypr.cursor.size}"
+            { _args = [ "QMLSCENE_DEVICE"  "softwarecontext" ]; }
+            { _args = [ "HYPRCURSOR_THEME" "Nordzy-cursors" ]; }
+            { _args = [ "HYPRCURSOR_SIZE"  (toString config.my-config.hypr.cursor.size) ]; }
           ];
         };
-        extraConfig = config.my-config.hypr.extraConfig;
+
+        extraConfig = ''
+          -- Startup
+          hl.on("hyprland.start", function()
+            hl.exec_cmd("${pkgs.swaynotificationcenter}/bin/swaync")
+            hl.exec_cmd("${pkgs.hyprland-per-window-layout}/bin/hyprland-per-window-layout")
+            hl.exec_cmd("${pkgs.hyprpaper}/bin/hyprpaper")
+          end)
+
+          -- Keybindings
+          local M = "SUPER"
+
+          hl.bind(M .. " + Return",       hl.dsp.exec_cmd("alacritty msg create-window || alacritty"))
+          hl.bind(M .. " + Space",        hl.dsp.exec_cmd("wofi --dmenu --show run"))
+          hl.bind(M .. " + P",            hl.dsp.exec_cmd("tessen --dmenu wofi --action autotype"))
+          hl.bind(M .. " + V",            hl.dsp.exec_cmd("rofi-rbw"))
+          hl.bind(M .. " + E",            hl.dsp.exec_cmd("rofimoji"))
+          hl.bind(M .. " + SHIFT + E",    hl.dsp.exec_cmd("rofi -show emoji"))
+          hl.bind(M .. " + SHIFT + C",    hl.dsp.window.close())
+          hl.bind(M .. " + SHIFT + Q",    hl.dsp.exec_cmd("hyprlock"))
+          hl.bind(M .. " + Q",            hl.dsp.exec_cmd("qutebrowser"))
+          hl.bind(M .. " + ALT + F",      hl.dsp.window.float({ action = "toggle" }))
+          hl.bind(M .. " + ALT + C",      hl.dsp.window.center())
+          hl.bind(M .. " + F",            hl.dsp.window.fullscreen())
+          hl.bind(M .. " + SHIFT + F",    hl.dsp.window.fullscreen_state({ internal = -1, client = 1 }))
+
+          -- Swap windows
+          hl.bind(M .. " + SHIFT + H",    hl.dsp.window.swap({ direction = "l" }))
+          hl.bind(M .. " + SHIFT + L",    hl.dsp.window.swap({ direction = "r" }))
+          hl.bind(M .. " + SHIFT + K",    hl.dsp.window.swap({ direction = "u" }))
+          hl.bind(M .. " + SHIFT + J",    hl.dsp.window.swap({ direction = "d" }))
+
+          -- Move focus
+          hl.bind(M .. " + H",  hl.dsp.focus({ direction = "l" }))
+          hl.bind(M .. " + L",  hl.dsp.focus({ direction = "r" }))
+          hl.bind(M .. " + K",  hl.dsp.focus({ direction = "u" }))
+          hl.bind(M .. " + J",  hl.dsp.focus({ direction = "d" }))
+
+          -- Focus / move window between monitors
+          hl.bind(M .. " + I",         hl.dsp.focus({ monitor = "l" }))
+          hl.bind(M .. " + O",         hl.dsp.focus({ monitor = "r" }))
+          hl.bind(M .. " + SHIFT + I", hl.dsp.window.move({ monitor = "l" }))
+          hl.bind(M .. " + SHIFT + O", hl.dsp.window.move({ monitor = "r" }))
+
+          -- Cycle workspaces
+          hl.bind(M .. " + ALT + J",         hl.dsp.focus({ workspace = "e+1" }))
+          hl.bind(M .. " + ALT + K",         hl.dsp.focus({ workspace = "e-1" }))
+          hl.bind(M .. " + SHIFT + ALT + J", hl.dsp.window.move({ workspace = "e+1" }))
+          hl.bind(M .. " + SHIFT + ALT + K", hl.dsp.window.move({ workspace = "e-1" }))
+
+          -- Switch / move to workspaces 1-10
+          for i = 1, 10 do
+            local key = i % 10
+            hl.bind(M .. " + " .. key,         hl.dsp.focus({ workspace = i }))
+            hl.bind(M .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+          end
+
+          -- Scroll through workspaces
+          hl.bind(M .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+          hl.bind(M .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+
+          -- Mouse drag / resize
+          hl.bind(M .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
+          hl.bind(M .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
+          -- Media keys
+          hl.bind("XF86AudioRaiseVolume",  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"),   { locked = true, repeating = true })
+          hl.bind("XF86AudioLowerVolume",  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),   { locked = true, repeating = true })
+          hl.bind("XF86AudioMute",         hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),  { locked = true })
+          hl.bind(M .. " + M",             hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"))
+          hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set '5%-'"), { locked = true, repeating = true })
+          hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl set '+5%'"), { locked = true, repeating = true })
+
+          -- Color picker
+          hl.bind(M .. " + ALT + P", hl.dsp.exec_cmd("hyprpicker --autocopy --no-fancy"))
+
+          -- Screenshots
+          hl.bind(M .. " + S",               hl.dsp.exec_cmd("TO_FILE=false FULL_SCREEN=true hypr-screenshot"))
+          hl.bind(M .. " + ALT + S",         hl.dsp.exec_cmd("TO_FILE=true FULL_SCREEN=true hypr-screenshot"))
+          hl.bind(M .. " + SHIFT + S",       hl.dsp.exec_cmd("TO_FILE=false FULL_SCREEN=false hypr-screenshot"))
+          hl.bind(M .. " + SHIFT + ALT + S", hl.dsp.exec_cmd("TO_FILE=true FULL_SCREEN=false hypr-screenshot"))
+
+          -- Notifications
+          hl.bind(M .. " + N", hl.dsp.exec_cmd("swaync-client --toggle-panel"))
+          hl.bind(M .. " + D", hl.dsp.exec_cmd("swaync-client --toggle-dnd"))
+        '' + config.my-config.hypr.extraConfig;
       };
 
       programs.hyprlock = {
