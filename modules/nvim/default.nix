@@ -360,7 +360,6 @@ in {
               vim.lsp.enable('ltex')
               vim.lsp.enable('nil_ls')
               vim.lsp.enable('pyright')
-              vim.lsp.enable('tailwindcss')
               vim.lsp.enable('ts_ls')
               vim.lsp.enable('vale_ls')
               vim.lsp.enable('qmlls')
