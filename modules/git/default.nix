@@ -57,10 +57,9 @@ in
         secretsFile = mkOption {
           description = ''
             Path to sops-encrypted YAML file.
-            Expected keys: corporate_gitlab (hostname, e.g. gitlab.example.com).
           '';
           type = types.path;
-          default = ../../secrets/git.yaml;
+          default = ../../secrets/hosts.yaml;
         };
       };
     };
@@ -77,12 +76,12 @@ in
           glab
         ];
 
-        sops.secrets."work_gitlab" = mkIf (
+        sops.secrets."excorp_gitlab" = mkIf (
           nixosConfig.my-config.git.corporateUrls.enable
           && nixosConfig.my-config.git.profiles.work.enable
         ) {
           sopsFile = nixosConfig.my-config.git.corporateUrls.secretsFile;
-          key = "work_gitlab";
+          key = "excorp_gitlab";
         };
 
         sops.secrets."spbpu_gitlab" = mkIf (
@@ -97,7 +96,7 @@ in
           content =
             lib.optionalString nixosConfig.my-config.git.profiles.work.enable ''
               [url "exit:"]
-                  insteadOf = https://${config.sops.placeholder."work_gitlab"}/
+                  insteadOf = https://${config.sops.placeholder."excorp_gitlab"}/
             ''
             + lib.optionalString nixosConfig.my-config.git.profiles.spbpu.enable ''
               [url "g215:"]
