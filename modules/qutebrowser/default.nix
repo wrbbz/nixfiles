@@ -55,7 +55,7 @@ in {
           content = ''
             c.url.searchengines['jql'] = 'https://${config.sops.placeholder."qb_excorp_atlassian"}/issues?jql=text+~+"{}"'
             c.url.searchengines['j'] = 'https://${config.sops.placeholder."qb_excorp_atlassian"}/browse/{}'
-            c.url.searchengines['c'] = 'https://${config.sops.placeholder."qb_excorp_atlassian"}/search?q={}'
+            c.url.searchengines['c'] = 'https://${config.sops.placeholder."qb_excorp_atlassian"}/search?text={}'
             c.url.searchengines['exit'] = 'https://${config.sops.placeholder."qb_excorp_gitlab"}/search?search={}'
             c.url.searchengines['exff'] = 'https://${config.sops.placeholder."qb_excorp_ff"}/projects/default?search={}'
             c.url.searchengines['lab215'] = 'https://${config.sops.placeholder."qb_spbpu_gitlab"}/search?search={}'
