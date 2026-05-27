@@ -271,6 +271,17 @@ in {
           hl.bind(M .. " + Q",            hl.dsp.exec_cmd("qutebrowser"))
           hl.bind(M .. " + ALT + F",      hl.dsp.window.float({ action = "toggle" }))
           hl.bind(M .. " + ALT + C",      hl.dsp.window.center())
+          hl.bind(M .. " + T",            function()
+            local win = hl.get_active_window()
+            local is_floating = win and win.floating
+            hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+            if not is_floating then
+              hl.dispatch(hl.dsp.window.resize({ exact = true, x = 2240, y = 1240 }))
+              hl.dispatch(hl.dsp.window.center())
+            else
+              hl.dispatch(hl.dsp.layout("swapwithmaster"))
+            end
+          end)
           hl.bind(M .. " + F",            hl.dsp.window.fullscreen())
           hl.bind(M .. " + SHIFT + F",    hl.dsp.window.fullscreen_state({ internal = -1, client = 1 }))
 
