@@ -40,6 +40,11 @@
       inputs.nixpkgs.url = "github:NixOS/nixpkgs?rev=a84b0a7c509bdbaafbe6fe6e947bdaa98acafb99";
     };
     sidra.url = "github:wimpysworld/sidra";
+
+    nixflix = {
+      url = "github:kiriwalawren/nixflix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -57,6 +62,7 @@
       textfox,
       sops-nix,
       sidra,
+      nixflix,
       ...
     }@inputs:
     let
@@ -127,7 +133,10 @@
 
               modules =
                 (lib.optionals isDarwin [ mac-app-util.darwinModules.default ])
-                ++ (lib.optionals (!isDarwin) [ sops-nix.nixosModules.sops ])
+                ++ (lib.optionals (!isDarwin) [
+                  sops-nix.nixosModules.sops
+                  nixflix.nixosModules.default
+                ])
                 ++ [
                   ./modules
                   (if isDarwin then ./modules/darwin.nix else ./modules/linux.nix)

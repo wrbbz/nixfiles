@@ -50,7 +50,7 @@
         # work = "0xEE08CED442647AB9";
       };
     };
-    jellyfin.enable = true;
+    nixflix.enable = true;
     joshuto.enable = true;
     miniflux.enable = true;
     nvim.enable = true;
@@ -58,7 +58,6 @@
     podman.enable = true;
     starship.enable = true;
     tailscale.enable = true;
-    transmission.enable = true;
     zsh.enable = true;
   };
 }

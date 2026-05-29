@@ -12,6 +12,7 @@
     ./keymapp
     ./miniflux
     ./networking
+    ./nixflix
     ./obs
     ./opendeck
     ./opengl
