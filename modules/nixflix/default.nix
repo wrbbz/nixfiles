@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, inputs, ... }:
 let
   inherit (lib) types mkIf mkOption;
   cfg = config.my-config.nixflix;
@@ -59,6 +59,11 @@ in
           password = { _secret = sec "jellyfin-admin-password"; };
           policy.isAdministrator = true;
           mutable = true;
+        };
+        plugins."Trakt".package = inputs.nixflix.lib.jellyfinPlugins.fromRepo {
+          version = "29.0.0.0";
+          repository = "Jellyfin Stable";
+          hash = "sha256-78mT119uZA0/nSGDsnjfbE8j+RiEBmOOk6RBwSzQFpE=";
         };
       };
 
