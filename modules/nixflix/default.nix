@@ -60,6 +60,17 @@ in
           policy.isAdministrator = true;
           mutable = true;
         };
+        libraries."Movies" = {
+          collectionType = "movies";
+          paths = [ "${cfg.mediaDir}/movies" ];
+          saveLocalMetadata = false;
+        };
+        libraries."TV Shows" = {
+          collectionType = "tvshows";
+          paths = [ "${cfg.mediaDir}/tv" ];
+          saveLocalMetadata = false;
+        };
+
         plugins."Trakt".package = inputs.nixflix.lib.jellyfinPlugins.fromRepo {
           version = "29.0.0.0";
           repository = "Jellyfin Stable";
