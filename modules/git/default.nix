@@ -138,6 +138,7 @@ in
               ".werf*"
               ".netrc"
               ".DS_Store"
+              ".claude/settings.local.json"
             ];
             includes = [
               (mkIf nixosConfig.my-config.git.profiles.work.enable {
