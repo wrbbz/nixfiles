@@ -15,7 +15,7 @@ update:
 
 # Updates flake only
 update-dry:
-  nix flake update
+  nix flake update --option access-tokens "github.com=$(gh auth token)"
 
 # Builds current revision of NixOs
 [linux]
