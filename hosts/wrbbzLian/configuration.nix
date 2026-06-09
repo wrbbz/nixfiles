@@ -45,6 +45,7 @@
     fira-mono
     glow
     kooha
+    ledger-live-desktop
     libimobiledevice
     mpv
     # obs-studio
