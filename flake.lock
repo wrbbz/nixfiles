@@ -100,11 +100,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781667738,
-        "narHash": "sha256-OxrwHpsWf+QGbos1LMDGAcv7sjBGshcw/43th6waeYI=",
+        "lastModified": 1781844424,
+        "narHash": "sha256-sWBr0D6eu6UhmtM87NOd4oOYilIclFXGDd/s7tVvO10=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "7664e05e2413d5e2b8c54a884eb8ea0f8a504fc2",
+        "rev": "c804fab681f03ec772390af4421bcc9bce80c1d9",
         "type": "github"
       },
       "original": {
@@ -132,11 +132,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1781671757,
-        "narHash": "sha256-TtrrMunCEAeocPn827q8cidkf4lP4/i9nZGWbystx2E=",
+        "lastModified": 1781853566,
+        "narHash": "sha256-bEnRJ/gqKnWTUaMeZJQcZ55BnG2DtitcuXUbkPh1iTk=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "c5a852bab29af214ca9469c9a5595c4bc9a76e40",
+        "rev": "65925a7affc32bd31b897bd0eafcad2c278de9ec",
         "type": "github"
       },
       "original": {
@@ -148,11 +148,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1781668386,
-        "narHash": "sha256-eDqdUwNincMfhLEF3GmQg5pHNVd6lNYBYdxGgsQPb2c=",
+        "lastModified": 1781855049,
+        "narHash": "sha256-oaAtTxgtuNlq4elpJS4Wi+9OoOl5u6vACQGsacrPErk=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "db41a0c1a485e64bbedc0360c40311a7a9d1f27d",
+        "rev": "60d6c843be59acc0b75a70e06b15cf0a8b213c77",
         "type": "github"
       },
       "original": {
@@ -207,11 +207,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781242433,
-        "narHash": "sha256-bchLZZ3sRn740zyvD2icZSnNoTaanN0nw7l6fjVXO+E=",
+        "lastModified": 1781761792,
+        "narHash": "sha256-rCPytmKNjctLloB6UgK5CRrHSwV4b0ygxtJLPPp8R14=",
         "owner": "lnl7",
         "repo": "nix-darwin",
-        "rev": "aabb2037edfc0f210723b72cd5f528aab5dd3f0b",
+        "rev": "a1fa429e945becaf60468600daf649be4ba0350c",
         "type": "github"
       },
       "original": {
@@ -249,11 +249,11 @@
         "vpn-confinement": "vpn-confinement"
       },
       "locked": {
-        "lastModified": 1781620378,
-        "narHash": "sha256-+8sMPwMOM6c3z9KNb+qDzw7yg8CXyg3nHQpURsP5Ptc=",
+        "lastModified": 1781752991,
+        "narHash": "sha256-VVUToqy6Z04JC0le6STVX6BQmkRx2+TFLiU0Zbh4NdY=",
         "owner": "kiriwalawren",
         "repo": "nixflix",
-        "rev": "80d3a69ad8bdfcddf3a21b105978f9bce7b8fca5",
+        "rev": "3a69348a79ba6832c7a01d0fa35bbc66aef5a7d9",
         "type": "github"
       },
       "original": {
