@@ -48,6 +48,9 @@ in {
             jinc https://${config.sops.placeholder."qb_excorp_atlassian"}/jira/software/c/projects/PE/boards/288
             jadr https://${config.sops.placeholder."qb_excorp_atlassian"}/jira/software/c/projects/PE/boards/420
             c https://${config.sops.placeholder."qb_excorp_atlassian"}/wiki/home
+            chww https://${config.sops.placeholder."qb_excorp_atlassian"}/wiki/spaces/CSMONEY/pages/6161338/How+We+Work
+            carch https://${config.sops.placeholder."qb_excorp_atlassian"}/wiki/spaces/AR/overview
+            cptmt https://${config.sops.placeholder."qb_excorp_atlassian"}/wiki/spaces/DEO/overview
           '';
         };
 
