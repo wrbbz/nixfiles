@@ -34,6 +34,7 @@ in {
         defaultKeymap = "viins";
         shellAliases = {
           add-deleted="git status | grep 'deleted' | awk '{ print $2 }' | xargs git add";
+          alitle="printf '\\e]2;%s\\a'"; # Sets alacritty title for an already created window
           jqp="jq -C | less -R";
           ls="eza -Slhg --icons=always";
           la="eza -Slhga --icons=always";
