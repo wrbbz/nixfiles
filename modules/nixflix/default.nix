@@ -69,6 +69,7 @@ in
       jellyfin = {
         enable = true;
         apiKey = { _secret = sec "jellyfin-api-key"; };
+        system.trickplayOptions.processThreads = 12;
         users.wrbbz = {
           password = { _secret = sec "jellyfin-admin-password"; };
           policy.isAdministrator = true;
