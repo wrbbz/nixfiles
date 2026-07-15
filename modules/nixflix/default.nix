@@ -97,6 +97,17 @@ in
         config.apiKey = { _secret = sec "prowlarr-api-key"; };
         config.hostConfig.username = { _secret = sec "arr-username"; };
         config.hostConfig.password = { _secret = sec "arr-password"; };
+        # Names must match Prowlarr's indexer schema names exactly.
+        config.indexers = [
+          {
+            name = "The Pirate Bay";
+            baseUrl = "https://thepiratebay.org/";
+          }
+          { name = "NoNaMe Club"; }
+          { name = "1337x"; }
+          { name = "EZTV"; }
+          { name = "YTS"; }
+        ];
       };
 
       torrentClients.qbittorrent = {
