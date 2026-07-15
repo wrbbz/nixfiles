@@ -39,10 +39,24 @@ in
       "arr-password"
     ] (_: { sopsFile = ../../secrets/nixflix.yaml; });
 
+    # Upstream nixflix bug: prowlarr-indexers doesn't order after
+    # prowlarr-indexer-proxies, so Cloudflare-protected indexers get
+    # created (and tested) before the FlareSolverr proxy is registered
+    # in Prowlarr, failing validation with HTTP 400.
+    systemd.services.prowlarr-indexers = {
+      after = [ "prowlarr-indexer-proxies.service" ];
+      requires = [ "prowlarr-indexer-proxies.service" ];
+    };
+
     nixflix = {
       enable = true;
       mediaDir = cfg.mediaDir;
       downloadsDir = cfg.downloadsDir;
+
+      # Registers a FlareSolverr indexer proxy in Prowlarr with the
+      # "flaresolverr" tag; indexers carrying that tag route through it
+      # to get past Cloudflare protection.
+      flaresolverr.enable = true;
 
       nginx = {
         enable = true;
@@ -104,8 +118,14 @@ in
             baseUrl = "https://thepiratebay.org/";
           }
           { name = "NoNaMe Club"; }
-          { name = "1337x"; }
-          { name = "EZTV"; }
+          {
+            name = "1337x";
+            tags = [ "flaresolverr" ];
+          }
+          {
+            name = "EZTV";
+            tags = [ "flaresolverr" ];
+          }
           { name = "YTS"; }
         ];
       };
