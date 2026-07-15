@@ -46,8 +46,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    do-next = {
-      url = "github:ejiektpobehuk/do-next";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -68,6 +68,7 @@
       sops-nix,
       sidra,
       nixflix,
+      deploy-rs,
       ...
     }@inputs:
     let
@@ -219,5 +220,25 @@
           isDarwin = true;
         };
       };
+
+      deploy = {
+        sshUser = "root";
+        user = "root";
+        # targets are x86_64-linux; build on the target instead of the Mac
+        remoteBuild = true;
+        sshOpts = [
+          "-i"
+          "~/.ssh/nix-deploy"
+        ];
+        nodes = lib.genAttrs [ "wrbbzCool" "wrbbzGM" "wrbbzLian" ] (hostName: {
+          # resolved via ~/.ssh/config; override with `deploy --hostname <ip>` if needed
+          hostname = hostName;
+          profiles.system.path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.${hostName};
+        });
+      };
+
+      # only x86_64-linux: the checks depend on the target system closures,
+      # which can't be built on darwin
+      checks.x86_64-linux = deploy-rs.lib.x86_64-linux.deployChecks self.deploy;
     };
 }
