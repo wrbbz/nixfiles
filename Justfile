@@ -37,6 +37,10 @@ switch:
 switch:
   nh darwin switch .
 
+# Build and switch a remote NixOS host via deploy-rs (e.g. just deploy wrbbzGM)
+deploy host:
+  nix run nixpkgs#deploy-rs -- .#{{host}}
+
 # Edit an encrypted secrets file in $EDITOR (sops handles decrypt/re-encrypt)
 # Argument: filename inside secrets/ (with or without path prefix / .yaml extension)
 # Examples: just edit-secrets git  |  just edit-secrets secrets/git.yaml
