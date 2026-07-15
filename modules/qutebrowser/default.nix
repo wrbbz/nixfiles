@@ -51,6 +51,9 @@ in {
             chww https://${config.sops.placeholder."qb_excorp_atlassian"}/wiki/spaces/CSMONEY/pages/6161338/How+We+Work
             carch https://${config.sops.placeholder."qb_excorp_atlassian"}/wiki/spaces/AR/overview
             cptmt https://${config.sops.placeholder."qb_excorp_atlassian"}/wiki/spaces/DEO/overview
+            nixq https://nixpkgs-update-logs.nix-community.org/~supervisor/queue.html
+            ghpul https://github.com/pulumi/pulumi
+            ghnix https://github.com/nixos/nixpkgs
           '';
         };
 
@@ -100,6 +103,7 @@ in {
             gl = "https://gitlab.com/search?search={}";
             gh = "https://github.com/search?utf8=/%E2%9C%93&q={}&type=";
             ghm = "https://github.com/marketplace?query={}";
+            ghr = "https://github.com/{}";
             gmaps = "https://www.google.ru/maps/search/{}";
             gw = "https://wiki.gentoo.org/?search={}";
             hoogle = "https://hoogle.haskell.org/?hoogle={}";
