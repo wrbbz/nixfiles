@@ -38,6 +38,7 @@
     cli.enable = true;
     cloudflare.enable = true;
     dev.enable = true;
+    do-next.enable = true;
     firefox.enable = true;
     flatpak.enable = true;
     git = {

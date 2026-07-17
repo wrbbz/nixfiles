@@ -45,6 +45,11 @@
       url = "github:kiriwalawren/nixflix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    do-next = {
+      url = "github:ejiektpobehuk/do-next";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

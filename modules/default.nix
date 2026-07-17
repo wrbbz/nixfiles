@@ -6,6 +6,7 @@
     ./claude
     ./cli
     ./dev
+    ./do-next
     ./firefox
     ./git
     ./joshuto

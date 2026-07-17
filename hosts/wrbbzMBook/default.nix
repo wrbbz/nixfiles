@@ -8,6 +8,7 @@
     claude.enable = true;
     cli.enable = true;
     dev.enable = true;
+    do-next.enable = true;
     firefox.enable = true;
     git = {
       enable = true;
