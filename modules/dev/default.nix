@@ -12,6 +12,8 @@ in {
   config = mkIf config.my-config.dev.enable {
     environment.systemPackages = with pkgs; [
       biome
+      cargo
+      clippy
       cobra-cli
       devbox
       dive
@@ -23,6 +25,9 @@ in {
       jwt-cli
       nodejs
       pulumi-bin
+      rust-analyzer
+      rustc
+      rustfmt
       usql
       yarn
       yq-go
