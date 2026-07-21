@@ -33,6 +33,8 @@ in {
       yq-go
     ] ++ (lib.optionals pkgs.stdenv.isDarwin [
       less
+    ]) ++ (lib.optionals pkgs.stdenv.isLinux [
+      gcc
     ]);
   };
 }
