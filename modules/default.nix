@@ -18,7 +18,6 @@
     ./slack
     ./starship
     ./telegram
-    ./telepresence
     ./unfree
     ./yamusic
     ./zsh
