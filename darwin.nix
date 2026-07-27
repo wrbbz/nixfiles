@@ -32,6 +32,13 @@ in
     (pkgs.writeShellScriptBin "nix-gc-clean" nixGcScript)
   ];
 
+  # nix-darwin defaults PAGER to "less -R", which Go tools (kubectl, k9s, gh)
+  # exec as a single binary name: exec: "less -R": executable file not found
+  environment.variables = {
+    PAGER = "less";
+    LESS = "-R";
+  };
+
   launchd.daemons.nix-gc = {
     script = nixGcScript;
     serviceConfig = {
