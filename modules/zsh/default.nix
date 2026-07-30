@@ -66,6 +66,44 @@ in {
 
           bindkey -- "^P" up-line-or-beginning-search
           bindkey -- "^N" down-line-or-beginning-search
+        '' + lib.optionalString pkgs.stdenv.isDarwin ''
+          # Review a nixpkgs PR on all three platforms and post one combined
+          # report to GitHub. Builders: aarch64-darwin locally, x86_64-linux on
+          # wrbbzGM (must be reachable), aarch64-linux on the linux-builder VM
+          # (started for the duration of the run).
+          # Extra arguments are passed through to `nixpkgs-review pr`, e.g.:
+          #   nixpkgs-review-all 547161 --package foo --extra-nixpkgs-config '{ cudaSupport = true; }'
+          nixpkgs-review-all() {
+            if [[ -z "$1" ]]; then
+              echo "usage: nixpkgs-review-all <pr-number> [nixpkgs-review args...]" >&2
+              return 1
+            fi
+            local pr="$1"
+            shift
+            echo "Starting linux-builder VM..." >&2
+            sudo launchctl bootstrap system /Library/LaunchDaemons/org.nixos.linux-builder.plist 2>/dev/null
+            local i up=0
+            for i in {1..60}; do
+              if sudo nix store info --store 'ssh-ng://builder@linux-builder' &>/dev/null; then
+                up=1
+                break
+              fi
+              printf '\rWaiting for linux-builder VM... %ds' $((i * 2)) >&2
+              sleep 2
+            done
+            echo >&2
+            if [[ $up -ne 1 ]]; then
+              echo "linux-builder VM did not come up after 120s, aborting" >&2
+              sudo launchctl bootout system/org.nixos.linux-builder 2>/dev/null
+              return 1
+            fi
+            echo "linux-builder VM is up" >&2
+            GITHUB_TOKEN=$(gh auth token) nixpkgs-review pr "$pr" --no-shell \
+              --systems "aarch64-darwin x86_64-linux aarch64-linux" "$@"
+            local rc=$?
+            sudo launchctl bootout system/org.nixos.linux-builder
+            return $rc
+          }
         '';
         # TODO: exec Hyprland and gamescope only when they are enabled
         profileExtra = ''

@@ -8,6 +8,14 @@
 
   services.resolved.enable = true;
 
+  # Remote x86_64-linux builder for wrbbzMBook (nixpkgs-review).
+  # trusted-users is required so pushed build inputs don't fail
+  # with "path lacks a valid signature".
+  nix.settings.trusted-users = [ "wrbbz" ];
+  users.users.wrbbz.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKJ894D56hofWt5IxootnovZWjIJ/xwxJ9fdtvTlc2d3 nix remote builds"
+  ];
+
   services.nginx.enable = true;
 
   programs.tmux = {
