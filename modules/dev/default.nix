@@ -15,6 +15,7 @@ in {
       cargo
       clippy
       cobra-cli
+      dasel
       devbox
       dive
       gnumake
@@ -30,7 +31,6 @@ in {
       rustfmt
       usql
       yarn
-      yq-go
     ] ++ (lib.optionals pkgs.stdenv.isDarwin [
       less
     ]) ++ (lib.optionals pkgs.stdenv.isLinux [
