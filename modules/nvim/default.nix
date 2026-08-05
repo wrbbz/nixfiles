@@ -137,27 +137,6 @@ in {
             '';
           }
           {
-            plugin = copilot-lua;
-            type = "lua";
-            config = ''
-              require("copilot").setup({
-                suggestion = { enable = false },
-                panel = { enable = false },
-              })
-              -- wait for the Copilot command (the end of a sync cycle)
-              vim.defer_fn(function()
-                vim.cmd('Copilot disable')
-              end, 0)
-            '';
-          }
-          {
-            plugin = copilot-cmp;
-            type = "lua";
-            config = ''
-              require("copilot_cmp").setup()
-            '';
-          }
-          {
             plugin = gruvbox-community;
             type = "lua";
             config = ''
