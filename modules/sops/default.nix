@@ -8,7 +8,7 @@
         sops
       ];
 
-      sops.age = if pkgs.stdenv.isLinux then {
+      sops.age = if pkgs.stdenv.hostPlatform.isLinux then {
         # Age identity derived from the SSH host key at boot by the
         # sops-age-key-wrbbz service (see configuration.nix)
         keyFile = "/var/lib/sops-wrbbz/keys.txt";

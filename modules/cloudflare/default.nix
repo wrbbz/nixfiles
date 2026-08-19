@@ -15,7 +15,7 @@ in {
         cloudflared
       ];
     }
-    (mkIf pkgs.stdenv.isLinux {
+    (mkIf pkgs.stdenv.hostPlatform.isLinux {
       nixpkgs.allowUnfreePackages = [
         "cloudflare-warp"
       ];

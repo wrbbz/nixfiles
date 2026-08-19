@@ -12,7 +12,7 @@ in {
 
   config = mkIf config.my-config.slack.enable (lib.mkMerge [
     # Linux: install via nixpkgs with Wayland wrapper
-    (lib.mkIf pkgs.stdenv.isLinux {
+    (lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       home-manager.users.wrbbz.home.packages = with pkgs; [
         (slack.overrideAttrs (old: {
           nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ pkgs.makeWrapper ];

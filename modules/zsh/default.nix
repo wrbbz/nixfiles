@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let inherit (lib) types mkIf mkDefault mkOption;
-nxuildCommand = if pkgs.stdenv.isLinux
+nxuildCommand = if pkgs.stdenv.hostPlatform.isLinux
           then
             "doas nixos-rebuild build --flake /etc/nixos"
           else
@@ -39,12 +39,12 @@ in {
           ls="eza -Slhg --icons=always";
           la="eza -Slhga --icons=always";
           maps="telnet mapscii.me";
-          nxwitch = if pkgs.stdenv.isLinux
+          nxwitch = if pkgs.stdenv.hostPlatform.isLinux
             then
               "doas nixos-rebuild switch --flake /etc/nixos"
             else
               "nix run nix-darwin -- switch --flake ~/repos/nixfiles";
-          nxuild = (if pkgs.stdenv.isLinux
+          nxuild = (if pkgs.stdenv.hostPlatform.isLinux
             then
               "doas nixos-rebuild build --flake /etc/nixos"
             else
@@ -66,7 +66,7 @@ in {
 
           bindkey -- "^P" up-line-or-beginning-search
           bindkey -- "^N" down-line-or-beginning-search
-        '' + lib.optionalString pkgs.stdenv.isDarwin ''
+        '' + lib.optionalString pkgs.stdenv.hostPlatform.isDarwin ''
           # Review a nixpkgs PR on all three platforms and post one combined
           # report to GitHub. Builders: aarch64-darwin locally, x86_64-linux on
           # wrbbzGM (must be reachable), aarch64-linux on the linux-builder VM

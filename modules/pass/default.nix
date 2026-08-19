@@ -23,7 +23,7 @@ in {
       programs.password-store = {
         enable = true;
 
-        package = if pkgs.stdenv.isDarwin
+        package = if pkgs.stdenv.hostPlatform.isDarwin
         then
           pkgs.pass.withExtensions (exts: [ exts.pass-otp ])
         else
@@ -34,11 +34,11 @@ in {
         enable = true;
       };
 
-      services.gpg-agent = mkIf (pkgs.stdenv.isLinux) {
+      services.gpg-agent = mkIf (pkgs.stdenv.hostPlatform.isLinux) {
         enable = true;
         pinentry.package = pkgs.pinentry-curses;
       };
-      launchd.agents.gpg-agent = mkIf (pkgs.stdenv.isDarwin) {
+      launchd.agents.gpg-agent = mkIf (pkgs.stdenv.hostPlatform.isDarwin) {
         enable = true;
       };
     };

@@ -11,7 +11,7 @@ in {
   };
 
   config = mkIf config.my-config.telegram.enable (lib.mkMerge [
-    (lib.mkIf pkgs.stdenv.isLinux {
+    (lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       home-manager.users.wrbbz.home.packages = [ pkgs.telegram-desktop ];
     })
 

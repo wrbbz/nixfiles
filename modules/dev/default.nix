@@ -31,9 +31,9 @@ in {
       rustfmt
       usql
       yarn
-    ] ++ (lib.optionals pkgs.stdenv.isDarwin [
+    ] ++ (lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
       less
-    ]) ++ (lib.optionals pkgs.stdenv.isLinux [
+    ]) ++ (lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       gcc
     ]);
   };
