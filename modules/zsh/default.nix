@@ -67,19 +67,9 @@ in {
           bindkey -- "^P" up-line-or-beginning-search
           bindkey -- "^N" down-line-or-beginning-search
         '' + lib.optionalString pkgs.stdenv.hostPlatform.isDarwin ''
-          # Review a nixpkgs PR on all three platforms and post one combined
-          # report to GitHub. Builders: aarch64-darwin locally, x86_64-linux on
-          # wrbbzGM (must be reachable), aarch64-linux on the linux-builder VM
-          # (started for the duration of the run).
-          # Extra arguments are passed through to `nixpkgs-review pr`, e.g.:
-          #   nixpkgs-review-all 547161 --package foo --extra-nixpkgs-config '{ cudaSupport = true; }'
-          nixpkgs-review-all() {
-            if [[ -z "$1" ]]; then
-              echo "usage: nixpkgs-review-all <pr-number> [nixpkgs-review args...]" >&2
-              return 1
-            fi
-            local pr="$1"
-            shift
+          # Boot the linux-builder VM, run the given command, then shut the
+          # VM back down. Returns the command's exit code.
+          with-linux-builder() {
             echo "Starting linux-builder VM..." >&2
             sudo launchctl bootstrap system /Library/LaunchDaemons/org.nixos.linux-builder.plist 2>/dev/null
             local i up=0
@@ -98,11 +88,48 @@ in {
               return 1
             fi
             echo "linux-builder VM is up" >&2
-            GITHUB_TOKEN=$(gh auth token) nixpkgs-review pr "$pr" --no-shell \
-              --systems "aarch64-darwin x86_64-linux aarch64-linux" "$@"
+            "$@"
             local rc=$?
             sudo launchctl bootout system/org.nixos.linux-builder
             return $rc
+          }
+
+          # Review a nixpkgs PR on all three platforms and post one combined
+          # report to GitHub. Builders: aarch64-darwin locally, x86_64-linux on
+          # wrbbzGM (must be reachable), aarch64-linux on the linux-builder VM
+          # (started for the duration of the run).
+          # Extra arguments are passed through to `nixpkgs-review pr`, e.g.:
+          #   nixpkgs-review-all 547161 --package foo --extra-nixpkgs-config '{ cudaSupport = true; }'
+          nixpkgs-review-all() {
+            if [[ -z "$1" ]]; then
+              echo "usage: nixpkgs-review-all <pr-number> [nixpkgs-review args...]" >&2
+              return 1
+            fi
+            local pr="$1"
+            shift
+            GITHUB_TOKEN=$(gh auth token) with-linux-builder nixpkgs-review pr "$pr" --no-shell \
+              --systems "aarch64-darwin x86_64-linux aarch64-linux" "$@"
+          }
+
+          # Build the current flake's checks and packages on all three
+          # platforms — the flake-repo counterpart of nixpkgs-review-all.
+          # Run from the flake's root; extra arguments pass to `nix build`.
+          flake-build-all() {
+            local sys name targets=()
+            for sys in aarch64-darwin x86_64-linux aarch64-linux; do
+              for name in $(nix eval ".#checks.$sys" --apply 'a: toString (builtins.attrNames a)' --raw 2>/dev/null); do
+                targets+=(".#checks.$sys.$name")
+              done
+              for name in $(nix eval ".#packages.$sys" --apply 'a: toString (builtins.attrNames a)' --raw 2>/dev/null); do
+                targets+=(".#packages.$sys.$name")
+              done
+            done
+            if [[ ''${#targets[@]} -eq 0 ]]; then
+              echo "no checks or packages found for the three platforms — is this a flake root?" >&2
+              return 1
+            fi
+            printf 'building %d targets\n' ''${#targets[@]} >&2
+            with-linux-builder nix build --keep-going --no-link --print-build-logs "''${targets[@]}" "$@"
           }
         '';
         # TODO: exec Hyprland and gamescope only when they are enabled
