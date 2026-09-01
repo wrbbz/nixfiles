@@ -102,6 +102,7 @@ in {
             g = "https://www.google.com/search?hl=en&q={}";
             gl = "https://gitlab.com/search?search={}";
             gh = "https://github.com/search?utf8=/%E2%9C%93&q={}&type=";
+            ghnix = "https://github.com/NixOS/nixpkgs/pulls?q=is%3Apr+{}";
             ghm = "https://github.com/marketplace?query={}";
             ghr = "https://github.com/{}";
             gmaps = "https://www.google.ru/maps/search/{}";
