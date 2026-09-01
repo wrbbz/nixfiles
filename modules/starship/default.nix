@@ -15,6 +15,12 @@ in {
         enable = true;
         enableZshIntegration = true;
         enableNushellIntegration = true;
+        settings = {
+          directory = {
+            truncate_to_repo = false;
+            truncation_length = 2;
+          };
+        };
       };
     };
   };
