@@ -4,6 +4,19 @@
     hostName = "wrbbzMBook";
   };
 
+  # nix-darwin's linux-builder module writes this file without IdentitiesOnly,
+  # so ssh (as root via sudo, which keeps SSH_AUTH_SOCK) offers every agent key
+  # first and hits the builder's MaxAuthTries before reaching the builder key.
+  environment.etc."ssh/ssh_config.d/100-linux-builder.conf".text = pkgs.lib.mkForce ''
+    Host linux-builder
+      User builder
+      Hostname localhost
+      HostKeyAlias linux-builder
+      Port 31022
+      IdentityFile /etc/nix/builder_ed25519
+      IdentitiesOnly yes
+  '';
+
   nix = {
     distributedBuilds = true;
 
