@@ -90,6 +90,10 @@ in {
             echo "linux-builder VM is up" >&2
             "$@"
             local rc=$?
+            # The VM's store is only a cache (builders-use-substitutes), so
+            # drop everything but the system closure before shutting down.
+            echo "Collecting garbage on linux-builder VM..." >&2
+            sudo nix store gc --store 'ssh-ng://builder@linux-builder' 2>&1 | tail -n 1 >&2
             sudo launchctl bootout system/org.nixos.linux-builder
             return $rc
           }
