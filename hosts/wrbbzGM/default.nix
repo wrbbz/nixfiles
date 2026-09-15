@@ -37,7 +37,6 @@
     alacritty.enable = true;
     bluetooth.enable = true;
     cli.enable = true;
-    dev.enable = true;
     git = {
       enable = true;
       signing = {
@@ -57,7 +56,6 @@
     pass.enable = true;
     podman.enable = true;
     starship.enable = true;
-    tailscale.enable = true;
     zsh.enable = true;
   };
 }
