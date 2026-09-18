@@ -22,7 +22,6 @@ in {
       nix-tree
       nixpkgs-review
       nvd # https://gitlab.com/khumba/nvd
-      ranger
       ripgrep
       tmate
       wget
