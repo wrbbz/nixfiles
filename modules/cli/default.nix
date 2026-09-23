@@ -23,7 +23,6 @@ in {
       nixpkgs-review
       nvd # https://gitlab.com/khumba/nvd
       ripgrep
-      tmate
       wget
       whois
       wtfutil
