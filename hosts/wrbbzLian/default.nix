@@ -100,6 +100,7 @@
     rbw.enable = true;
     sidra.enable = true;
     slack.enable = true;
+    slk.enable = true;
     starship.enable = true;
     steam.enable = true;
     tailscale.enable = true;

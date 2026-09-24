@@ -36,6 +36,7 @@
     pass.enable = true;
     qutebrowser.enable = false;
     slack.enable = true;
+    slk.enable = true;
     starship.enable = true;
     telegram.enable = true;
     zsh.enable = true;

@@ -50,6 +50,11 @@
       url = "github:ejiektpobehuk/do-next";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    slk = {
+      url = "github:gammons/slk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

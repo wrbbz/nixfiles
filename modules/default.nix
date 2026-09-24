@@ -16,6 +16,7 @@
     ./qutebrowser
     ./sidra
     ./slack
+    ./slk
     ./starship
     ./telegram
     ./unfree
