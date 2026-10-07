@@ -63,7 +63,7 @@ in {
             c.url.searchengines['j'] = 'https://${config.sops.placeholder."qb_excorp_atlassian"}/browse/{}'
             c.url.searchengines['c'] = 'https://${config.sops.placeholder."qb_excorp_atlassian"}/wiki/search?text={}'
             c.url.searchengines['exit'] = 'https://${config.sops.placeholder."qb_excorp_gitlab"}/search?search={}'
-            c.url.searchengines['exff'] = 'https://${config.sops.placeholder."qb_excorp_ff"}/projects/default?search={}'
+            c.url.searchengines['exff'] = 'https://${config.sops.placeholder."qb_excorp_ff"}/projects/default?query={}'
             c.url.searchengines['lab215'] = 'https://${config.sops.placeholder."qb_spbpu_gitlab"}/search?search={}'
           '';
         };
