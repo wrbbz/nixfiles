@@ -84,16 +84,14 @@ in {
             echo >&2
             if [[ $up -ne 1 ]]; then
               echo "linux-builder VM did not come up after 120s, aborting" >&2
-              sudo launchctl bootout system/org.nixos.linux-builder 2>/dev/null
+   2>/dev/null
               return 1
             fi
             echo "linux-builder VM is up" >&2
             "$@"
             local rc=$?
-            # The VM's store is only a cache (builders-use-substitutes), so
-            # drop everything but the system closure before shutting down.
-            echo "Collecting garbage on linux-builder VM..." >&2
-            sudo nix store gc --store 'ssh-ng://builder@linux-builder' 2>&1 | tail -n 1 >&2
+            # No GC here: the VM is ephemeral (nix.linux-builder.ephemeral), so
+            # its disk image is discarded on the next start anyway.
             sudo launchctl bootout system/org.nixos.linux-builder
             return $rc
           }

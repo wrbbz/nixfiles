@@ -26,12 +26,19 @@
     #   sudo launchctl bootout system/org.nixos.linux-builder
     linux-builder = {
       enable = true;
+      # with-linux-builder kills QEMU with `launchctl bootout` right after a
+      # `nix store gc`; the disk runs with cache=writeback, so the GC's file
+      # deletions can land without the store-db updates and the next build
+      # fails with "getting attributes of path ... No such file or directory".
+      # The system closure lives in an erofs image rebuilt on every boot, so
+      # the qcow2 only ever holds build outputs: start from a fresh one.
+      ephemeral = true;
       config = {
         virtualisation = {
           cores = 6;
           darwin-builder = {
             memorySize = 8 * 1024; # MiB
-            diskSize = 50 * 1024; # MiB; can only grow without wiping /var/lib/darwin-builder
+            diskSize = 50 * 1024; # MiB
           };
         };
       };
