@@ -48,6 +48,17 @@ in
           };
         };
       };
+      hooksExcludedDirs = mkOption {
+        description = ''
+          Directories (gitdir patterns) where the global hooks are not applied.
+          Repositories under these paths fall back to their own .git/hooks.
+        '';
+        type = types.listOf types.str;
+        default = [
+          "~/.password-store/"
+          "~/repos/nixpkgs/"
+        ];
+      };
       corporateUrls = {
         enable = mkOption {
           description = "Enable corporate git URL rewrites via sops-encrypted include";
@@ -170,7 +181,13 @@ in
               (mkIf nixosConfig.my-config.git.corporateUrls.enable {
                 path = config.sops.templates."git-corporate-urls".path;
               })
-            ];
+            ]
+            # Repos where the global hooks must not run: reset hooksPath to the
+            # repo-local default (relative to the worktree root, where hooks run).
+            ++ map (dir: {
+              condition = "gitdir:${dir}";
+              contents.core.hooksPath = ".git/hooks";
+            }) nixosConfig.my-config.git.hooksExcludedDirs;
           };
           delta = {
             enable = true;
