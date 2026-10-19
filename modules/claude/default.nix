@@ -37,6 +37,7 @@ in {
           };
           servers.atlassian.url = "https://mcp.atlassian.com/v1/mcp/authv2";
           servers.grafana.url = "https://mcp.grafana.com/mcp";
+          servers.cloudflare.url = "https://mcp.cloudflare.com/mcp";
 
           servers.sentry = {
             # Built from the npm tarball with a vendored lockfile, see
