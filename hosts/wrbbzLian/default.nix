@@ -104,6 +104,10 @@
     starship.enable = true;
     steam.enable = true;
     tailscale.enable = true;
+    tether = {
+      enable = true;
+      bluetooth.enable = true;
+    };
     v4l2.enable = true;
     wofi.enable = true;
     yamusic.enable = false;

@@ -20,6 +20,7 @@
     ./rbw
     ./steam
     ./tailscale
+    ./tether
     ./transmission
     ./v4l2
     ./wofi
