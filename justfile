@@ -4,18 +4,17 @@ propagate := if os() == "linux" { "doas" } else { "sudo" }
 default:
   @just --list
 
-# Updates flake and commits lock files
-update:
+# Updates flake and only commits lock file (wo push)
+update-dry:
   git stash
   git pull
   {{ if os() == "macos" { "ulimit -n 4096 && " } else { "" } }}nix flake update --option access-tokens "github.com=$(gh auth token)"
   git commit -m 'reference-update(flake): updates lock file' flake.lock
+
+# Updates flake, commits and push lock file
+update: update-dry
   git push
   git stash pop || true
-
-# Updates flake only
-update-dry:
-  nix flake update --option access-tokens "github.com=$(gh auth token)"
 
 # Builds current revision of NixOs
 [linux]
