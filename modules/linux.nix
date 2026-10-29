@@ -6,6 +6,7 @@
     ./boot
     ./cloudflare
     ./fileSystems
+    ./fingerprint
     ./flatpak
     ./hyprland
     ./jellyfin
