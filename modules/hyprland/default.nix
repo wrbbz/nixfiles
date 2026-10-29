@@ -82,6 +82,11 @@ in {
     };
 
     home-manager.users.wrbbz = {
+      # polkit authentication agent for the session. Without one, every polkit
+      # action that needs auth_self/auth_admin (fprintd-enroll, flatpak,
+      # NetworkManager secrets, ...) is silently denied.
+      services.hyprpolkitagent.enable = true;
+
       home.packages = with pkgs; [
         brightnessctl
         hyprland-per-window-layout
