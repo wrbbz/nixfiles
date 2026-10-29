@@ -92,6 +92,7 @@
     kubernetes.enable = true;
     nvim.enable = true;
     obs.enable = true;
+    oo7.enable = true;
     opendeck.enable = true;
     opengl.enable = true;
     pass.enable = true;

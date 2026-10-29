@@ -14,6 +14,7 @@
     ./networking
     ./nixflix
     ./obs
+    ./oo7
     ./opendeck
     ./opengl
     ./podman
