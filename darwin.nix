@@ -59,6 +59,12 @@ in
     };
   };
 
+  # The macOS sandbox profile lists every input store path of a derivation and
+  # libsandbox caps it at 64 KiB. The top-level system derivation pulls in the
+  # whole closure (~1400 paths), which overflows that limit. It only assembles
+  # symlinks, so build it unsandboxed (allowed by sandbox = "relaxed").
+  system.systemBuilderArgs.__noChroot = true;
+
   users.users.wrbbz = {
     isHidden = false;
     home = "/Users/wrbbz";
