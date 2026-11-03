@@ -33,8 +33,18 @@ in {
           # resolve `/usr/bin/env python3` and meson failed to exec the script.
           nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ prev.python3 ];
           # nixpkgs patches shebangs in a test runner the fork does not ship.
+          # libfprint's default thermal model marks a device HOT after 3 min of
+          # activity and aborts verify with "Device disabled to prevent
+          # overheating". hyprlock runs verify for the whole lock and never
+          # restarts it, so the reader went silent. CS9711 is a passive press
+          # sensor; -1 opts it out (FP_DEVICE_FEATURE_ALWAYS_ON).
           postPatch = ''
             patchShebangs tests/*.py tests/*.sh
+            substituteInPlace libfprint/drivers/cs9711/cs9711.c \
+              --replace-fail \
+                'dev_class->scan_type = FP_SCAN_TYPE_PRESS;' \
+                'dev_class->scan_type = FP_SCAN_TYPE_PRESS;
+  dev_class->temp_hot_seconds = -1;'
           '';
           # Upstream's test suite does not know about the cs9711 driver.
           doInstallCheck = false;
