@@ -29,8 +29,8 @@ in {
             decorations = "Buttonless";
             dynamic_title = true;
             dynamic_padding = true;
-            # MacOS option only
-            option_as_alt = "OnlyLeft";
+            # MacOS option only: treat both Option keys as Alt (no ∫/ß/… symbols)
+            option_as_alt = "Both";
           };
           cursor = {
             unfocused_hollow = true;
