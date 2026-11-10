@@ -77,7 +77,6 @@
         wallpaper = DP-1,/home/wrbbz/.pictures/bg.png
       '';
     };
-    joshuto.enable = true;
     keymapp.enable = true;
     kubernetes.enable = true;
     nvim.enable = true;

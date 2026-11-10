@@ -88,7 +88,6 @@
         }
       '';
     };
-    joshuto.enable = true;
     keymapp.enable = true;
     kubernetes.enable = true;
     nvim.enable = true;

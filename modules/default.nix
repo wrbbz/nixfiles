@@ -9,7 +9,6 @@
     ./do-next
     ./firefox
     ./git
-    ./joshuto
     ./kubernetes
     ./nvim
     ./pass
