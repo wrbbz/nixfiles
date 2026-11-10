@@ -31,7 +31,6 @@ in {
     ]
     ++(pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       hdparm
-      pw-volume
       zathura
     ]);
   };
