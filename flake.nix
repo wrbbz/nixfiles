@@ -55,6 +55,11 @@
       url = "github:gammons/slk";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    humanizer = {
+      url = "github:blader/humanizer";
+      flake = false;
+    };
   };
 
   outputs =

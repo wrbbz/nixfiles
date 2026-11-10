@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 let
   inherit (lib) types mkIf mkOption;
   sentry-mcp-server = pkgs.callPackage ./sentry-mcp-server/package.nix { };
@@ -61,6 +61,9 @@ in {
           # Pull programs.mcp.servers into Claude Code (delivered as the
           # generated "hm" plugin, tools named mcp__plugin_hm_<server>__*).
           enableMcpIntegration = true;
+          # Skill repos pinned as non-flake inputs. Only SKILL.md is linked to
+          # ~/.claude/skills/<name>/SKILL.md; it references no other repo files.
+          skills.humanizer = "${inputs.humanizer}/SKILL.md";
           # settings.json and ~/.claude.json stay hand-managed on purpose:
           # no `settings` declared here.
         };
