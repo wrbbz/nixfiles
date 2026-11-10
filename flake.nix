@@ -60,6 +60,11 @@
       url = "github:blader/humanizer";
       flake = false;
     };
+
+    rfc-skills = {
+      url = "github:lemieux/rfc-skills";
+      flake = false;
+    };
   };
 
   outputs =

@@ -507,6 +507,22 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.zst"
       }
     },
+    "rfc-skills": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1781181104,
+        "narHash": "sha256-+JN4j+wHeuxCYIjM6qZ0R11j5bfK878gBSoZJGrEuTU=",
+        "owner": "lemieux",
+        "repo": "rfc-skills",
+        "rev": "4da4df591d6ff165f86fd9863f7db9cbe780c71e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lemieux",
+        "repo": "rfc-skills",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "do-next": "do-next",
@@ -521,6 +537,7 @@
         "nixflix": "nixflix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_6",
+        "rfc-skills": "rfc-skills",
         "sidra": "sidra",
         "slk": "slk",
         "sops-nix": "sops-nix",
