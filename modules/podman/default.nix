@@ -17,14 +17,6 @@ in {
         dockerCompat = true;
         defaultNetwork.settings.dns_enabled = true;
       };
-
-      containers.storage.settings.storage = {
-        driver = "overlay";
-        # could be a separate pool/dataset
-        graphroot = "/home/wrbbz/.local/share/containers/storage";
-        rootless_storage_path = "/home/wrbbz/.local/share/containers/storage";
-        runroot = "/run/containers/storage";
-      };
     };
 
     environment.systemPackages = with pkgs; [
