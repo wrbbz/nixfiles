@@ -263,6 +263,15 @@ in {
             hl.exec_cmd("${pkgs.hyprpaper}/bin/hyprpaper")
           end)
 
+          -- xdph >= 1.5 share picker is a plain hyprtoolkit toplevel (no longer
+          -- a Qt dialog), so it gets tiled unless told otherwise
+          hl.window_rule({
+            name   = "float-share-picker",
+            match  = { class = "^hyprland-share-picker$" },
+            float  = true,
+            center = true,
+          })
+
           -- Keybindings
           local M = "SUPER"
 
@@ -475,6 +484,12 @@ in {
 
       home.file = {
         "./.config/hypr/hyprpaper.conf".text = config.my-config.hypr.paperConfig;
+        # Pre-tick "Allow a restore token" in the share picker
+        "./.config/hypr/xdph.conf".text = ''
+          screencopy {
+            allow_token_by_default = true
+          }
+        '';
       };
     };
   };
