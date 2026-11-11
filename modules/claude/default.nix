@@ -35,7 +35,7 @@ in {
             command = lib.getExe pkgs.glab;
             args = [ "mcp" "serve" ];
           };
-          servers.atlassian.url = "https://mcp.atlassian.com/v1/mcp/authv2";
+          servers.atlassian.url = "https://mcp.atlassian.com/v2/mcp";
           servers.grafana.url = "https://mcp.grafana.com/mcp";
           servers.cloudflare.url = "https://mcp.cloudflare.com/mcp";
 
