@@ -112,14 +112,7 @@
                 else
                   home-manager.nixosModules.home-manager;
 
-              pkgs = import nixpkgs {
-                inherit system;
-                config = {
-                  permittedInsecurePackages = [
-                    "electron-36.9.5"
-                  ];
-                };
-              };
+              pkgs = import nixpkgs { inherit system; };
 
               entryModule =
                 { lib, ... }:
