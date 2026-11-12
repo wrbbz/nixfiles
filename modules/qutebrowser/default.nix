@@ -12,6 +12,9 @@ in {
   };
 
   config = mkIf nixosConfig.my-config.qutebrowser.enable {
+    # QtWebEngine still trusts eMudhra roots; pinned so it re-breaks on the next bump
+    nixpkgs.config.permittedInsecurePackages = [ "qutebrowser-3.7.0" ];
+
     home-manager.users.wrbbz =
       # Function form so we can reference config.sops.{placeholder,templates}
       { config, lib, ... }:
