@@ -61,6 +61,11 @@
       flake = false;
     };
 
+    humanizer-ru = {
+      url = "github:Vladimir-Human/humanizer-ru";
+      flake = false;
+    };
+
     rfc-skills = {
       url = "github:lemieux/rfc-skills";
       flake = false;

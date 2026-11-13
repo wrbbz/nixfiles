@@ -2,6 +2,14 @@
 let
   inherit (lib) types mkIf mkOption;
   sentry-mcp-server = pkgs.callPackage ./sentry-mcp-server/package.nix { };
+  # humanizer-ru calls `python <skill dir>/scripts/...`; no python on PATH here,
+  # so pin the interpreter to a store path instead (scripts are stdlib-only).
+  humanizer-ru = pkgs.runCommand "humanizer-ru-skill" { } ''
+    cp -r ${inputs.humanizer-ru}/skills/humanizer-ru $out
+    chmod -R u+w $out
+    substituteInPlace $out/SKILL.md \
+      --replace-fail 'python <папка навыка>' '${pkgs.python3}/bin/python <папка навыка>'
+  '';
 in {
   options.my-config = {
     claude.enable = mkOption {
@@ -72,6 +80,8 @@ in {
           skills = {
             # Only SKILL.md is linked; it references no other repo files.
             humanizer = "${inputs.humanizer}/SKILL.md";
+            # Whole skill directory (patched, see let-binding): loads references/, runs scripts/.
+            humanizer-ru = "${humanizer-ru}";
             # Whole skill directory: SKILL.md loads files from references/.
             writing-technical-docs = "${inputs.rfc-skills}/skills/writing-technical-docs";
           };
